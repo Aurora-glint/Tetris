@@ -2,6 +2,9 @@
 #include "ui_Cboard.h"
 #include <QDebug>
 
+#define ROW 20
+#define COL 10
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)

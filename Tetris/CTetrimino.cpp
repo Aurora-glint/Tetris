@@ -1,6 +1,9 @@
 #include "CTetrimino.h"
 #include <random>
 
+extern int ROW;
+extern int COL;
+
 void CTetrimino::set_shape(All_Shape shape)
 {
     for (int i = 0; i < 4; ++i)
@@ -21,4 +24,13 @@ void CTetrimino::creat_next_shape()
     type = All_Shape(dis(gen));
 
     set_shape(All_Shape(type));  // 创建下一个随机图形
+}
+
+void CTetrimino::move(Direction dire)
+{
+
+}
+
+CTetrimino::CTetrimino():pos_x(), pos_y(20)
+{
 }
