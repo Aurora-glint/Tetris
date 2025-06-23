@@ -24,8 +24,6 @@ private:
     void creat_next_shape(); // 随机生成下一个图形
     
 
-    // void move(Direction dire);
-    void border(); // 确定图形边界（相对坐标）
 
 public:
     CTetrimino();
