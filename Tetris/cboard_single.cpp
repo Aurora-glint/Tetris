@@ -60,6 +60,8 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
         if(k->key()==Qt::Key_Escape)
         {
             Ispaused=false;//关闭暂停
+            qDebug()<<"game started "<<Qt::endl;
+
             k->accept();
         }
         else
