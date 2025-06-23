@@ -2,6 +2,7 @@
 #define CTETRIMINO_H
 
 enum All_Shape {O_shape, I_shape, Z_shape, S_shape, L_shape, J_shape, T_shape};
+enum Direction {Up, Down, Left, Right};
 
 class CTetrimino{
     static constexpr int Shape[7][4][4] =
@@ -16,10 +17,13 @@ class CTetrimino{
     };
 private:
     int Tetri_shape[4][4];
+    All_Shape type;
+    int left, right, up, down, pos_x, pos_y; // 上下左右边界，及绝对坐标
 
     void set_shape(All_Shape shape); // 根据形状设置图形
-    int get_random();  // 产生形状随机图形
-    void creat_next_shape(); // 创建下一个随机图形
+    void creat_next_shape(); // 随机生成下一个图形
+
+    void move(Direction dire);
 
 public:
     CTetrimino();

@@ -4,8 +4,8 @@
 #include <QMainWindow>
 #include <Cboard_single.h>
 
-#define ROW 20 // 定义行数和列数
-#define COL 10
+static const int ROW = 20;
+static const int COL = 10;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
