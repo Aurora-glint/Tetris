@@ -6,13 +6,39 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>600</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QPushButton" name="back_menu_button">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>700</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>返回菜单</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="quit_game">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>760</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>退出游戏</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

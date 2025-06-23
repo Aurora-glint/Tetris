@@ -27,7 +27,7 @@
      <string>单人游戏</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="exti_button">
+   <widget class="QPushButton" name="exit_button">
     <property name="geometry">
      <rect>
       <x>330</x>
