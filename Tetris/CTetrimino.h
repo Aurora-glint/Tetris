@@ -1,4 +1,29 @@
 #ifndef CTETRIMINO_H
 #define CTETRIMINO_H
 
+enum All_Shape {O_shape, I_shape, Z_shape, S_shape, L_shape, J_shape, T_shape};
+
+class CTetrimino{
+    static constexpr int Shape[7][4][4] =
+    {
+        {{0, 0, 0, 0}, {0, 1, 1, 0}, {0, 1, 1, 0}, {0, 0, 0, 0}},  //O_shape
+        {{0, 1, 0, 0}, {0, 1, 0, 0}, {0, 1, 0, 0}, {0, 1, 0, 0}},  //I_shape
+        {{0, 0, 0, 0}, {0, 1, 1, 0}, {0, 0, 1, 1}, {0, 0, 0, 0}},  //Z_shape
+        {{0, 0, 0, 0}, {0, 1, 1, 0}, {1, 1, 0, 0}, {0, 0, 0, 0}},  //S_shape
+        {{0, 0, 0, 0}, {0, 1, 0, 0}, {0, 1, 0, 0}, {0, 1, 1, 0}},  //L_shape
+        {{0, 0, 0, 0}, {0, 0, 1, 0}, {0, 0, 1, 0}, {0, 1, 1, 0}},  //J_shape
+        {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 1, 0, 0}, {1, 1, 1, 0}}   //T_shape
+    };
+private:
+    int Tetri_shape[4][4];
+
+    void set_shape(All_Shape shape); // 根据形状设置图形
+    int get_random();  // 产生形状随机图形
+    void creat_next_shape(); // 创建下一个随机图形
+
+public:
+    CTetrimino();
+
+};
+
 #endif // CTETRIMINO_H
