@@ -7,7 +7,7 @@ Cboard_single::Cboard_single(QWidget *parent)
 {
     ui->setupUi(this);
 
-   // connect(ui->back_menu_button,SIGNAL(back()),this,SLOT(back_menu()));
+   connect(ui->back_menu_button,SIGNAL(back()),this,SLOT(back_menu()));
 
 }
 
@@ -31,4 +31,16 @@ void Cboard_single::on_back_menu_button_clicked()
     qDebug()<<"back signal launched "<<Qt::endl;
 }
 
+
+
+void Cboard_single::on_start_button_clicked()
+{
+    emit start_single();
+}
+
+
+void Cboard_single::on_pause_button_clicked()
+{
+     emit pause_single();
+}
 
