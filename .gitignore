@@ -3,3 +3,4 @@ build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/.qtc_clangd/compile_commands.json
 *.user
 /build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug
 /Tetris/build
+*.autosave
