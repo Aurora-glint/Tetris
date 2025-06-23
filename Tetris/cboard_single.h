@@ -18,16 +18,20 @@ public:
 
 
 signals:
-    void back();
+    void back();//返回信号
 
     void quit();
 
+    void start_single();
 
+    void pause_single();
 private slots:
 
-    void on_quit_game_clicked();
+    void on_quit_game_clicked();//退出游戏按钮
 
-    void on_back_menu_button_clicked();
+    void on_back_menu_button_clicked();//返回主菜单按钮
+
+    void on_start_button_clicked();
 
 private:
     Ui::Cboard_single *ui;

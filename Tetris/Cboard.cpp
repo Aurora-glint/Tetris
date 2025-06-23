@@ -8,9 +8,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(this->widgets,SIGNAL(back()),this,SLOT(showmyshelf()));
-    connect(ui->exit_button,SIGNAL(quit()),this,SLOT(quit_program()));
-
+    connect(this->widgets,SIGNAL(back()),this,SLOT(do_showmyshelf()));//单人游戏返回信号与显示主窗口
+    connect(this,SIGNAL(quit()),this,SLOT(do_quit_program()));//主窗口退出按钮与关闭
+    connect(this->widgets,SIGNAL(quit()),this,SLOT(do_quit_program()));//单人游戏退出按钮与关闭
 }
 
 MainWindow::~MainWindow()
@@ -27,14 +27,12 @@ void MainWindow::on_single_button_clicked()
 
 }
 
-void MainWindow::showmyshelf()
+void MainWindow::do_showmyshelf()
 {
     this->show();
-
 }
 
-
-void MainWindow::quit_program()
+void MainWindow::do_quit_program()
 {
     qDebug()<< " quit "<< Qt::endl;
 }

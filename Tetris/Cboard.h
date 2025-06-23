@@ -24,16 +24,17 @@ signals:
     void quit();
 
 private slots:
-    void on_single_button_clicked();
+    void on_single_button_clicked();//跳转单人游戏按钮
 
-    void showmyshelf();
+    void do_showmyshelf();//显示主窗口
 
-    void quit_program();
+    void do_quit_program();//关闭程序
 
-    void on_exit_button_clicked();
+    void on_exit_button_clicked();//主窗口退出按钮
 
 private:
     Ui::MainWindow *ui;
-    Cboard_single   *widgets = new Cboard_single ;
+    Cboard_single   *widgets = new Cboard_single ;//单人游戏窗口对象
+
 };
 #endif // CBOARD_H
