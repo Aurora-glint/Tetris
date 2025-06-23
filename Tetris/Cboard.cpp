@@ -1,5 +1,6 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "Cboard.h"
+#include "ui_Cboard.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,3 +13,10 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_single_button_clicked()
+{
+
+    qDebug()<< "clicked "<< Qt::endl;
+}
+

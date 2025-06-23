@@ -1,7 +1,10 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef CBOARD_H
+#define CBOARD_H
 
 #include <QMainWindow>
+#include <Cboard_single.h>
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,7 +20,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_single_button_clicked();
+
 private:
     Ui::MainWindow *ui;
+    Cboard_single   *widgets = new Cboard_single ;
 };
-#endif // MAINWINDOW_H
+#endif // CBOARD_H
