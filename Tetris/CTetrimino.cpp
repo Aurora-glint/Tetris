@@ -26,11 +26,19 @@ void CTetrimino::creat_next_shape()
     set_shape(All_Shape(type));  // 创建下一个随机图形
 }
 
-void CTetrimino::move(Direction dire)
+void CTetrimino::border()
 {
-
+    for (int i = 0; i < 4; ++i)
+    {
+        if (left < Tetri_shape[i][0]) left = Tetri_shape[i][0];
+        if (right > Tetri_shape[i][0]) right = Tetri_shape[i][0];
+        if (up > Tetri_shape[i][1]) up = Tetri_shape[i][1];
+        if (down < Tetri_shape[i][1]) down = Tetri_shape[i][1];
+    }
 }
 
-CTetrimino::CTetrimino():pos_x(), pos_y(20)
+CTetrimino::CTetrimino():left(4), right(-1), up(-1), down(4)
 {
+    pos.setX(COL / 2 - 2);
+    pos.setY(ROW);
 }
