@@ -16,22 +16,28 @@ public:
     explicit Cboard_single(QWidget *parent = nullptr);
     ~Cboard_single();
 
+    bool Ispaused;
+    //暂停状态标志
+    void keyPressEvent(QKeyEvent *k);
+    //监听按键事件
 
 signals:
     void back();//返回信号
 
-    void quit();
+    void quit();//退出信号（由主窗口接收）
 
-    void start_single();
+    //void start_single();
 
-    void pause_single();
+    //void pause_single();
 private slots:
 
     void on_quit_game_clicked();//退出游戏按钮
 
     void on_back_menu_button_clicked();//返回主菜单按钮
 
-    void on_start_button_clicked();
+    void on_start_button_clicked();//开始游戏按钮
+
+    void on_pause_button_clicked();//暂停游戏按钮
 
 private:
     Ui::Cboard_single *ui;
