@@ -22,8 +22,7 @@ private:
 
     void set_shape(All_Shape shape); // 根据形状设置图形
     void creat_next_shape(); // 随机生成下一个图形
-
-
+    
 
 
 public:
