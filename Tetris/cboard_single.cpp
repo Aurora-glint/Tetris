@@ -41,13 +41,10 @@ void Cboard_single::on_back_menu_button_clicked()
 
 void Cboard_single::on_start_button_clicked()
 {
-    init_board(); // 清空游戏面板
+    //emit start_single();弃用
     Ispaused = false;
-    // 开启计时器（待写）
-    cur_block = get_new_block(); // 获取初始方块
-    next_block = get_new_block(); // 获取下一个方块
+    qDebug() << "game started " << Qt::endl;
 
-    init_pos(); // 设置下落位置
 }
 
 
@@ -56,7 +53,6 @@ void Cboard_single::on_pause_button_clicked()
     // emit pause_single(); 弃用
     Ispaused = true;
     qDebug() << "game paused " << Qt::endl;
-    //timer->stop();
 }
 
 //监听按键事件
@@ -96,12 +92,16 @@ void Cboard_single::timerEvent(QTimerEvent *event)
             go_down(); // 每秒下落一格
         }
 
-        if(event->timerId() == id_1 && !Ispaused)//3秒事件
+        /*
+         if(event->timerId() == id_1 && !Ispaused)//3秒事件
         {
-            //con -> setText("");
+
         }
+*/
         emit timechange(time);
-        qDebug() << "发出 timechange " << time << Qt::endl;
+
+        qDebug()<<"已发出 timechange "<<time<<Qt::endl;
+
     }
 }
 
@@ -110,11 +110,20 @@ void Cboard_single::do_timechange()
     qDebug()<<"收到 "<<time<<Qt::endl;
     ui->lcd_time->display(time);
     this->update();//每秒更新绘图
-
 }
 
 
 // 以下为郝润熙所写
+void Cboard_single::start_game()
+{
+    init_board(); // 清空游戏面板
+    // 开启计时器（待写）
+    cur_block = get_new_block(); // 获取初始方块
+    next_block = get_new_block(); // 获取下一个方块
+
+    init_pos(); // 设置下落位置
+}
+
 void Cboard_single::go_down()
 {
     if (try_move(0)) pos.setX(pos.x() + 1);
@@ -123,13 +132,11 @@ void Cboard_single::go_down()
 
 void Cboard_single::go_left()
 {
-    if (try_move(-1)) pos.setY(pos.y() - 1);
+
 }
 
 void Cboard_single::go_right()
 {
-    if (try_move(1)) pos.setY(pos.y() + 1);
-}
 
 void Cboard_single::rotate()
 {
@@ -174,8 +181,8 @@ void Cboard_single::init_board()
 // 初始化方块坐标
 void Cboard_single::init_pos()
 {
-    pos.setX(0);
-    pos.setY(COL / 2 - 1);
+    pos.setX(COL / 2 - 1);
+    pos.setY(ROW);
 }
 
 CTetrimino Cboard_single::get_new_block()
@@ -186,17 +193,29 @@ CTetrimino Cboard_single::get_new_block()
 void Cboard_single::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);//gameboard作绘图区域
-
     QPen pen(Qt::black);
-
     painter.setPen(pen);
 
-    QRect one_block;//一个小方块矩形
+    QRect one_block;//单个方块
 
-    one_block.setRect(100,100,50,50);
+
+    one_block.setRect(100,100,30,30);
+    paint_one_block(painter,one_block);
+
+    one_block.setRect(200,200,30,30);
+
+    paint_one_block(painter,one_block);
+    one_block.setRect(300,300,30,30);
+    paint_one_block(painter,one_block);
+
+
+
+
+
+}
+
+void paint_one_block(QPainter &painter,const QRect &one_block)
+{
 
     painter.drawRect(one_block);//绘制该方块
-
-
-
 }
