@@ -76,9 +76,7 @@ private:
 
 
 // 以下为郝润熙所写
-public slots:
-    void start_game();
-
+private slots:
     void go_down(); // 方块下落
     void go_left(); // 方块左移
     void go_right(); // 方块右移

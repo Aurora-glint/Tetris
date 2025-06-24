@@ -6,11 +6,11 @@
 #endif
 
 #ifndef ROW
-#define ROW 20
+#define ROW 25
 #endif
 
 #ifndef COL
-#define COL 10
+#define COL 15
 #endif
 
 #include <random>
@@ -22,12 +22,12 @@ class CTetrimino{
     static constexpr int Shape[8][4][2] =
     {
         {{1, 1}, {1, 2}, {2, 1}, {2, 2}},  // O_shape
-        {{0, 2}, {1, 2}, {2, 2}, {3, 2}},  // I_shape
-        {{1, 2}, {2, 2}, {2, 1}, {3, 1}},  // Z_shape
-        {{1, 1}, {2, 1}, {2, 2}, {3, 2}},  // S_shape
-        {{1, 0}, {1, 1}, {1, 2}, {2, 1}},  // L_shape
-        {{1, 0}, {2, 0}, {2, 1}, {2, 2}},  // J_shape
-        {{1, 1}, {2, 1}, {3, 1}, {2, 2}},  // T_shape
+        {{2, 0}, {2, 1}, {2, 2}, {2, 3}},  // I_shape
+        {{1, 0}, {1, 1}, {2, 1}, {2, 2}},  // Z_shape
+        {{2, 0}, {2, 1}, {1, 1}, {1, 2}},  // S_shape
+        {{1, 1}, {2, 1}, {3, 1}, {3, 2}},  // L_shape
+        {{1, 2}, {2, 2}, {3, 2}, {3, 1}},  // J_shape
+        {{2, 0}, {2, 1}, {1, 1}, {2, 2}},  // T_shape
         {{0, 0}, {0, 0}, {0, 0}, {0, 0}}   // None_shape
     };
 private:
@@ -40,13 +40,10 @@ private:
     void set_shape(All_Shape shape); // 根据形状设置图形
     void creat_random_shape(); // 随机生成下一个图形
 
-    // void border(); // 确定图形边界（相对坐标）
-
 public:
     CTetrimino(); // 无参构造函数，默认为None_shape
     CTetrimino(int); // 有参构造函数，产生随机形状的方块
 
-    // int left, right, up, down; // 上下左右边界（相对坐标）
     int X(int index);
     int Y(int index);
 

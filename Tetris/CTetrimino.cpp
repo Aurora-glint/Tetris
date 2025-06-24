@@ -1,5 +1,15 @@
 #include "CTetrimino.h"
 
+void CTetrimino::set_X(int index, int value)
+{
+    Tetri_shape[index][0] = value;
+}
+
+void CTetrimino::set_Y(int index, int value)
+{
+    Tetri_shape[index][1] = value;
+}
+
 void CTetrimino::set_shape(All_Shape shape)
 {
     for (int i = 0; i < 4; ++i)
@@ -21,28 +31,6 @@ void CTetrimino::creat_random_shape()
     set_shape(All_Shape(type));  // 创建下一个随机图形
 }
 
-// 获取边界值
-// void CTetrimino::border()
-// {
-//     for (int i = 0; i < 4; ++i)
-//     {
-//         if (left < Tetri_shape[i][0]) left = Tetri_shape[i][0];
-//         if (right > Tetri_shape[i][0]) right = Tetri_shape[i][0];
-//         if (up > Tetri_shape[i][1]) up = Tetri_shape[i][1];
-//         if (down < Tetri_shape[i][1]) down = Tetri_shape[i][1];
-//     }
-// }
-
-void CTetrimino::set_X(int index, int value)
-{
-    Tetri_shape[index][0] = value;
-}
-
-void CTetrimino::set_Y(int index, int value)
-{
-    Tetri_shape[index][1] = value;
-}
-
 CTetrimino CTetrimino::get_rotatedLeft()
 {
     if(type == O_shape) return *this;//O块旋转后与原来相同，单独考虑
@@ -57,8 +45,6 @@ CTetrimino CTetrimino::get_rotatedLeft()
         result.set_Y(i, Tetri_shape[i][0]);
     }
 
-    // result.border(); //更新结果的边界值
-
     return result;
 }
 
@@ -67,5 +53,14 @@ CTetrimino::CTetrimino():type(None_shape){}
 CTetrimino::CTetrimino(int):type(None_shape)
 {
     creat_random_shape();
-    // border();
+}
+
+int CTetrimino::X(int index)
+{
+    return Tetri_shape[index][0];
+}
+
+int CTetrimino::Y(int index)
+{
+    return Tetri_shape[index][1];
 }
