@@ -6,6 +6,10 @@
 #include <CTetrimino.h>
 #include <QPoint>
 #include <QBasicTimer>
+#include <QPainter>
+#include <QPaintEvent>
+
+
 
 //#include "Cboard.h"
 
@@ -93,6 +97,8 @@ private:
     void init_pos(); // 重置方块位置（下落位置）
 
     CTetrimino get_new_block(); // 获取新的方块
+
+    void paintEvent(QPaintEvent *event) override;
 };
 
 #endif // CBOARD_SINGLE_H
