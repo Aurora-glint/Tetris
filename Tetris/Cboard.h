@@ -1,10 +1,12 @@
 #ifndef CBOARD_H
 #define CBOARD_H
 
+#ifndef ROW
+#define ROW
+#endif
+
 #include <QMainWindow>
 #include <Cboard_single.h>
-#include <QBasicTimer>
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -35,8 +37,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Cboard_single   *widgets = new Cboard_single ;//单人游戏窗口对象
-
-
 
 };
 #endif // CBOARD_H
