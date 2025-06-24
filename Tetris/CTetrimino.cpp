@@ -58,8 +58,8 @@ CTetrimino CTetrimino::get_rotatedLeft()
     //运用矩阵旋转公式，求得旋转后的x, y
     for (int i = 0;i < 4; ++i)
     {
-        result.set_X(i, Tetri_shape[i][1]);
-        result.set_Y(i, -Tetri_shape[i][0]);
+        result.set_X(i, 3 - Tetri_shape[i][1]);
+        result.set_Y(i, Tetri_shape[i][0]);
     }
 
     result.border(); //更新结果的边界值
