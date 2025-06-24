@@ -1,6 +1,4 @@
 #include "CTetrimino.h"
-#include <random>
-
 
 void CTetrimino::set_shape(All_Shape shape)
 {
@@ -66,6 +64,6 @@ CTetrimino CTetrimino::get_rotatedLeft()
 
 CTetrimino::CTetrimino():type(None_shape), left(4), right(-1), up(-1), down(4)
 {
-    pos.setX(COL / 2 - 2);
-    pos.setY(ROW);
+    // pos.setX(COL / 2 - 2);
+    // pos.setY(ROW);
 }

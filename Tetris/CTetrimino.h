@@ -10,7 +10,7 @@
 #define COL 10
 #endif
 
-#include <QPoint>
+#include <random>
 
 enum All_Shape {O_shape, I_shape, Z_shape, S_shape, L_shape, J_shape, T_shape, None_shape};
 enum Direction {Up, Down, Left, Right};
@@ -31,7 +31,7 @@ private:
     int Tetri_shape[4][2];
     All_Shape type;
     int left, right, up, down; // 上下左右边界（相对坐标）
-    QPoint pos; // 绝对坐标（以左下角为参考点）
+    /*QPoint pos;*/ // 绝对坐标（以左下角为参考点）
 
     void set_shape(All_Shape shape); // 根据形状设置图形
     void creat_next_shape(); // 随机生成下一个图形
