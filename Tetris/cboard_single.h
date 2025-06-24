@@ -2,6 +2,8 @@
 #define CBOARD_SINGLE_H
 
 #include <QWidget>
+#include <QTimer>
+
 //#include "Cboard.h"
 
 namespace Ui {
@@ -41,6 +43,8 @@ private slots:
 
 private:
     Ui::Cboard_single *ui;
+    QTimer *timer ;//声明计时器timer
+
 };
 
 #endif // CBOARD_SINGLE_H
