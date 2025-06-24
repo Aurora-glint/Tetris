@@ -80,6 +80,7 @@ private slots:
     void go_down(); // 方块下落
     void go_left(); // 方块左移
     void go_right(); // 方块右移
+    void rotate(); // 方块旋转（逆时针）
 
 private:
     CTetrimino cur_block; // 当前正在下落的块

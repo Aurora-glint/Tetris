@@ -76,22 +76,10 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
     }
     else
     {
-        if(k->key() == Qt::Key_W)
-        {
-            qDebug() << " u pressed key W " << Qt::endl;
-        }
-        if(k->key() == Qt::Key_A)
-        {
-            qDebug() << " u pressed key A " << Qt::endl;
-        }
-        if(k->key() == Qt::Key_S)
-        {
-            qDebug() << " u pressed key S " << Qt::endl;
-        }
-        if(k->key() == Qt::Key_D)
-        {
-            qDebug() << " u pressed key D " << Qt::endl;
-        }
+        if(k->key() == Qt::Key_W) rotate();
+        if(k->key() == Qt::Key_A) go_left();
+        if(k->key() == Qt::Key_S) go_down();
+        if(k->key() == Qt::Key_D) go_right();
     }
 }
 
@@ -139,6 +127,11 @@ void Cboard_single::go_left()
 void Cboard_single::go_right()
 {
     if (try_move(1)) pos.setY(pos.y() + 1);
+}
+
+void Cboard_single::rotate()
+{
+    CTetrimino rotated = cur_block.get_rotatedLeft(); // 得到旋转后的图形
 }
 
 // 判断移动位置是否会发生碰撞
