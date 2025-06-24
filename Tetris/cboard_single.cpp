@@ -11,7 +11,7 @@ Cboard_single::Cboard_single(QWidget *parent)
     ui->setupUi(this);
     Ispaused = true;
    connect(ui->back_menu_button,SIGNAL(back()),this,SLOT(back_menu()));
-    timer = new QTimer ();//实例化timer计时器对象;
+    //timer = new QTimer ();//实例化timer计时器对象;
     update_timer = new QTimer ();//实例化每秒计时器;
     connect(update_timer, SIGNAL(timeout()), this, SLOT(updateRunningTime()));
     m_timer.start();
@@ -45,7 +45,7 @@ void Cboard_single::on_start_button_clicked()
     //emit start_single();弃用
     Ispaused=false;
     qDebug()<<"game started "<<Qt::endl;
-    timer->start(TIMEOUT);//启动计时器
+    //timer->start(TIMEOUT);//启动计时器
 
     update_timer->start(TIMEOUT);//启动每秒计时器
 }
@@ -56,7 +56,7 @@ void Cboard_single::on_pause_button_clicked()
     // emit pause_single(); 弃用
     Ispaused=true;
     qDebug()<<"game paused "<<Qt::endl;
-    timer->stop();
+    //timer->stop();
 }
 
 //监听按键事件

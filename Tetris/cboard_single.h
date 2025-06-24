@@ -45,9 +45,9 @@ private slots:
 
 private:
     Ui::Cboard_single *ui;
-    QTimer *timer ;//声明计时器timer
-    QTimer *update_timer;
-    QElapsedTimer m_timer;       // 记录启动时间
+    //QTimer *timer ;//声明计时器timer
+    QTimer *update_timer;//每秒更新计时器
+    QElapsedTimer m_timer;// 记录启动时间
 };
 
 #endif // CBOARD_SINGLE_H
