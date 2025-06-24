@@ -109,6 +109,7 @@ void Cboard_single::do_timechange()
 {
     qDebug()<<"收到 "<<time<<Qt::endl;
     ui->lcd_time->display(time);
+    this->update();//每秒更新绘图
 
 }
 
@@ -175,4 +176,22 @@ void Cboard_single::init_pos()
 CTetrimino Cboard_single::get_new_block()
 {
     return CTetrimino(1); // 构造随机形状的方块并返回
+}
+
+void Cboard_single::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);//gameboard作绘图区域
+
+    QPen pen(Qt::black);
+
+    painter.setPen(pen);
+
+    QRect one_block;//一个小方块矩形
+
+    one_block.setRect(100,100,50,50);
+
+    painter.drawRect(one_block);//绘制该方块
+
+
+
 }
