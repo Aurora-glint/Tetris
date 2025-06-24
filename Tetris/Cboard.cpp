@@ -47,4 +47,8 @@ void MainWindow::on_exit_button_clicked()
 
 }
 
+//时间变化事件
+
+
+
 

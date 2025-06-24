@@ -43,13 +43,17 @@ private slots:
 
     void on_pause_button_clicked();//暂停游戏按钮
 
-    void updateRunningTime();//每秒更新一次
 
 private:
+
+    int time = 0;
+
     Ui::Cboard_single *ui;
-    //QTimer *timer ;//声明计时器timer
-    QTimer *update_timer;//每秒更新计时器
-    QElapsedTimer m_timer;// 记录启动时间
+    void timerEvent(QTimerEvent *event) override;
+    //定时器
+    QBasicTimer timer;
+    int id = startTimer(1000);
+    int id_1 = startTimer(3000);
 
 // 以下为郝润熙所写
 public slots:
