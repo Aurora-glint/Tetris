@@ -59,6 +59,18 @@ private:
     int id = startTimer(1000);
     int id_1 = startTimer(3000);
 
+//方块颜色设置，可根据爱好修改(16进制)
+    static constexpr QRgb colorTable[8]
+        {
+            0x000000,0xCC6666,0x66CC66,0x6666CC,
+            0xCCCC66,0xCC66CC,0x66CCCC,0xDAAA00
+        };
+
+ //   QColor color = colorTable[shape];
+ //需要方块编号
+
+
+
 // 以下为郝润熙所写
 public slots:
     void start_game();

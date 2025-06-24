@@ -11,8 +11,8 @@ Cboard_single::Cboard_single(QWidget *parent)
 {
     ui->setupUi(this);
     Ispaused = true;
-   connect(ui->back_menu_button,SIGNAL(back()),this,SLOT(back_menu()));//关联返回信号
-    connect(this,SIGNAL(timechange()),this,SLOT(do_timechange()));//关联timechnagne信号和dotimechange槽函数
+    connect(ui->back_menu_button,SIGNAL(back()),this,SLOT(back_menu()));//关联返回信号
+    connect(this,SIGNAL(timechange(int)),this,SLOT(do_timechange()));//关联timechnagne信号和dotimechange槽函数
 
     //timer = new QTimer ();//实例化timer计时器对象;
 }
@@ -129,9 +129,9 @@ void Cboard_single::start_game()
 {
     init_board(); // 清空游戏面板
     // 开启计时器（待写）
-    cur_block = get_new_block(); // 获取初始方块
-    next_block = get_new_block(); // 获取下一个方块
-
+    /*  cur_block = get_new_block(); // 获取初始方块
+        next_block = get_new_block(); // 获取下一个方块
+    */
     init_pos(); // 设置下落位置
 }
 

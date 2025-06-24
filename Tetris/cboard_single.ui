@@ -110,6 +110,13 @@
     </rect>
    </property>
   </widget>
+  <zorder>runtimelabel</zorder>
+  <zorder>back_menu_button</zorder>
+  <zorder>quit_game</zorder>
+  <zorder>start_button</zorder>
+  <zorder>pause_button</zorder>
+  <zorder>timetitle</zorder>
+  <zorder>lcd_time</zorder>
  </widget>
  <resources/>
  <connections/>
