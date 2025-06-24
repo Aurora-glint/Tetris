@@ -118,6 +118,7 @@ void Cboard_single::do_timechange()
 void Cboard_single::go_down()
 {
     if (try_move(0)) pos.setX(pos.x() + 1);
+    else save_begin();
 }
 
 void Cboard_single::go_left()
@@ -135,7 +136,7 @@ void Cboard_single::rotate()
     CTetrimino rotated = cur_block.get_rotatedLeft(); // 得到旋转后的图形
 }
 
-// 判断移动位置是否会发生碰撞
+// 判断移动位置是否会发生碰撞或越界
 bool Cboard_single::try_move(int direction)
 {
     if (direction)
@@ -143,7 +144,9 @@ bool Cboard_single::try_move(int direction)
         for (int i = 0; i < 4; ++i)
         {
             int new_y = pos.y() + cur_block.Y(i) + direction;
-            if (all_board[pos.x() + cur_block.X(i)][new_y] != None_shape) return false; // 若待移到的位置已有方块，返回false
+            int new_x = pos.x() + cur_block.X(i);
+            if (new_x < 0 || new_x >= ROW || new_y < 0 || new_y >= COL) return false; // 出界，返回false
+            if (all_board[new_x][new_y] != None_shape) return false; // 若待移到的位置已有方块，返回false
         }
     }
     else
@@ -151,7 +154,9 @@ bool Cboard_single::try_move(int direction)
         for (int i = 0; i < 4; ++i)
         {
             int new_x = pos.x() + cur_block.X(i) + 1;
-            if (all_board[new_x][pos.x() + cur_block.Y(i)] != None_shape) return false; // 若待移到的位置已有方块，返回false
+            int new_y = pos.x() + cur_block.Y(i);
+            if (new_x < 0 || new_x >= ROW || new_y < 0 || new_y >= COL) return false; // 出界，返回false
+            if (all_board[new_x][new_y] != None_shape) return false; // 若待移到的位置已有方块，返回false
         }
     }
     return true; // 循环结束还为返回，说明待移处没有方块，返回true
