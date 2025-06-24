@@ -3,6 +3,8 @@
 #include <QWidget>
 #include <QTimer>
 #include <QElapsedTimer>
+#include <CTetrimino.h>
+#include <QPoint>
 
 //#include "Cboard.h"
 
@@ -48,6 +50,20 @@ private:
     //QTimer *timer ;//声明计时器timer
     QTimer *update_timer;//每秒更新计时器
     QElapsedTimer m_timer;// 记录启动时间
+
+// 以下为郝润熙所写
+public slots:
+    void start_game();
+private:
+    CTetrimino cur_block;
+    CTetrimino next_block;
+    QPoint pos;
+    All_Shape all_board[ROW][COL];
+
+    void init_board(); // 初始化（清空）游戏面板
+    void init_pos(); // 重置方块位置（下落位置）
+
+    CTetrimino get_new_block(); // 获取新的方块
 };
 
 #endif // CBOARD_SINGLE_H

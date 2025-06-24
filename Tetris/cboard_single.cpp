@@ -1,6 +1,7 @@
 #include "cboard_single.h"
 #include "ui_cboard_single.h"
 #include <QKeyEvent>
+#include <QFrame>
 
 #define TIMEOUT
 
@@ -10,7 +11,7 @@ Cboard_single::Cboard_single(QWidget *parent)
 {
     ui->setupUi(this);
     Ispaused = true;
-   connect(ui->back_menu_button,SIGNAL(back()),this,SLOT(back_menu()));
+   connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu()));
     //timer = new QTimer ();//实例化timer计时器对象;
     update_timer = new QTimer ();//实例化每秒计时器;
     connect(update_timer, SIGNAL(timeout()), this, SLOT(updateRunningTime()));
@@ -43,8 +44,8 @@ void Cboard_single::on_back_menu_button_clicked()
 void Cboard_single::on_start_button_clicked()
 {
     //emit start_single();弃用
-    Ispaused=false;
-    qDebug()<<"game started "<<Qt::endl;
+    Ispaused = false;
+    qDebug() << "game started " << Qt::endl;
     //timer->start(TIMEOUT);//启动计时器
 
     update_timer->start(TIMEOUT);//启动每秒计时器
@@ -54,8 +55,8 @@ void Cboard_single::on_start_button_clicked()
 void Cboard_single::on_pause_button_clicked()
 {
     // emit pause_single(); 弃用
-    Ispaused=true;
-    qDebug()<<"game paused "<<Qt::endl;
+    Ispaused = true;
+    qDebug() << "game paused " << Qt::endl;
     //timer->stop();
 }
 
@@ -120,9 +121,32 @@ void Cboard_single::updateRunningTime()
                          .arg(minutes, 2, 10, QChar('0'))
                          .arg(seconds, 2, 10, QChar('0'));
     }
-    qDebug()<<"time updated"<<Qt::endl;
+    qDebug() << "time updated" << Qt::endl;
     ui->runtimelabel->setText(timeFormat);
 }
 
 
+// 以下为郝润熙所写
+void Cboard_single::start_game()
+{
+    init_board(); // 清空游戏面板
+    // 开启计时器（待写）
+    cur_block = get_new_block(); // 获取初始方块
+    next_block = get_new_block(); // 获取下一个方块
 
+    init_pos(); // 设置下落位置
+}
+
+void Cboard_single::init_board()
+{
+    for (int i = 0; i < ROW; i++)
+    {
+        for (int j = 0; j < COL; j++) all_board[i][j] = None_shape;
+    }
+}
+
+void Cboard_single::init_pos()
+{
+    pos.setX(COL / 2 - 1);
+    pos.setY(ROW);
+}
