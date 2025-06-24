@@ -10,7 +10,7 @@ Cboard_single::Cboard_single(QWidget *parent)
 {
     ui->setupUi(this);
     Ispaused = true;
-   connect(ui->back_menu_button,SIGNAL(back()),this,SLOT(back_menu()));
+    connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu()));
     timer = new QTimer ();//实例化timer计时器对象;
 }
 
@@ -23,7 +23,7 @@ Cboard_single::~Cboard_single()
 void Cboard_single::on_quit_game_clicked()
 {
     emit quit();
-    qDebug()<<"quit signal launched "<<Qt::endl;
+    qDebug() << "quit signal launched " << Qt::endl;
 }
 
 
@@ -31,7 +31,7 @@ void Cboard_single::on_back_menu_button_clicked()
 {
     emit back();
     this->hide();
-    qDebug()<<"back signal launched "<<Qt::endl;
+    qDebug() << "back signal launched " << Qt::endl;
 }
 
 
@@ -39,8 +39,8 @@ void Cboard_single::on_back_menu_button_clicked()
 void Cboard_single::on_start_button_clicked()
 {
     //emit start_single();弃用
-    Ispaused=false;
-    qDebug()<<"game started "<<Qt::endl;
+    Ispaused = false;
+    qDebug() << "game started " << Qt::endl;
     timer->start(TIMEOUT);//启动计时器
 
 }
@@ -49,19 +49,19 @@ void Cboard_single::on_start_button_clicked()
 void Cboard_single::on_pause_button_clicked()
 {
     // emit pause_single(); 弃用
-    Ispaused=true;
-    qDebug()<<"game paused "<<Qt::endl;
+    Ispaused = true;
+    qDebug() << "game paused " << Qt::endl;
     timer->stop();
 }
 
 //监听按键事件
 void Cboard_single::keyPressEvent(QKeyEvent *k)
 {
-    if(Ispaused==true)
+    if (Ispaused == true)
     {
-        if(k->key()==Qt::Key_Escape)
+        if (k->key() == Qt::Key_Escape)
         {
-            Ispaused=false;//关闭暂停
+            Ispaused = false;//关闭暂停
             k->accept();
         }
         else
@@ -73,21 +73,19 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
     {
         if(k->key() == Qt::Key_W)
         {
-            qDebug()<<" u pressed key W "<<Qt::endl;
+            qDebug() << " u pressed key W " << Qt::endl;
         }
-
         if(k->key() == Qt::Key_A)
         {
-            qDebug()<<" u pressed key A "<<Qt::endl;
+            qDebug() << " u pressed key A " << Qt::endl;
         }
         if(k->key() == Qt::Key_S)
         {
-            qDebug()<<" u pressed key S "<<Qt::endl;
+            qDebug() << " u pressed key S " << Qt::endl;
         }
         if(k->key() == Qt::Key_D)
         {
-            qDebug()<<" u pressed key D "<<Qt::endl;
+            qDebug() << " u pressed key D " << Qt::endl;
         }
     }
-
 }

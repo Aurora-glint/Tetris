@@ -2,9 +2,6 @@
 #include "ui_Cboard.h"
 #include <QDebug>
 
-static const int ROW = 20;
-static const int COL = 10;
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
