@@ -1,10 +1,13 @@
 #ifndef CTETRIMINO_H
 #define CTETRIMINO_H
 
+#ifndef BLOCK_WIDTH
+#define BLOCK_WIDTH 30
+#endif
+
 #ifndef ROW
 #define ROW 20
 #endif
-
 
 #ifndef COL
 #define COL 10
@@ -30,23 +33,24 @@ class CTetrimino{
 private:
     int Tetri_shape[4][2];
     All_Shape type;
-    int left, right, up, down; // 上下左右边界（相对坐标）
-    /*QPoint pos;*/ // 绝对坐标（以左下角为参考点）
-
-    void set_shape(All_Shape shape); // 根据形状设置图形
-    void creat_next_shape(); // 随机生成下一个图形
-
-    CTetrimino get_rotatedLeft(); // 获取旋转后的Tetrimino类
 
     void set_X(int index, int value); // 修改图形x坐标值
     void set_Y(int index, int value); // 修改图形Y坐标值
 
-    // void move(Direction dire);
-    void border(); // 确定图形边界（相对坐标）
+    void set_shape(All_Shape shape); // 根据形状设置图形
+    void creat_random_shape(); // 随机生成下一个图形
+
+    // void border(); // 确定图形边界（相对坐标）
 
 public:
-    CTetrimino();
+    CTetrimino(); // 无参构造函数，默认为None_shape
+    CTetrimino(int); // 有参构造函数，产生随机形状的方块
 
+    // int left, right, up, down; // 上下左右边界（相对坐标）
+    int X(int index);
+    int Y(int index);
+
+    CTetrimino get_rotatedLeft(); // 获取旋转后的Tetrimino类
 };
 
 #endif // CTETRIMINO_H

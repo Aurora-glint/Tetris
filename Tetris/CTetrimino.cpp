@@ -8,7 +8,7 @@ void CTetrimino::set_shape(All_Shape shape)
     }
 }
 
-void CTetrimino::creat_next_shape()
+void CTetrimino::creat_random_shape()
 {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -22,16 +22,16 @@ void CTetrimino::creat_next_shape()
 }
 
 // 获取边界值
-void CTetrimino::border()
-{
-    for (int i = 0; i < 4; ++i)
-    {
-        if (left < Tetri_shape[i][0]) left = Tetri_shape[i][0];
-        if (right > Tetri_shape[i][0]) right = Tetri_shape[i][0];
-        if (up > Tetri_shape[i][1]) up = Tetri_shape[i][1];
-        if (down < Tetri_shape[i][1]) down = Tetri_shape[i][1];
-    }
-}
+// void CTetrimino::border()
+// {
+//     for (int i = 0; i < 4; ++i)
+//     {
+//         if (left < Tetri_shape[i][0]) left = Tetri_shape[i][0];
+//         if (right > Tetri_shape[i][0]) right = Tetri_shape[i][0];
+//         if (up > Tetri_shape[i][1]) up = Tetri_shape[i][1];
+//         if (down < Tetri_shape[i][1]) down = Tetri_shape[i][1];
+//     }
+// }
 
 void CTetrimino::set_X(int index, int value)
 {
@@ -57,13 +57,15 @@ CTetrimino CTetrimino::get_rotatedLeft()
         result.set_Y(i, Tetri_shape[i][0]);
     }
 
-    result.border(); //更新结果的边界值
+    // result.border(); //更新结果的边界值
 
     return result;
 }
 
-CTetrimino::CTetrimino():type(None_shape), left(4), right(-1), up(-1), down(4)
+CTetrimino::CTetrimino():type(None_shape){}
+
+CTetrimino::CTetrimino(int):type(None_shape)
 {
-    // pos.setX(COL / 2 - 2);
-    // pos.setY(ROW);
+    creat_random_shape();
+    // border();
 }

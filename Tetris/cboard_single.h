@@ -5,6 +5,7 @@
 #include <QElapsedTimer>
 #include <CTetrimino.h>
 #include <QPoint>
+#include <QBasicTimer>
 
 //#include "Cboard.h"
 
@@ -77,14 +78,20 @@ private:
 // 以下为郝润熙所写
 public slots:
     void start_game();
+
+    void go_down(); // 方块下落
+    void go_left(); // 方块左移
+    void go_right(); // 方块右移
+
 private:
-    CTetrimino cur_block;
-    CTetrimino next_block;
-    QPoint pos;
-    All_Shape all_board[ROW][COL];
+    CTetrimino cur_block; // 当前正在下落的块
+    CTetrimino next_block; // 显示的下一个待下落的块
+    QPoint pos; // 块在游戏面板的绝对坐标（以左下角为基准）
+    All_Shape all_board[ROW][COL]; // 游戏面板
+
+    bool try_move(int direction); // 判断是否可以移动（无碰撞，方向左移为-1，右移为1，下移为0）
 
     void init_board(); // 初始化（清空）游戏面板
-
     void init_pos(); // 重置方块位置（下落位置）
 
     CTetrimino get_new_block(); // 获取新的方块

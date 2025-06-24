@@ -129,12 +129,28 @@ void Cboard_single::start_game()
 {
     init_board(); // 清空游戏面板
     // 开启计时器（待写）
-    /*  cur_block = get_new_block(); // 获取初始方块
-        next_block = get_new_block(); // 获取下一个方块
-    */
+    cur_block = get_new_block(); // 获取初始方块
+    next_block = get_new_block(); // 获取下一个方块
+
     init_pos(); // 设置下落位置
 }
 
+void Cboard_single::go_down()
+{
+
+}
+
+void Cboard_single::go_left()
+{
+
+}
+
+void Cboard_single::go_right()
+{
+
+}
+
+// 初始化（清除）面板
 void Cboard_single::init_board()
 {
     for (int i = 0; i < ROW; i++)
@@ -143,8 +159,14 @@ void Cboard_single::init_board()
     }
 }
 
+// 初始化方块坐标
 void Cboard_single::init_pos()
 {
     pos.setX(COL / 2 - 1);
     pos.setY(ROW);
+}
+
+CTetrimino Cboard_single::get_new_block()
+{
+    return CTetrimino(1); // 构造随机形状的方块并返回
 }
