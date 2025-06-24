@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>tetrisbg.png</file>
+        <file>tetrisIcon.png</file>
+        <file>Set.ico</file>
+        <file>level.ico</file>
+        <file>way.ico</file>
+        <file>Way_1.ico</file>
+        <file>ngame.ico</file>
+        <file>NWAFU_bg.png</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>down.wav</file>
+        <file>gameover.wav</file>
+        <file>remove.wav</file>
+        <file>tetris.mp3</file>
+        <file>NWAFU.mp3</file>
+    </qresource>
+</RCC>
