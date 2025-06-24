@@ -27,7 +27,10 @@ private:
     void set_shape(All_Shape shape); // 根据形状设置图形
     void creat_next_shape(); // 随机生成下一个图形
 
-    void rotatedLeft();
+    CTetrimino get_rotatedLeft(); // 获取旋转后的Tetrimino类
+
+    void set_X(int index, int value); // 修改图形x坐标值
+    void set_Y(int index, int value); // 修改图形Y坐标值
 
     // void move(Direction dire);
     void border(); // 确定图形边界（相对坐标）
