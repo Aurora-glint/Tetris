@@ -37,6 +37,14 @@ void CTetrimino::border()
     }
 }
 
+void CTetrimino::rotatedLeft()
+{
+    if (type != O_shape)
+    {
+
+    }
+}
+
 CTetrimino::CTetrimino():left(4), right(-1), up(-1), down(4)
 {
     pos.setX(COL / 2 - 2);
