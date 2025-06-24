@@ -1,8 +1,8 @@
 #include "CTetrimino.h"
 #include <random>
 
-extern int ROW;
-extern int COL;
+extern const int ROW;
+extern const int COL;
 
 void CTetrimino::set_shape(All_Shape shape)
 {
@@ -20,8 +20,7 @@ void CTetrimino::creat_next_shape()
     // 定义均匀整数分布 [0, 6]（包含两端）
     std::uniform_int_distribution<> dis(0, 6);
 
-    // 生成随机数
-    type = All_Shape(dis(gen));
+    type = All_Shape(dis(gen)); // 生成随机数
 
     set_shape(All_Shape(type));  // 创建下一个随机图形
 }
