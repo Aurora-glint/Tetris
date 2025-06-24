@@ -11,8 +11,8 @@ Cboard_single::Cboard_single(QWidget *parent)
 {
     ui->setupUi(this);
     Ispaused = true;
-    connect(ui->back_menu_button,SIGNAL(back()),this,SLOT(back_menu()));//关联返回信号
-    connect(this,SIGNAL(timechange(int)),this,SLOT(do_timechange()));//关联timechnagne信号和dotimechange槽函数
+    connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号
+    connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
 
     //timer = new QTimer ();//实例化timer计时器对象;
 }
@@ -92,8 +92,8 @@ void Cboard_single::timerEvent(QTimerEvent *event)
 
         if((event->timerId() == id && !Ispaused))//1秒事件
         {
-            time += 1;//每秒存活时间加一
-            qDebug()<<"计时 1 "<<time<<Qt::endl;//【测试】成功
+            time += 1; // 每秒存活时间加一
+            go_down(); // 每秒下落一格
         }
 
         if(event->timerId() == id_1 && !Ispaused)//3秒事件
@@ -101,7 +101,7 @@ void Cboard_single::timerEvent(QTimerEvent *event)
             //con -> setText("");
         }
         emit timechange(time);
-        qDebug()<<"发出 timechange "<<time<<Qt::endl;
+        qDebug() << "发出 timechange " << time << Qt::endl;
     }
 }
 
