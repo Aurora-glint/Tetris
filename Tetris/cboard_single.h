@@ -28,6 +28,8 @@ signals:
 
     void quit();//退出信号（由主窗口接收）
 
+    void timechange(int);//每秒发出一次的信号
+
     //void start_single();
 
     //void pause_single();
@@ -41,10 +43,12 @@ private slots:
 
     void on_pause_button_clicked();//暂停游戏按钮
 
+    void do_timechange();//响应每秒变化
+
 
 private:
 
-    int time = 0;
+    int time = 0;//计时变量
 
 
     Ui::Cboard_single *ui;

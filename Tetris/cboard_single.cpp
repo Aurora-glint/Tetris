@@ -10,7 +10,9 @@ Cboard_single::Cboard_single(QWidget *parent)
 {
     ui->setupUi(this);
     Ispaused = true;
-   connect(ui->back_menu_button,SIGNAL(back()),this,SLOT(back_menu()));
+   connect(ui->back_menu_button,SIGNAL(back()),this,SLOT(back_menu()));//关联返回信号
+    connect(this,SIGNAL(timechange()),this,SLOT(do_timechange()));//关联timechnagne信号和dotimechange槽函数
+
     //timer = new QTimer ();//实例化timer计时器对象;
 }
 
@@ -108,8 +110,16 @@ void Cboard_single::timerEvent(QTimerEvent *event)
         {
             //con -> setText("");
         }
-        //emit timechange(time);
+        emit timechange(time);
+        qDebug()<<"发出 timechange "<<time<<Qt::endl;
     }
+}
+
+void Cboard_single::do_timechange()
+{
+    qDebug()<<"收到 "<<time<<Qt::endl;
+    ui->lcd_time->display(time);
+
 }
 
 
