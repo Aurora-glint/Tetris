@@ -1,10 +1,12 @@
 #ifndef CBOARD_H
 #define CBOARD_H
 
+#ifndef ROW
+#define ROW
+#endif
+
 #include <QMainWindow>
 #include <Cboard_single.h>
-#include <QBasicTimer>
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
