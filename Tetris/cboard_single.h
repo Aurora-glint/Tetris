@@ -18,11 +18,12 @@ class Cboard_single : public QWidget
 
 public:
     explicit Cboard_single(QWidget *parent = nullptr);
+
     ~Cboard_single();
 
     bool Ispaused;
     //暂停状态标志
-    void keyPressEvent(QKeyEvent *k);
+    void keyPressEvent(QKeyEvent *k)override;
     //监听按键事件
 
 signals:
@@ -49,13 +50,15 @@ private slots:
 
 
 private:
+    Ui::Cboard_single *ui;
 
     int time = 0;//计时变量
 
-    Ui::Cboard_single *ui;
-    void timerEvent(QTimerEvent *event) override;
-    //定时器
+    void timerEvent(QTimerEvent *event) override;//定时器事件
+
+    //定时器timer
     QBasicTimer timer;
+
     int id = startTimer(1000);
     int id_1 = startTimer(3000);
 
@@ -67,7 +70,7 @@ private:
         };
 
  //   QColor color = colorTable[shape];
- //需要方块编号
+ //需要方块编号，0-8分别对应一种颜色
 
 
 
@@ -81,6 +84,7 @@ private:
     All_Shape all_board[ROW][COL];
 
     void init_board(); // 初始化（清空）游戏面板
+
     void init_pos(); // 重置方块位置（下落位置）
 
     CTetrimino get_new_block(); // 获取新的方块
