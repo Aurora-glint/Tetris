@@ -1,8 +1,8 @@
 #ifndef CBOARD_SINGLE_H
 #define CBOARD_SINGLE_H
-
 #include <QWidget>
 #include <QTimer>
+#include <QElapsedTimer>
 
 //#include "Cboard.h"
 
@@ -41,10 +41,13 @@ private slots:
 
     void on_pause_button_clicked();//暂停游戏按钮
 
+    void updateRunningTime();//每秒更新一次
+
 private:
     Ui::Cboard_single *ui;
-    QTimer *timer ;//声明计时器timer
-
+    //QTimer *timer ;//声明计时器timer
+    QTimer *update_timer;//每秒更新计时器
+    QElapsedTimer m_timer;// 记录启动时间
 };
 
 #endif // CBOARD_SINGLE_H

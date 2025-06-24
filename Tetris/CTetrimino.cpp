@@ -1,8 +1,6 @@
 #include "CTetrimino.h"
 #include <random>
 
-// extern const int ROW;
-// extern const int COL;
 
 void CTetrimino::set_shape(All_Shape shape)
 {
