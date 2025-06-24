@@ -1,6 +1,15 @@
 #ifndef CTETRIMINO_H
 #define CTETRIMINO_H
 
+#ifndef ROW
+#define ROW 20
+#endif
+
+
+#ifndef COL
+#define COL 10
+#endif
+
 #include <QPoint>
 
 enum All_Shape {O_shape, I_shape, Z_shape, S_shape, L_shape, J_shape, T_shape, None_shape};

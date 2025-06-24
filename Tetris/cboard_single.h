@@ -1,6 +1,5 @@
 #ifndef CBOARD_SINGLE_H
 #define CBOARD_SINGLE_H
-
 #include <QWidget>
 #include <QTimer>
 
