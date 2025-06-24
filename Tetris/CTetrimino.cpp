@@ -26,6 +26,7 @@ void CTetrimino::creat_next_shape()
     set_shape(All_Shape(type));  // 创建下一个随机图形
 }
 
+// 获取边界值
 void CTetrimino::border()
 {
     for (int i = 0; i < 4; ++i)
@@ -37,15 +38,36 @@ void CTetrimino::border()
     }
 }
 
-void CTetrimino::rotatedLeft()
+void CTetrimino::set_X(int index, int value)
 {
-    if (type != O_shape)
-    {
-
-    }
+    Tetri_shape[index][0] = value;
 }
 
-CTetrimino::CTetrimino():left(4), right(-1), up(-1), down(4)
+void CTetrimino::set_Y(int index, int value)
+{
+    Tetri_shape[index][1] = value;
+}
+
+CTetrimino CTetrimino::get_rotatedLeft()
+{
+    if(type == O_shape) return *this;//O块旋转后与原来相同，单独考虑
+
+    CTetrimino result;//定义新的块类用于返回旋转后的结果
+    result.set_shape(type);//旋转后形状不变（广义）
+
+    //运用矩阵旋转公式，求得旋转后的x, y
+    for (int i = 0;i < 4; ++i)
+    {
+        result.set_X(i, Tetri_shape[i][1]);
+        result.set_Y(i, -Tetri_shape[i][0]);
+    }
+
+    result.border(); //更新结果的边界值
+
+    return result;
+}
+
+CTetrimino::CTetrimino():type(None_shape), left(4), right(-1), up(-1), down(4)
 {
     pos.setX(COL / 2 - 2);
     pos.setY(ROW);
