@@ -36,7 +36,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Cboard_single   *widgets = new Cboard_single ;//单人游戏窗口对象
+
+    Cboard_single *widgets = new Cboard_single ;//单人游戏窗口对象
 
 };
 #endif // CBOARD_H
