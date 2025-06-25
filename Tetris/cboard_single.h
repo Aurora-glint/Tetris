@@ -94,7 +94,6 @@ private:
     QPoint pos; // 块在游戏面板的绝对坐标（以左下角为基准）
     All_Shape all_board[ROW][COL]; // 游戏状态面板
 
-
     bool tryMove(int direction); // 判断是否可以移动（无碰撞，方向左移为-1，右移为1，下移为0）
 
     void initBoard(); // 初始化（清空）游戏面板
