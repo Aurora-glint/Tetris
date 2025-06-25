@@ -14,6 +14,7 @@ Cboard_single::Cboard_single(QWidget *parent)
     Ispaused = true;
     connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号
     connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
+    connect(this, SIGNAL(tick()), this, SLOT(do_tickchange())); // 关联返回信号
 }
 
 Cboard_single::~Cboard_single()
@@ -40,6 +41,7 @@ void Cboard_single::on_start_button_clicked()
     //emit start_single();弃用
     Ispaused = false;
     qDebug() << "game started " << Qt::endl;
+    startGame();
 
 }
 
@@ -84,15 +86,15 @@ void Cboard_single::timerEvent(QTimerEvent *event)
         if((event->timerId() == id && !Ispaused))//1秒事件
         {
             time += 1; // 每秒存活时间加一
-            goDown(); // 每秒下落一格
+            //goDown(); // 每秒下落一格
         }
 
-        /*
-         if(event->timerId() == id_1 && !Ispaused)//3秒事件
+        if((event->timerId() == id_t && !Ispaused))//30毫秒事件
         {
+            //qDebug()<<"tick"<<Qt::endl;
+            emit tick();
 
         }
-*/
         emit timechange(time);
 
         qDebug()<<"已发出 timechange "<<time<<Qt::endl;
@@ -104,9 +106,15 @@ void Cboard_single::do_timechange()
 {
     qDebug()<<"收到 "<<time<<Qt::endl;
     ui->lcd_time->display(time);
-    this->update();//每秒更新绘图
+
 }
 
+void Cboard_single::do_tickchange()
+{
+    this->update();//每tick更新绘图
+    qDebug()<<"refresh"<<Qt::endl;
+
+};//响应每tick变化
 
 // 以下为郝润熙所写
 void Cboard_single::startGame()
@@ -266,14 +274,41 @@ void Cboard_single::saveBegin()
     next_block = getNewBlock();
 }
 
-// void Cboard_single::paintEvent(QPaintEvent *event)
-// {
-//     for(int r=0;r<ROW;r++)
-//     {
-//         for(int c=0;c<COL;c++)
-//         {
-//             //one_block.setRect()
+void Cboard_single::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);//作绘图区域
+    QPen pen(Qt::black);
+    painter.setPen(pen);
 
-//         }
-//     }
-// }
+    int x = 60;
+    int y = 10;
+
+    QRect one_block;
+
+
+
+
+    for(int r=0;r<ROW;r++)
+    {
+        for(int c=0;c<COL;c++)
+        {
+            x+=BLOCKSIZE;
+            one_block.setRect(x,y,BLOCKSIZE,BLOCKSIZE);
+
+            if(all_board[r][c]!=None_shape)
+            {
+                paint_one_block(painter,one_block);
+
+            }
+        }
+        x=60;
+        y+=BLOCKSIZE;
+
+    }
+}
+
+
+void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block)
+{
+    painter.drawRect(one_block);//绘制该方块
+}

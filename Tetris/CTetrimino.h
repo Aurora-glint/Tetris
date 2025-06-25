@@ -13,6 +13,10 @@
 #define COL 15
 #endif
 
+#ifndef BLOCKSIZE
+#define BLOCKSIZE 30
+#endif
+
 #include <random>
 
 enum All_Shape {O_shape, I_shape, Z_shape, S_shape, L_shape, J_shape, T_shape, None_shape};
