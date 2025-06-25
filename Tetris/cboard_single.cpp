@@ -108,6 +108,7 @@ void Cboard_single::do_timechange()
 {
     qDebug()<<"收到 "<<time<<Qt::endl;
     ui->lcd_time->display(time);
+    show_all_board();
 
 }
 
@@ -315,7 +316,7 @@ void Cboard_single::paintEvent(QPaintEvent *event)
 
 
 void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape)
-{
+{/*
     //painter.fillRect(one_block,Qt::red);
     // switch((int)shape)
     // {
@@ -342,29 +343,43 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
     //     break;
 
     // }
+*/
+     if(shape==O_shape)
+        painter.fillRect(one_block,Qt::gray);
 
-        if(shape==O_shape)
-        painter.fillRect(one_block,Qt::white);
-
-        if(shape==I_shape)
+        else if(shape==I_shape)
         painter.fillRect(one_block,Qt::GlobalColor::red);
 
-        if(shape==Z_shape)
+        else if(shape==Z_shape)
         painter.fillRect(one_block,Qt::yellow);
 
-        if(shape==S_shape)
+        else if(shape==S_shape)
         painter.fillRect(one_block,Qt::green);
 
-        if(shape==L_shape)
+        else if(shape==L_shape)
         painter.fillRect(one_block,Qt::cyan);
 
-        if(shape==J_shape)
+        else if(shape==J_shape)
         painter.fillRect(one_block,Qt::blue);
 
-        if(shape==T_shape)
+        else if(shape==T_shape)
         painter.fillRect(one_block,Qt::magenta);
 
+        else if(shape==None_shape)
+            painter.fillRect(one_block,Qt::white);
     painter.drawRect(one_block);//绘制该方块
 
+}
 
+void Cboard_single::show_all_board()
+{
+    for(int i=0;i<ROW;i++)
+    {
+        for(int j=0;j<COL;j++)
+        {
+            qDebug()<<all_board[i][j];
+        }
+        qDebug()<<Qt::endl;
+    }
+    qDebug()<<"---------------"<<Qt::endl;
 }
