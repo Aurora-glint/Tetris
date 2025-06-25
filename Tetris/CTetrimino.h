@@ -44,10 +44,13 @@ public:
     CTetrimino(); // 无参构造函数，默认为None_shape
     CTetrimino(int); // 有参构造函数，产生随机形状的方块
 
+    CTetrimino operator=(const CTetrimino&);
+
     int X(int index); // 返回方块的x坐标
     int Y(int index); // 返回方块的y坐标
 
     CTetrimino get_rotatedLeft(); // 获取旋转后的Tetrimino类
+    All_Shape get_type();
 };
 
 #endif // CTETRIMINO_H

@@ -28,17 +28,17 @@ void CTetrimino::creat_random_shape()
 
     type = All_Shape(dis(gen)); // 生成随机数
 
-    set_shape(All_Shape(type));  // 创建下一个随机图形
+    set_shape(All_Shape(type)); // 创建下一个随机图形
 }
 
 CTetrimino CTetrimino::get_rotatedLeft()
 {
-    if(type == O_shape) return *this;//O块旋转后与原来相同，单独考虑
+    if(type == O_shape) return *this; // O块旋转后与原来相同，单独考虑
 
-    CTetrimino result;//定义新的块类用于返回旋转后的结果
-    result.set_shape(type);//旋转后形状不变（广义）
+    CTetrimino result; // 定义新的块类用于返回旋转后的结果
+    result.set_shape(type); // 旋转后形状不变（广义）
 
-    //运用矩阵旋转公式，求得旋转后的x, y
+    // 运用矩阵旋转公式，求得旋转后的x, y
     for (int i = 0;i < 4; ++i)
     {
         result.set_X(i, 3 - Tetri_shape[i][1]);
@@ -48,11 +48,29 @@ CTetrimino CTetrimino::get_rotatedLeft()
     return result;
 }
 
+All_Shape CTetrimino::get_type()
+{
+    return type;
+}
+
 CTetrimino::CTetrimino():type(None_shape){}
 
 CTetrimino::CTetrimino(int):type(None_shape)
 {
     creat_random_shape();
+}
+
+CTetrimino CTetrimino::operator=(const CTetrimino& date)
+{
+    type = date.type;
+
+    for (int i = 0; i < 4; ++i)
+    {
+        Tetri_shape[i][0] = date.Tetri_shape[i][0];
+        Tetri_shape[i][1] = date.Tetri_shape[i][1];
+    }
+
+    return *this;
 }
 
 int CTetrimino::X(int index)

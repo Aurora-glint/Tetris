@@ -134,6 +134,21 @@ void Cboard_single::go_right()
 void Cboard_single::rotate()
 {
     CTetrimino rotated = cur_block.get_rotatedLeft(); // 得到旋转后的图形
+    int p = 0;
+
+    for (int i = 0; i < 4; ++i)
+    {
+        if (rotated.Y(i) + p >= COL) --p;
+        if (rotated.Y(i) + p < 0) ++p;
+    }
+
+    for (int i = 0; i < 4; ++i)
+    {
+        if (all_board[rotated.X(i)][rotated.Y(i) + p] != None_shape) return; // 若有重合，不旋转
+    }
+
+    pos.setY(pos.y() + p);
+    cur_block = rotated;
 }
 
 // 判断移动位置是否会发生碰撞或越界
@@ -181,6 +196,41 @@ void Cboard_single::init_pos()
 CTetrimino Cboard_single::get_new_block()
 {
     return CTetrimino(1); // 构造随机形状的方块并返回
+}
+
+bool Cboard_single::is_delete(int line)
+{
+    for (int i = 0; i < COL; ++i)
+    {
+        if (all_board[line][i] == None_shape) return false; // 未填满，不进行消行
+    }
+
+    return true; // 全部填满，进行消行
+}
+
+void Cboard_single::save_begin()
+{
+    // 保存下落到底的方块，同时判断改行是否需要消除
+    for (int i = 0; i < 4; ++i)
+    {
+        int line = pos.x() + cur_block.X(i);
+        all_board[line][pos.y() + cur_block.Y(i)] = cur_block.get_type();
+
+        // 若需要消行，进行消行处理
+        if (is_delete(line))
+        {
+            for (int i = line; i > 0; --i)
+            {
+                for (int j = 0; j < COL; ++j) all_board[i][j] = all_board[i - 1][j];
+            }
+            for (int j = 0; j < COL; ++j) all_board[0][j] = None_shape;
+        }
+    }
+
+    // 开始新一轮方块降落
+    init_pos();
+    cur_block = next_block;
+    next_block = get_new_block();
 }
 
 void Cboard_single::paintEvent(QPaintEvent *event)
