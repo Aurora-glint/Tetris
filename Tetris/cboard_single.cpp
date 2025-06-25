@@ -86,7 +86,7 @@ void Cboard_single::timerEvent(QTimerEvent *event)
         if((event->timerId() == id && !Ispaused))//1秒事件
         {
             time += 1; // 每秒存活时间加一
-            //goDown(); // 每秒下落一格
+            goDown(); // 每秒下落一格
         }
 
         if((event->timerId() == id_t && !Ispaused))//30毫秒事件
