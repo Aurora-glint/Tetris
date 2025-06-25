@@ -297,7 +297,7 @@ void Cboard_single::paintEvent(QPaintEvent *event)
 
             if(all_board[r][c]!=None_shape)
             {
-                paint_one_block(painter,one_block);
+                paint_one_block(painter,one_block,all_board[r][c]);
 
             }
         }
@@ -308,7 +308,39 @@ void Cboard_single::paintEvent(QPaintEvent *event)
 }
 
 
-void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block)
+void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape)
 {
-    painter.drawRect(one_block);//绘制该方块
+    painter.drawRect(one_block);//绘制该方块边框
+    QBrush brush;
+
+    switch(shape)
+    {
+    case 0:
+        brush.setColor(Qt::red);
+        break;
+    case 1:
+        brush.setColor(Qt::GlobalColor::transparent);
+        break;
+    case 2:
+        brush.setColor(Qt::yellow);
+        break;
+    case 3:
+        brush.setColor(Qt::green);
+        break;
+    case 4:
+        brush.setColor(Qt::cyan);
+        break;
+    case 5:
+        brush.setColor(Qt::blue);
+        break;
+    case 6:
+        brush.setColor(Qt::magenta);
+        break;
+
+    }
+
+    painter.setBrush(brush);
+
+    painter.fillRect(one_block,brush);
+
 }

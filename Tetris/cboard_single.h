@@ -107,7 +107,7 @@ private:
 
     void paintEvent(QPaintEvent *event) override;//绘制函数（每tick一次）
 
-    void paint_one_block(QPainter &painter,const QRect &one_block);
+    void paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape);
 };
 
 //全局方法
