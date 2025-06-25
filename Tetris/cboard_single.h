@@ -8,7 +8,6 @@
 #include <QBasicTimer>
 #include <QPainter>
 #include <QPaintEvent>
-#include "gameboard.h"
 
 //#include "Cboard.h"
 
@@ -92,7 +91,6 @@ private:
     CTetrimino next_block; // 显示的下一个待下落的块
     QPoint pos; // 块在游戏面板的绝对坐标（以左下角为基准）
     All_Shape all_board[ROW][COL]; // 游戏状态面板
-    MyPainterFrame *gameboard;//游戏绘制界面
 
 
     bool tryMove(int direction); // 判断是否可以移动（无碰撞，方向左移为-1，右移为1，下移为0）
