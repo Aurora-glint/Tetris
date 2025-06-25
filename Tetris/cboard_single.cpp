@@ -132,12 +132,12 @@ void Cboard_single::goDown()
 
 void Cboard_single::goLeft()
 {
-
+    if (tryMove(-1)) pos.setY(pos.y() - 1);
 }
 
 void Cboard_single::goRight()
 {
-
+    if (tryMove(1)) pos.setY(pos.y() + 1);
 }
 
 void Cboard_single::rotate()
