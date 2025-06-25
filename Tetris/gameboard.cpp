@@ -89,17 +89,17 @@ void MyPainterFrame::paintEvent(QPaintEvent *event) {
     QPen pen(Qt::black);
     painter.setPen(pen);
 
-    QRect one_block;//单个方块
+    // QRect one_block;//单个方块
 
-    for(int c=0;c<COL;c++)
-    {
-        for(int r=0;r<ROW;r++)
-        {
-            one_block=QRect (gameGrid[c][r].x(),gameGrid[c][r].y(),blockSize,blockSize);
+    // for (int c = 0; c<COL; c++)
+    // {
+    //     for (int r = 0; r<ROW; r++)
+    //     {
+    //         one_block = QRect(gameGrid[c][r].x(), gameGrid[c][r].y(), blockSize, blockSize);
 
-           // paint_one_block(painter,one_block);
-        }
-    }
+    //        // paint_one_block(painter,one_block);
+    //     }
+    // }
   /*  if (!painter.begin(this)) { // 显式开始
         qWarning() << "Failed to begin painting";
         return;

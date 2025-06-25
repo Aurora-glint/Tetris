@@ -255,15 +255,14 @@ void Cboard_single::saveBegin()
     next_block = getNewBlock();
 }
 
-void Cboard_single::paintEvent(QPaintEvent *event)
-{
-    for(int r=0;r<ROW;r++)
-    {
-        for(int c=0;c<COL;c++)
-        {
-            //one_block.setRect()
+// void Cboard_single::paintEvent(QPaintEvent *event)
+// {
+//     for(int r=0;r<ROW;r++)
+//     {
+//         for(int c=0;c<COL;c++)
+//         {
+//             //one_block.setRect()
 
-        }
-    }
-}
-*/
+//         }
+//     }
+// }
