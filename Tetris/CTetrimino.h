@@ -34,20 +34,23 @@ private:
     int Tetri_shape[4][2];
     All_Shape type;
 
-    void set_X(int index, int value); // 修改图形x坐标值
-    void set_Y(int index, int value); // 修改图形Y坐标值
+    void setX(int index, int value); // 修改图形x坐标值
+    void setY(int index, int value); // 修改图形Y坐标值
 
-    void set_shape(All_Shape shape); // 根据形状设置图形
-    void creat_random_shape(); // 随机生成下一个图形
+    void setShape(All_Shape shape); // 根据形状设置图形
+    void creatRandomShape(); // 随机生成下一个图形
 
 public:
     CTetrimino(); // 无参构造函数，默认为None_shape
     CTetrimino(int); // 有参构造函数，产生随机形状的方块
 
+    CTetrimino operator=(const CTetrimino&);
+
     int X(int index); // 返回方块的x坐标
     int Y(int index); // 返回方块的y坐标
 
-    CTetrimino get_rotatedLeft(); // 获取旋转后的Tetrimino类
+    CTetrimino getRotatedLeft(); // 获取旋转后的Tetrimino类
+    All_Shape getType();
 };
 
 #endif // CTETRIMINO_H
