@@ -90,7 +90,8 @@ void MyPainterFrame::paintEvent(QPaintEvent *event) {
     painter.setPen(pen);
 
     QRect one_block;//单个方块
-
+//TODO
+    /*
     for(int c=0;c<COL;c++)
     {
         for(int r=0;r<ROW;r++)
@@ -100,6 +101,7 @@ void MyPainterFrame::paintEvent(QPaintEvent *event) {
            // paint_one_block(painter,one_block);
         }
     }
+*/
   /*  if (!painter.begin(this)) { // 显式开始
         qWarning() << "Failed to begin painting";
         return;
