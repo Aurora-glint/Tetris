@@ -93,15 +93,15 @@ void Cboard_single::timerEvent(QTimerEvent *event)
         if((event->timerId() == id && !Ispaused))//1秒事件
         {
             time += 1; // 每秒存活时间加一
-            goDown(); // 每秒下落一格
+            //goDown(); // 每秒下落一格
         }
 
-        /*
-         if(event->timerId() == id_1 && !Ispaused)//3秒事件
+        if((event->timerId() == id_t && !Ispaused))//30毫秒事件
         {
+            //qDebug()<<"tick"<<Qt::endl;
+            emit tick();
 
         }
-*/
         emit timechange(time);
 
         qDebug()<<"已发出 timechange "<<time<<Qt::endl;
@@ -257,14 +257,14 @@ void Cboard_single::saveBegin()
     next_block = getNewBlock();
 }
 
-// void Cboard_single::paintEvent(QPaintEvent *event)
-// {
-//     for(int r=0;r<ROW;r++)
-//     {
-//         for(int c=0;c<COL;c++)
-//         {
-//             //one_block.setRect()
+void Cboard_single::paintEvent(QPaintEvent *event)
+{
+    for(int r=0;r<ROW;r++)
+    {
+        for(int c=0;c<COL;c++)
+        {
+            //one_block.setRect()
 
-//         }
-//     }
-// }
+        }
+    }
+}

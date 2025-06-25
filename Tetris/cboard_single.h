@@ -36,6 +36,8 @@ signals:
 
     void timechange(int);//每秒发出一次的信号
 
+    void tick();//tick信号30ms
+
     //void start_single();
 
     //void pause_single();
@@ -61,7 +63,7 @@ private:
 
     //定时器timer
     QBasicTimer timer;
-
+    int id_t = startTimer(30);
     int id = startTimer(1000);
     int id_1 = startTimer(3000);
 
@@ -102,7 +104,7 @@ private:
     bool isDelete(int line); // 判断某一行是否需要消除
     void saveBegin(); // 保存下落到底的方块并进行消行，同时开始下一个方块的下落
 
-    //void paintEvent(QPaintEvent *event);//绘制函数（1秒一次）
+    void paintEvent(QPaintEvent *event);//绘制函数（1秒一次）
 };
 
 //全局方法
