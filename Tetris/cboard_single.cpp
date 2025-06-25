@@ -277,16 +277,13 @@ void Cboard_single::saveBegin()
 void Cboard_single::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);//作绘图区域
-    QPen pen(Qt::black);
+    QPen pen(Qt::black);//pen绘制边框
     painter.setPen(pen);
 
     int x = 60;
     int y = 10;
 
     QRect one_block;
-
-
-
 
     for(int r=0;r<ROW;r++)
     {
@@ -310,37 +307,55 @@ void Cboard_single::paintEvent(QPaintEvent *event)
 
 void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape)
 {
-    painter.drawRect(one_block);//绘制该方块边框
-    QBrush brush;
+    //painter.fillRect(one_block,Qt::red);
+    // switch((int)shape)
+    // {
+    // case 0:
+    //     painter.fillRect(one_block,Qt::black);
+    //     break;
+    // case 1:
+    //     painter.fillRect(one_block,Qt::GlobalColor::red);
+    //     break;
+    // case 2:
+    //     painter.fillRect(one_block,Qt::yellow);
+    //     break;
+    // case 3:
+    //     painter.fillRect(one_block,Qt::green);
+    //     break;
+    // case 4:
+    //     painter.fillRect(one_block,Qt::cyan);
+    //     break;
+    // case 5:
+    //     painter.fillRect(one_block,Qt::blue);
+    //     break;
+    // case 6:
+    //     painter.fillRect(one_block,Qt::magenta);
+    //     break;
 
-    switch(shape)
-    {
-    case 0:
-        brush.setColor(Qt::red);
-        break;
-    case 1:
-        brush.setColor(Qt::GlobalColor::transparent);
-        break;
-    case 2:
-        brush.setColor(Qt::yellow);
-        break;
-    case 3:
-        brush.setColor(Qt::green);
-        break;
-    case 4:
-        brush.setColor(Qt::cyan);
-        break;
-    case 5:
-        brush.setColor(Qt::blue);
-        break;
-    case 6:
-        brush.setColor(Qt::magenta);
-        break;
+    // }
 
-    }
+        if(shape==O_shape)
+        painter.fillRect(one_block,Qt::white);
 
-    painter.setBrush(brush);
+        if(shape==I_shape)
+        painter.fillRect(one_block,Qt::GlobalColor::red);
 
-    painter.fillRect(one_block,brush);
+        if(shape==Z_shape)
+        painter.fillRect(one_block,Qt::yellow);
+
+        if(shape==S_shape)
+        painter.fillRect(one_block,Qt::green);
+
+        if(shape==L_shape)
+        painter.fillRect(one_block,Qt::cyan);
+
+        if(shape==J_shape)
+        painter.fillRect(one_block,Qt::blue);
+
+        if(shape==T_shape)
+        painter.fillRect(one_block,Qt::magenta);
+
+    painter.drawRect(one_block);//绘制该方块
+
 
 }
