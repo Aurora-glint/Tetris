@@ -33,13 +33,11 @@ void CTetrimino::creatRandomShape()
 
 CTetrimino CTetrimino::getRotatedLeft()
 {
-    if(type == O_shape) return *this; // O块旋转后与原来相同，单独考虑
-
     CTetrimino result; // 定义新的块类用于返回旋转后的结果
     result.setShape(type); // 旋转后形状不变（广义）
 
     // 运用矩阵旋转公式，求得旋转后的x, y
-    for (int i = 0;i < 4; ++i)
+    for (int i = 0; i < 4; ++i)
     {
         result.setX(i, 3 - Tetri_shape[i][1]);
         result.setY(i, Tetri_shape[i][0]);

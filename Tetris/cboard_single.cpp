@@ -122,7 +122,6 @@ void Cboard_single::do_tickchange()
 void Cboard_single::startGame()
 {
     initBoard(); // 清空游戏面板
-    // 开启计时器（待写）
     cur_block = getNewBlock(); // 获取初始方块
     next_block = getNewBlock(); // 获取下一个方块
 
@@ -134,7 +133,6 @@ void Cboard_single::goDown()
 {
     if (tryMove(0))
     {
-        for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = None_shape;
         pos[0]++;
         for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
     }
@@ -143,22 +141,14 @@ void Cboard_single::goDown()
 
 void Cboard_single::goLeft()
 {
-    if (tryMove(-1))
-    {
-        for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = None_shape;
-        pos[1]--;
-        for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
-    }
+    if (tryMove(-1)) pos[1]--;
+    for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
 }
 
 void Cboard_single::goRight()
 {
-    if (tryMove(1))
-    {
-        for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = None_shape;
-        pos[1]++;
-        for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
-    }
+    if (tryMove(1)) pos[1]++;
+    for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
 }
 
 void Cboard_single::rotate()
@@ -168,24 +158,30 @@ void Cboard_single::rotate()
 
     for (int i = 0; i < 4; ++i)
     {
-        if (rotated.Y(i) + p >= COL) --p;
-        if (rotated.Y(i) + p < 0) ++p;
-    }
-
-    for (int i = 0; i < 4; ++i)
-    {
-        if (all_board[rotated.X(i)][rotated.Y(i) + p] != None_shape) return; // 若有重合，不旋转
+        if (pos[1] + rotated.Y(i) + p >= COL) --p;
+        if (pos[1] + rotated.Y(i) + p < 0) ++p;
     }
 
     for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = None_shape;
+    for (int i = 0; i < 4; ++i)
+    {
+        if (all_board[pos[0] + rotated.X(i)][pos[1] + rotated.Y(i) + p] != None_shape)
+        {
+            for (int j = 0; j < 4; ++j) all_board[pos[0] + cur_block.X(j)][pos[1] + cur_block.Y(j)] = cur_block.getType();
+            return; // 若有重合，不旋转
+        }
+    }
+
     pos[1] += p;
     cur_block = rotated;
-    for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
+    for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i) + p] = cur_block.getType();
 }
 
 // 判断移动位置是否会发生碰撞或越界
 bool Cboard_single::tryMove(int direction)
 {
+    for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = None_shape;
+
     if (direction != 0)
     {
         for (int i = 0; i < 4; ++i)
@@ -282,28 +278,39 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     QPen pen(Qt::black);//pen绘制边框
     painter.setPen(pen);
 
-    int x = 60;
-    int y = 10;
-
     QRect one_block;
 
-    for(int r=0;r<ROW;r++)
+    for (int r = 0; r < ROW; ++r)
     {
-        for(int c=0;c<COL;c++)
+        int x = 60 + BLOCKSIZE * r;
+        int y;
+        for (int c = 0; c < COL; ++c)
         {
-            x+=BLOCKSIZE;
-            one_block.setRect(x,y,BLOCKSIZE,BLOCKSIZE);
+            y = 10 + BLOCKSIZE * c;
 
-            if(all_board[r][c]!=None_shape)
-            {
-                paint_one_block(painter,one_block,all_board[r][c]);
+            one_block.setRect(y,x,BLOCKSIZE,BLOCKSIZE);
 
-            }
+            if (all_board[r][c] != None_shape) paint_one_block(painter, one_block, all_board[r][c]);
         }
-        x=60;
-        y+=BLOCKSIZE;
-
     }
+
+    // for(int r=0;r<ROW;r++)
+    // {
+    //     for(int c=0;c<COL;c++)
+    //     {
+    //         x+=BLOCKSIZE;
+    //         one_block.setRect(x,y,BLOCKSIZE,BLOCKSIZE);
+
+    //         if(all_board[r][c]!=None_shape)
+    //         {
+    //             paint_one_block(painter,one_block,all_board[r][c]);
+
+    //         }
+    //     }
+    //     x=60;
+    //     y+=BLOCKSIZE;
+
+    // }
 }
 
 
