@@ -79,11 +79,11 @@ private:
 
 // 以下为郝润熙所写
 public slots:
-    void start_game();
+    void startGame();
 
-    void go_down(); // 方块下落
-    void go_left(); // 方块左移
-    void go_right(); // 方块右移
+    void goDown(); // 方块下落
+    void goLeft(); // 方块左移
+    void goRight(); // 方块右移
     void rotate(); // 方块旋转（逆时针）
 
 private:
@@ -92,14 +92,14 @@ private:
     QPoint pos; // 块在游戏面板的绝对坐标（以左下角为基准）
     All_Shape all_board[ROW][COL]; // 游戏面板
 
-    bool try_move(int direction); // 判断是否可以移动（无碰撞，方向左移为-1，右移为1，下移为0）
+    bool tryMove(int direction); // 判断是否可以移动（无碰撞，方向左移为-1，右移为1，下移为0）
 
-    void init_board(); // 初始化（清空）游戏面板
-    void init_pos(); // 重置方块位置（下落位置）
+    void initBoard(); // 初始化（清空）游戏面板
+    void initPos(); // 重置方块位置（下落位置）
 
-    CTetrimino get_new_block(); // 获取新的方块
-    bool is_delete(int line); // 判断某一行是否需要消除
-    void save_begin(); // 保存下落到底的方块并进行消行，同时开始下一个方块的下落
+    CTetrimino getNewBlock(); // 获取新的方块
+    bool isDelete(int line); // 判断某一行是否需要消除
+    void saveBegin(); // 保存下落到底的方块并进行消行，同时开始下一个方块的下落
 
     void paintEvent(QPaintEvent *event);//绘制函数（1秒一次）
 };

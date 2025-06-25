@@ -73,9 +73,9 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
     else
     {
         if(k->key() == Qt::Key_W) rotate();
-        if(k->key() == Qt::Key_A) go_left();
-        if(k->key() == Qt::Key_S) go_down();
-        if(k->key() == Qt::Key_D) go_right();
+        if(k->key() == Qt::Key_A) goLeft();
+        if(k->key() == Qt::Key_S) goDown();
+        if(k->key() == Qt::Key_D) goRight();
     }
 }
 
@@ -89,7 +89,7 @@ void Cboard_single::timerEvent(QTimerEvent *event)
         if((event->timerId() == id && !Ispaused))//1秒事件
         {
             time += 1; // 每秒存活时间加一
-            go_down(); // 每秒下落一格
+            goDown(); // 每秒下落一格
         }
 
         /*
@@ -114,33 +114,35 @@ void Cboard_single::do_timechange()
 
 
 // 以下为郝润熙所写
-void Cboard_single::start_game()
+void Cboard_single::startGame()
 {
-    init_board(); // 清空游戏面板
+    initBoard(); // 清空游戏面板
     // 开启计时器（待写）
-    cur_block = get_new_block(); // 获取初始方块
-    next_block = get_new_block(); // 获取下一个方块
+    cur_block = getNewBlock(); // 获取初始方块
+    next_block = getNewBlock(); // 获取下一个方块
 
-    init_pos(); // 设置下落位置
+    initPos(); // 设置下落位置
 }
 
-void Cboard_single::go_down()
+void Cboard_single::goDown()
 {
-    if (try_move(0)) pos.setX(pos.x() + 1);
-    else save_begin();
+    if (tryMove(0)) pos.setX(pos.x() + 1);
+    else saveBegin();
 }
 
-void Cboard_single::go_left()
+void Cboard_single::goLeft()
 {
 
 }
 
-void Cboard_single::go_right()
+void Cboard_single::goRight()
 {
+
+}
 
 void Cboard_single::rotate()
 {
-    CTetrimino rotated = cur_block.get_rotatedLeft(); // 得到旋转后的图形
+    CTetrimino rotated = cur_block.getRotatedLeft(); // 得到旋转后的图形
     int p = 0;
 
     for (int i = 0; i < 4; ++i)
@@ -159,7 +161,7 @@ void Cboard_single::rotate()
 }
 
 // 判断移动位置是否会发生碰撞或越界
-bool Cboard_single::try_move(int direction)
+bool Cboard_single::tryMove(int direction)
 {
     if (direction)
     {
@@ -185,7 +187,7 @@ bool Cboard_single::try_move(int direction)
 }
 
 // 初始化（清除）面板
-void Cboard_single::init_board()
+void Cboard_single::initBoard()
 {
     for (int i = 0; i < ROW; i++)
     {
@@ -194,18 +196,18 @@ void Cboard_single::init_board()
 }
 
 // 初始化方块坐标
-void Cboard_single::init_pos()
+void Cboard_single::initPos()
 {
     pos.setX(COL / 2 - 1);
     pos.setY(ROW);
 }
 
-CTetrimino Cboard_single::get_new_block()
+CTetrimino Cboard_single::getNewBlock()
 {
     return CTetrimino(1); // 构造随机形状的方块并返回
 }
 
-bool Cboard_single::is_delete(int line)
+bool Cboard_single::isDelete(int line)
 {
     for (int i = 0; i < COL; ++i)
     {
@@ -215,29 +217,39 @@ bool Cboard_single::is_delete(int line)
     return true; // 全部填满，进行消行
 }
 
-void Cboard_single::save_begin()
+void Cboard_single::saveBegin()
 {
-    // 保存下落到底的方块，同时判断改行是否需要消除
+    // 保存下落到底的方块
+    int up = 0, down = ROW;
     for (int i = 0; i < 4; ++i)
     {
         int line = pos.x() + cur_block.X(i);
-        all_board[line][pos.y() + cur_block.Y(i)] = cur_block.get_type();
+        all_board[line][pos.y() + cur_block.Y(i)] = cur_block.getType();
 
-        // 若需要消行，进行消行处理
-        if (is_delete(line))
+        if (line > up) up = line;
+        if (line < down) down = line;
+    }
+
+    // 判断是否需要消行
+    for (int line = down; line <= up; ++line)
+    {
+        if (isDelete(line))
         {
             for (int i = line; i > 0; --i)
             {
                 for (int j = 0; j < COL; ++j) all_board[i][j] = all_board[i - 1][j];
             }
             for (int j = 0; j < COL; ++j) all_board[0][j] = None_shape;
+
+            line--;
+            up--;
         }
     }
 
     // 开始新一轮方块降落
-    init_pos();
+    initPos();
     cur_block = next_block;
-    next_block = get_new_block();
+    next_block = getNewBlock();
 }
 
 void Cboard_single::paintEvent(QPaintEvent *event)
