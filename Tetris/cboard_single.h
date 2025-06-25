@@ -8,6 +8,7 @@
 #include <QBasicTimer>
 #include <QPainter>
 #include <QPaintEvent>
+#include "gameboard.h"
 
 //#include "Cboard.h"
 
@@ -90,7 +91,9 @@ private:
     CTetrimino cur_block; // 当前正在下落的块
     CTetrimino next_block; // 显示的下一个待下落的块
     QPoint pos; // 块在游戏面板的绝对坐标（以左下角为基准）
-    All_Shape all_board[ROW][COL]; // 游戏面板
+    All_Shape all_board[ROW][COL]; // 游戏状态面板
+    MyPainterFrame *gameboard;//游戏绘制界面
+
 
     bool tryMove(int direction); // 判断是否可以移动（无碰撞，方向左移为-1，右移为1，下移为0）
 
@@ -101,11 +104,9 @@ private:
     bool isDelete(int line); // 判断某一行是否需要消除
     void saveBegin(); // 保存下落到底的方块并进行消行，同时开始下一个方块的下落
 
-    void paintEvent(QPaintEvent *event);//绘制函数（1秒一次）
+    //void paintEvent(QPaintEvent *event);//绘制函数（1秒一次）
 };
 
 //全局方法
-
-void paint_one_block(QPainter &painter,const QRect &one_block);//绘制单个方块
 
 #endif // CBOARD_SINGLE_H

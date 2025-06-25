@@ -10,11 +10,13 @@ Cboard_single::Cboard_single(QWidget *parent)
     , ui(new Ui::Cboard_single)
 {
     ui->setupUi(this);
+    ui->gameboard->setParent(this);
     Ispaused = true;
     connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号
     connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
 
-    //timer = new QTimer ();//实例化timer计时器对象;
+    gameboard = new MyPainterFrame(this);
+
 }
 
 Cboard_single::~Cboard_single()
@@ -207,6 +209,7 @@ CTetrimino Cboard_single::getNewBlock()
     return CTetrimino(1); // 构造随机形状的方块并返回
 }
 
+
 bool Cboard_single::isDelete(int line)
 {
     for (int i = 0; i < COL; ++i)
@@ -254,30 +257,13 @@ void Cboard_single::saveBegin()
 
 void Cboard_single::paintEvent(QPaintEvent *event)
 {
-    QPainter painter(this);//gameboard作绘图区域
-    QPen pen(Qt::black);
-    painter.setPen(pen);
+    for(int r=0;r<ROW;r++)
+    {
+        for(int c=0;c<COL;c++)
+        {
+            //one_block.setRect()
 
-    QRect one_block;//单个方块
-
-
-    one_block.setRect(100,100,30,30);
-    paint_one_block(painter,one_block);
-
-    one_block.setRect(200,200,30,30);
-
-    paint_one_block(painter,one_block);
-    one_block.setRect(300,300,30,30);
-    paint_one_block(painter,one_block);
-
-
-
-
-
+        }
+    }
 }
-
-void paint_one_block(QPainter &painter,const QRect &one_block)
-{
-
-    painter.drawRect(one_block);//绘制该方块
-}
+*/

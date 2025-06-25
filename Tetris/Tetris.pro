@@ -12,12 +12,14 @@ SOURCES += \
     CTetrimino.cpp \
     Cboard.cpp \
     cboard_single.cpp \
+    gameboard.cpp \
     main.cpp
 
 HEADERS += \
     CTetrimino.h \
     Cboard.h \
-    cboard_single.h
+    cboard_single.h \
+    gameboard.h
 
 FORMS += \
     Cboard.ui \
