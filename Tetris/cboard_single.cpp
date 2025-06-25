@@ -136,14 +136,14 @@ void Cboard_single::goDown()
 
 void Cboard_single::goLeft()
 {
-
+    if (tryMove(-1)) pos.setY(pos.y() - 1);
 }
 
 void Cboard_single::goRight()
 {
-
-
+    if (tryMove(1)) pos.setY(pos.y() + 1);
 }
+
 void Cboard_single::rotate()
 {
     CTetrimino rotated = cur_block.getRotatedLeft(); // 得到旋转后的图形
