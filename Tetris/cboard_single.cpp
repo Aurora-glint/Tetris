@@ -117,22 +117,38 @@ void Cboard_single::startGame()
     next_block = getNewBlock(); // 获取下一个方块
 
     initPos(); // 设置下落位置
+    for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = cur_block.getType(); // 将方块存入游戏面板中
 }
 
 void Cboard_single::goDown()
 {
-    if (tryMove(0)) pos.setX(pos.x() + 1);
+    if (tryMove(0))
+    {
+        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = None_shape;
+        pos.setX(pos.x() + 1);
+        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = cur_block.getType();
+    }
     else saveBegin();
 }
 
 void Cboard_single::goLeft()
 {
-    if (tryMove(-1)) pos.setY(pos.y() - 1);
+    if (tryMove(-1))
+    {
+        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = None_shape;
+        pos.setY(pos.y() - 1);
+        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = cur_block.getType();
+    }
 }
 
 void Cboard_single::goRight()
 {
-    if (tryMove(1)) pos.setY(pos.y() + 1);
+    if (tryMove(1))
+    {
+        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = None_shape;
+        pos.setY(pos.y() + 1);
+        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = cur_block.getType();
+    }
 }
 
 void Cboard_single::rotate()
@@ -151,8 +167,10 @@ void Cboard_single::rotate()
         if (all_board[rotated.X(i)][rotated.Y(i) + p] != None_shape) return; // 若有重合，不旋转
     }
 
+    for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = None_shape;
     pos.setY(pos.y() + p);
     cur_block = rotated;
+    for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = cur_block.getType();
 }
 
 // 判断移动位置是否会发生碰撞或越界
@@ -178,7 +196,7 @@ bool Cboard_single::tryMove(int direction)
             if (all_board[new_x][new_y] != None_shape) return false; // 若待移到的位置已有方块，返回false
         }
     }
-    return true; // 循环结束还为返回，说明待移处没有方块，返回true
+    return true; // 循环结束还未返回，说明待移处没有方块，返回true
 }
 
 // 初始化（清除）面板
@@ -220,7 +238,7 @@ void Cboard_single::saveBegin()
     for (int i = 0; i < 4; ++i)
     {
         int line = pos.x() + cur_block.X(i);
-        all_board[line][pos.y() + cur_block.Y(i)] = cur_block.getType();
+        //all_board[line][pos.y() + cur_block.Y(i)] = cur_block.getType();
 
         if (line > up) up = line;
         if (line < down) down = line;
