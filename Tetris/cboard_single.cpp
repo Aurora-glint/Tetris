@@ -10,12 +10,14 @@ Cboard_single::Cboard_single(QWidget *parent)
     , ui(new Ui::Cboard_single)
 {
     ui->setupUi(this);
-    ui->gameboard->setParent(this);
+
     Ispaused = true;
     connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号
     connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
 
     gameboard = new MyPainterFrame(this);
+
+    gameboard->show();
 
 }
 
