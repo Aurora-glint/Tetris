@@ -14,7 +14,7 @@ void CTetrimino::setShape(All_Shape shape)
 {
     for (int i = 0; i < 4; ++i)
     {
-        for (int j = 0; j < 4; ++j) Tetri_shape[i][j] = Shape[shape][i][j];  // 设置形状
+        for (int j = 0; j < 2; ++j) Tetri_shape[i][j] = Shape[shape][i][j];  // 设置形状
     }
 }
 

@@ -11,6 +11,8 @@ Cboard_single::Cboard_single(QWidget *parent)
 {
     ui->setupUi(this);
 
+    initBoard(); // 初始化游戏面板
+
     Ispaused = true;
     connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号
     connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
@@ -125,16 +127,16 @@ void Cboard_single::startGame()
     next_block = getNewBlock(); // 获取下一个方块
 
     initPos(); // 设置下落位置
-    for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = cur_block.getType(); // 将方块存入游戏面板中
+    for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType(); // 将方块存入游戏面板中
 }
 
 void Cboard_single::goDown()
 {
     if (tryMove(0))
     {
-        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = None_shape;
-        pos.setX(pos.x() + 1);
-        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = cur_block.getType();
+        for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = None_shape;
+        pos[0]++;
+        for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
     }
     else saveBegin();
 }
@@ -143,9 +145,9 @@ void Cboard_single::goLeft()
 {
     if (tryMove(-1))
     {
-        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = None_shape;
-        pos.setY(pos.y() - 1);
-        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = cur_block.getType();
+        for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = None_shape;
+        pos[1]--;
+        for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
     }
 }
 
@@ -153,9 +155,9 @@ void Cboard_single::goRight()
 {
     if (tryMove(1))
     {
-        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = None_shape;
-        pos.setY(pos.y() + 1);
-        for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = cur_block.getType();
+        for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = None_shape;
+        pos[1]++;
+        for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
     }
 }
 
@@ -175,22 +177,22 @@ void Cboard_single::rotate()
         if (all_board[rotated.X(i)][rotated.Y(i) + p] != None_shape) return; // 若有重合，不旋转
     }
 
-    for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = None_shape;
-    pos.setY(pos.y() + p);
+    for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = None_shape;
+    pos[1] += p;
     cur_block = rotated;
-    for (int i = 0; i < 4; ++i) all_board[pos.x() + cur_block.X(i)][pos.y() + cur_block.Y(i)] = cur_block.getType();
+    for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
 }
 
 // 判断移动位置是否会发生碰撞或越界
 bool Cboard_single::tryMove(int direction)
 {
-    if (direction)
+    if (direction != 0)
     {
         for (int i = 0; i < 4; ++i)
         {
-            int new_y = pos.y() + cur_block.Y(i) + direction;
-            int new_x = pos.x() + cur_block.X(i);
-            if (new_x < 0 || new_x >= ROW || new_y < 0 || new_y >= COL) return false; // 出界，返回false
+            int new_y = pos[1] + cur_block.Y(i) + direction;
+            int new_x = pos[0] + cur_block.X(i);
+            if (new_y < 0 || new_y >= COL) return false; // 出界，返回false
             if (all_board[new_x][new_y] != None_shape) return false; // 若待移到的位置已有方块，返回false
         }
     }
@@ -198,9 +200,9 @@ bool Cboard_single::tryMove(int direction)
     {
         for (int i = 0; i < 4; ++i)
         {
-            int new_x = pos.x() + cur_block.X(i) + 1;
-            int new_y = pos.x() + cur_block.Y(i);
-            if (new_x < 0 || new_x >= ROW || new_y < 0 || new_y >= COL) return false; // 出界，返回false
+            int new_x = pos[0] + cur_block.X(i) + 1;
+            int new_y = pos[1] + cur_block.Y(i);
+            if (new_x < 0 || new_x >= ROW) return false; // 出界，返回false
             if (all_board[new_x][new_y] != None_shape) return false; // 若待移到的位置已有方块，返回false
         }
     }
@@ -219,8 +221,8 @@ void Cboard_single::initBoard()
 // 初始化方块坐标
 void Cboard_single::initPos()
 {
-    pos.setX(0);
-    pos.setY(COL / 2 - 1);
+    pos[0] = 0;
+    pos[1] = COL / 2 - 1;
 }
 
 CTetrimino Cboard_single::getNewBlock()
@@ -245,8 +247,8 @@ void Cboard_single::saveBegin()
     int up = 0, down = ROW;
     for (int i = 0; i < 4; ++i)
     {
-        int line = pos.x() + cur_block.X(i);
-        //all_board[line][pos.y() + cur_block.Y(i)] = cur_block.getType();
+        int line = pos[0] + cur_block.X(i);
+        all_board[line][pos[1] + cur_block.Y(i)] = cur_block.getType();
 
         if (line > up) up = line;
         if (line < down) down = line;
