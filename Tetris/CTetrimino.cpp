@@ -26,7 +26,7 @@ void CTetrimino::creatRandomShape()
     // 定义均匀整数分布 [0, 6]（包含两端）
     std::uniform_int_distribution<> dis(0, 6);
 
-    type = All_Shape(dis(gen)); // 生成随机数
+    type = All_Shape(dis(gen) + 1); // 生成随机数
 
     setShape(All_Shape(type)); // 创建下一个随机图形
 }
