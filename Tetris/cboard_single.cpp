@@ -219,8 +219,8 @@ void Cboard_single::initBoard()
 // 初始化方块坐标
 void Cboard_single::initPos()
 {
-    pos.setX(COL / 2 - 1);
-    pos.setY(ROW);
+    pos.setX(0);
+    pos.setY(COL / 2 - 1);
 }
 
 CTetrimino Cboard_single::getNewBlock()
