@@ -1,8 +1,13 @@
 #ifndef CBOARD_H
 #define CBOARD_H
 
+
 #ifndef ROW
-#define ROW
+#define ROW 25
+#endif
+
+#ifndef COL
+#define COL 15
 #endif
 
 #include <QMainWindow>
