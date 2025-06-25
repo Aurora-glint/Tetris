@@ -25,14 +25,14 @@ enum Direction {Up, Down, Left, Right};
 class CTetrimino{
     static constexpr int Shape[8][4][2] =
     {
+        {{0, 0}, {0, 0}, {0, 0}, {0, 0}},  // None_shape
         {{1, 1}, {1, 2}, {2, 1}, {2, 2}},  // O_shape
         {{2, 0}, {2, 1}, {2, 2}, {2, 3}},  // I_shape
         {{1, 0}, {1, 1}, {2, 1}, {2, 2}},  // Z_shape
         {{2, 0}, {2, 1}, {1, 1}, {1, 2}},  // S_shape
         {{1, 1}, {2, 1}, {3, 1}, {3, 2}},  // L_shape
         {{1, 2}, {2, 2}, {3, 2}, {3, 1}},  // J_shape
-        {{2, 0}, {2, 1}, {1, 1}, {2, 2}},  // T_shape
-        {{0, 0}, {0, 0}, {0, 0}, {0, 0}}   // None_shape
+        {{2, 0}, {2, 1}, {1, 1}, {2, 2}}   // T_shape
     };
 private:
     int Tetri_shape[4][2];
