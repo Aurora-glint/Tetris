@@ -76,11 +76,6 @@ private:
             0xCCCC66,0xCC66CC,0x66CCCC,0xDAAA00
         };
 
- //   QColor color = colorTable[shape];
- //需要方块编号，0-8分别对应一种颜色
-
-
-
 // 以下为郝润熙所写
 public slots:
     void startGame();
@@ -108,7 +103,11 @@ private:
     void paintEvent(QPaintEvent *event) override;//绘制函数（每tick一次）
 
     void paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape);
+
+    void show_all_board();//debug用，控制台输出all_board
 };
+
+
 
 //全局方法
 
