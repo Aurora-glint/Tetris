@@ -28,7 +28,7 @@ void CTetrimino::creatRandomShape()
 
     type = All_Shape(dis(gen) + 1); // 生成随机数
 
-    setShape(All_Shape(type)); // 创建下一个随机图形
+    setShape(type); // 创建下一个随机图形
 }
 
 CTetrimino CTetrimino::getRotatedLeft()
