@@ -78,7 +78,9 @@ private:
 
 
 // 以下为郝润熙所写
-private slots:
+public slots:
+    void start_game();
+
     void go_down(); // 方块下落
     void go_left(); // 方块左移
     void go_right(); // 方块右移
@@ -99,7 +101,11 @@ private:
     bool is_delete(int line); // 判断某一行是否需要消除
     void save_begin(); // 保存下落到底的方块并进行消行，同时开始下一个方块的下落
 
-    void paintEvent(QPaintEvent *event) override;
+    void paintEvent(QPaintEvent *event);//绘制函数（1秒一次）
 };
+
+//全局方法
+
+void paint_one_block(QPainter &painter,const QRect &one_block);//绘制单个方块
 
 #endif // CBOARD_SINGLE_H
