@@ -347,8 +347,8 @@ void Cboard_single::paintEvent(QPaintEvent *event)
 
 void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape)
 {
+    painter.fillRect(one_block,Qt::gray);
 
-    painter.fillRect(one_block,Qt::red);
     switch((int)shape)
     {
     case 0:
@@ -372,31 +372,9 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
     case 6:
         painter.fillRect(one_block,Qt::magenta);
         break;
-
     }
+
     painter.drawRect(one_block);//绘制该方块
-/*
-     if(shape==O_shape)
-        painter.fillRect(one_block,Qt::gray);
-
-    else if(shape == Z_shape) painter.fillRect(one_block, Qt::yellow);
-
-    else if(shape == S_shape) painter.fillRect(one_block, Qt::green);
-
-    else if(shape == L_shape) painter.fillRect(one_block, Qt::cyan);
-
-    else if(shape == J_shape) painter.fillRect(one_block, Qt::blue);
-
-    else if(shape == T_shape) painter.fillRect(one_block, Qt::magenta);
-
-    else if(shape == None_shape) painter.fillRect(one_block, Qt::white);
-
-        else if(shape==None_shape)
-            painter.fillRect(one_block,Qt::white);
-
-*/
-    painter.drawRect(one_block);//绘制该方块
-
 }
 
 void Cboard_single::on_start_button_clicked(bool checked)
