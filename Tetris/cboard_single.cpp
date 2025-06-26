@@ -409,6 +409,22 @@ void Cboard_single::on_pause_button_clicked(bool checked)
 void Cboard_single::setDifficulty(Difficulty diff)
 {
     curDifficulty = diff;
+    QString Difname;
+
+    switch(curDifficulty)
+    {
+    case 0:
+        Difname="Normal";
+        break;
+    case 1:
+        Difname="Hard";
+        break;
+    case 2:
+        Difname="Crazy";
+        break;
+    }
+
+    ui->difficulty_label->setText(Difname);
 }
 void Cboard_single::on_difchange_button_clicked(bool checked)
 {
