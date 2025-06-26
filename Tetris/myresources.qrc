@@ -8,5 +8,6 @@
         <file>T.png</file>
         <file>Z.png</file>
         <file>Blank.png</file>
+        <file>tetrisbg.png</file>
     </qresource>
 </RCC>
