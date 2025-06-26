@@ -273,7 +273,7 @@ void Cboard_single::saveBegin()
         return;
     }
 
-    paintPreview(); // 更新next_block预览
+    // paintPreview(); // 更新next_block预览
 
     // 开始新一轮方块降落
     initPos();
@@ -286,23 +286,21 @@ void Cboard_single::endGame()
     Ispaused = true;
 }
 
-QPixmap Cboard_single::paintPreview()
-{
-    QPoint point(90, 90);
-    QPixmap pixmap(120, 120);
-    QPainter pixmapPainter(&pixmap);
-    QPen pen(Qt::red);
-    pixmapPainter.setPen(pen);
+// QPixmap Cboard_single::paintPreview()
+// {
+//     QPoint point(10, 40);
+//     QPixmap pixmap(120, 120);
+//     QPainter pixmapPainter(&pixmap);
+//     pixmapPainter.fillRect(pixmap.rect(), QColor(3, 54, 73));
 
-    for (int i = 0; i < 4; ++i)
-    {
-        QRect one_block(point.x() + next_block.Y(i), point.y() + next_block.X(i), BLOCKSIZE, BLOCKSIZE);
-        pixmapPainter.drawRect(one_block);
-    }
+//     for (int i = 0; i < 4; ++i)
+//     {
+//         QRect one_block(point.x() + next_block.Y(i), point.y() + next_block.X(i), BLOCKSIZE, BLOCKSIZE);
+//         pixmapPainter.drawRect(one_block);
+//     }
 
-    pixmapPainter.end();
-    return pixmap;
-}
+//     return pixmap;
+// }
 
 void Cboard_single::paintEvent(QPaintEvent *event)
 {
@@ -358,7 +356,7 @@ void Cboard_single::paintEvent(QPaintEvent *event)
 
             one_block.setRect(y,x,BLOCKSIZE,BLOCKSIZE);
 
-            // if (all_board[r][c] != None_shape) paint_one_block(painter, one_block, all_board[r][c]);
+            if (all_board[r][c] != None_shape) paint_one_block(painter, one_block, all_board[r][c]);
         }
     }
 }

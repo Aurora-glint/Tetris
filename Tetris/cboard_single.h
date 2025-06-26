@@ -102,7 +102,7 @@ private:
     void saveBegin(); // 保存下落到底的方块并进行消行，同时开始下一个方块的下落
     void endGame(); // 游戏结束
 
-    QPixmap paintPreview(); // 显示下一个方块
+    // QPixmap paintPreview(); // 显示下一个方块
 
     void paintEvent(QPaintEvent *event) override;//绘制函数（每tick一次）
 
