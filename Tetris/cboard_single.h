@@ -70,6 +70,8 @@ private slots:
 
     void on_pause_button_clicked(bool checked);//暂停游戏按钮
 
+    void on_difchange_button_clicked(bool checked);
+
 private:
     Ui::Cboard_single *ui;
 
