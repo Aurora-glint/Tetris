@@ -26,7 +26,10 @@
    <string>Tetris</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);
+   <string notr="true">/*background-color: rgb(255, 255, 255);*/
+/*background-image:url(:/image/tetrisbg.png)*/
+
+background-color: rgb(235, 254, 255);
 </string>
   </property>
   <widget class="QLabel" name="timetitle_3">

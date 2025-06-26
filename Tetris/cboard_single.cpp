@@ -37,6 +37,8 @@ void Cboard_single::on_back_menu_button_clicked()
 {
     emit back();
     this->hide();
+    //调用暂停
+    on_pause_button_clicked(0);
     qDebug() << "back signal launched " << Qt::endl;
 }
 
@@ -281,45 +283,6 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     painter.setPen(pen);
     QRectF frame(o_ , s_);
     painter.drawRect(frame);
-
-    // QPixmap pre_shape;
-    // if(next_block.getType()==O_shape)
-    // {
-    //     pre_shape.load(":/image/O");
-    // }
-    // else if(next_block.getType()==Z_shape)
-    // {
-    //     pre_shape.load(":/image/Z");
-    // }
-    // else if(next_block.getType()==S_shape)
-    // {
-    //     pre_shape.load(":/image/S");
-    // }
-    // else if(next_block.getType()==T_shape)
-    // {
-    //     pre_shape.load(":/image/T");
-    // }
-    // else if(next_block.getType()==I_shape)
-    // {
-    //     pre_shape.load(":/image/I");
-    // }
-    // else if(next_block.getType()==L_shape)
-    // {
-    //     pre_shape.load(":/image/L");
-    // }
-    // else if(next_block.getType()==J_shape)
-    // {
-    //     pre_shape.load(":/image/J");
-    // }
-    // else if(next_block.getType()==None_shape)
-    // {
-    //     pre_shape.load(":/image/Blank");
-    // }
-    // QPixmap scaledKeepRatio = pre_shape.scaled(90,90,Qt::KeepAspectRatio,Qt::FastTransformation);
-
-
-    // painter.drawPixmap(10,50,scaledKeepRatio);
-
     QRect one_block;
 
     for (int r = 0; r < ROW; ++r)
@@ -377,27 +340,6 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
         break;
 
     }
-    painter.drawRect(one_block);//绘制该方块
-/*
-     if(shape==O_shape)
-        painter.fillRect(one_block,Qt::gray);
-
-    else if(shape == Z_shape) painter.fillRect(one_block, Qt::yellow);
-
-    else if(shape == S_shape) painter.fillRect(one_block, Qt::green);
-
-    else if(shape == L_shape) painter.fillRect(one_block, Qt::cyan);
-
-    else if(shape == J_shape) painter.fillRect(one_block, Qt::blue);
-
-    else if(shape == T_shape) painter.fillRect(one_block, Qt::magenta);
-
-    else if(shape == None_shape) painter.fillRect(one_block, Qt::white);
-
-        else if(shape==None_shape)
-            painter.fillRect(one_block,Qt::white);
-
-*/
     painter.drawRect(one_block);//绘制该方块
 
 }
