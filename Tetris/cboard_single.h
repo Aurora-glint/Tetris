@@ -61,8 +61,6 @@ private:
 
     int time = 0;//计时变量
 
-    int score = 0;//分数变量
-
     void timerEvent(QTimerEvent *event) override;//定时器事件
 
     //定时器timer
@@ -92,7 +90,7 @@ private:
     CTetrimino next_block; // 显示的下一个待下落的块
     int pos[2]; // 块在游戏面板的绝对坐标（以左下角为基准）
     All_Shape all_board[ROW][COL]; // 游戏状态面板
-    unsigned long long score;
+    int score;
 
     bool tryMove(int direction); // 判断是否可以移动（无碰撞，方向左移为-1，右移为1，下移为0）
 
