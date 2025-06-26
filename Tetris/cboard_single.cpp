@@ -348,14 +348,14 @@ void Cboard_single::paintEvent(QPaintEvent *event)
 void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape)
 {
 
-    painter.fillRect(one_block,Qt::red);
+    //
     switch((int)shape)
     {
     case 0:
         painter.fillRect(one_block,Qt::black);
         break;
     case 1:
-        painter.fillRect(one_block,Qt::GlobalColor::red);
+        painter.fillRect(one_block,Qt::gray);
         break;
     case 2:
         painter.fillRect(one_block,Qt::yellow);
@@ -371,6 +371,9 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
         break;
     case 6:
         painter.fillRect(one_block,Qt::magenta);
+        break;
+    case 7:
+        painter.fillRect(one_block,Qt::red);
         break;
 
     }
