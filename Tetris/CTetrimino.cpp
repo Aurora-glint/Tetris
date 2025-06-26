@@ -34,7 +34,10 @@ void CTetrimino::creatRandomShape()
 CTetrimino CTetrimino::getRotatedLeft()
 {
     CTetrimino result; // 定义新的块类用于返回旋转后的结果
-    result.setShape(type); // 旋转后形状不变（广义）
+
+    // 旋转后形状不变（广义）
+    result.setShape(type);
+    result.type = type;
 
     // 运用矩阵旋转公式，求得旋转后的x, y
     for (int i = 0; i < 4; ++i)

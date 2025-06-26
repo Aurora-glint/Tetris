@@ -99,23 +99,23 @@ void Cboard_single::timerEvent(QTimerEvent *event)
         }
         emit timechange(time);
 
-        qDebug()<<"已发出 timechange "<<time<<Qt::endl;
+        //qDebug()<<"已发出 timechange "<<time<<Qt::endl;
 
     }
 }
 
 void Cboard_single::do_timechange()
 {
-    qDebug()<<"收到 "<<time<<Qt::endl;
+    //qDebug()<<"收到 "<<time<<Qt::endl;
     ui->lcd_time->display(time);
-    show_all_board();
+    //show_all_board();
 
 }
 
 void Cboard_single::do_tickchange()
 {
     this->update();//每tick更新绘图
-    qDebug()<<"refresh"<<Qt::endl;
+    //qDebug()<<"refresh"<<Qt::endl;
 
 };//响应每tick变化
 
@@ -164,6 +164,7 @@ void Cboard_single::rotate()
     }
 
     for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = None_shape;
+
     for (int i = 0; i < 4; ++i)
     {
         if (all_board[pos[0] + rotated.X(i)][pos[1] + rotated.Y(i) + p] != None_shape)
@@ -175,7 +176,9 @@ void Cboard_single::rotate()
 
     pos[1] += p;
     cur_block = rotated;
-    for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i) + p] = cur_block.getType();
+    // qDebug() << rotated.getType() << Qt::endl;
+    // qDebug() << cur_block.getType() << Qt::endl;
+    for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
 }
 
 // 判断移动位置是否会发生碰撞或越界
@@ -371,15 +374,15 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
 
 }
 
-void Cboard_single::show_all_board()
-{
-    for(int i=0;i<ROW;i++)
-    {
-        for(int j=0;j<COL;j++)
-        {
-            qDebug()<<all_board[i][j];
-        }
-        qDebug()<<Qt::endl;
-    }
-    qDebug()<<"---------------"<<Qt::endl;
-}
+// void Cboard_single::show_all_board()
+// {
+//     for(int i=0;i<ROW;i++)
+//     {
+//         for(int j=0;j<COL;j++)
+//         {
+//             qDebug()<<all_board[i][j];
+//         }
+//         qDebug()<<Qt::endl;
+//     }
+//     qDebug()<<"---------------"<<Qt::endl;
+// }
