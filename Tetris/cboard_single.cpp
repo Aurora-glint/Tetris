@@ -377,6 +377,15 @@ void Cboard_single::on_start_button_clicked(bool checked)
     Ispaused = false;
     ui->pause_button->setChecked(true);
     ui->pause_button->setText("暂停 ");
+    if(!checked)
+    {
+        ui->start_button->setText("开始");
+    }
+    else if(checked)
+    {
+        ui->start_button->setText("重新开始");
+    }
+
     qDebug() << "game started " << Qt::endl;
     startGame();
 
