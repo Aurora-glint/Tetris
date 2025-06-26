@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
-    <height>816</height>
+    <width>721</width>
+    <height>879</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="back_menu_button">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>700</y>
+     <x>620</x>
+     <y>670</y>
      <width>91</width>
      <height>41</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QPushButton" name="quit_game">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>760</y>
+     <x>620</x>
+     <y>770</y>
      <width>91</width>
      <height>41</height>
     </rect>
@@ -42,8 +42,8 @@
   <widget class="QPushButton" name="start_button">
    <property name="geometry">
     <rect>
-     <x>560</x>
-     <y>450</y>
+     <x>630</x>
+     <y>440</y>
      <width>81</width>
      <height>41</height>
     </rect>
@@ -54,11 +54,14 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
   </widget>
   <widget class="QPushButton" name="pause_button">
    <property name="geometry">
     <rect>
-     <x>560</x>
+     <x>630</x>
      <y>510</y>
      <width>81</width>
      <height>41</height>
@@ -77,9 +80,9 @@
   <widget class="QLabel" name="timetitle">
    <property name="geometry">
     <rect>
-     <x>570</x>
+     <x>620</x>
      <y>20</y>
-     <width>71</width>
+     <width>91</width>
      <height>41</height>
     </rect>
    </property>
@@ -93,8 +96,8 @@
   <widget class="QLCDNumber" name="lcd_time">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>70</y>
+     <x>620</x>
+     <y>80</y>
      <width>91</width>
      <height>71</height>
     </rect>
