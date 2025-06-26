@@ -5,3 +5,5 @@
 *.idx
 /.vs
 *.autosave
+*.Debug
+/Tetris/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug
