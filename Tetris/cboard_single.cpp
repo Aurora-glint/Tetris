@@ -256,10 +256,22 @@ void Cboard_single::saveBegin()
         }
     }
 
+    // 判断游戏是否结束
+    if (down < 4)
+    {
+        endGame();
+        return;
+    }
+
     // 开始新一轮方块降落
     initPos();
     cur_block = next_block;
     next_block = getNewBlock();
+}
+
+void Cboard_single::endGame()
+{
+    Ispaused = true;
 }
 
 void Cboard_single::paintEvent(QPaintEvent *event)
@@ -346,19 +358,6 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
 
 }
 
-// void Cboard_single::show_all_board()
-// {
-//     for(int i=0;i<ROW;i++)
-//     {
-//         for(int j=0;j<COL;j++)
-//         {
-//             qDebug()<<all_board[i][j];
-//         }
-//         qDebug()<<Qt::endl;
-//     }
-//     qDebug()<<"---------------"<<Qt::endl;
-// }
-
 void Cboard_single::on_start_button_clicked(bool checked)
 {
     Ispaused = false;
@@ -384,10 +383,8 @@ void Cboard_single::on_pause_button_clicked(bool checked)
 {
     if(!checked)
     {
-    Ispaused = true;
-    qDebug() << "game paused " << Qt::endl;
- //   this->hide();
-    ui->pause_button->setText("继续");
+        Ispaused = true;
+        ui->pause_button->setText("继续");
     }
     else if(checked)
     {
@@ -395,5 +392,6 @@ void Cboard_single::on_pause_button_clicked(bool checked)
         qDebug() << "game continue " << Qt::endl;
         ui->pause_button->setText("暂停 ");
     }
+
 
 }
