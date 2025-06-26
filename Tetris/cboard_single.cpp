@@ -38,21 +38,6 @@ void Cboard_single::on_back_menu_button_clicked()
     qDebug() << "back signal launched " << Qt::endl;
 }
 
-void Cboard_single::on_start_button_clicked()
-{
-    //emit start_single();弃用
-    Ispaused = false;
-    qDebug() << "game started " << Qt::endl;
-    startGame();
-
-}
-
-void Cboard_single::on_pause_button_clicked()
-{
-    // emit pause_single(); 弃用
-    Ispaused = true;
-    qDebug() << "game paused " << Qt::endl;
-}
 
 //监听按键事件
 void Cboard_single::keyPressEvent(QKeyEvent *k)
@@ -382,4 +367,35 @@ void Cboard_single::show_all_board()
         qDebug()<<Qt::endl;
     }
     qDebug()<<"---------------"<<Qt::endl;
+}
+
+void Cboard_single::on_start_button_clicked(bool checked)
+{
+    Ispaused = false;
+    ui->pause_button->setChecked(true);
+    qDebug() << "game started " << Qt::endl;
+    startGame();
+
+
+}
+
+
+void Cboard_single::on_pause_button_clicked(bool checked)
+{
+    if(!checked)
+    {
+    Ispaused = true;
+    qDebug() << "game paused " << Qt::endl;
+ //   this->hide();
+    ui->pause_button->setText("继续");
+    }
+    else if(checked)
+    {
+        Ispaused = false;
+        qDebug() << "game continue " << Qt::endl;
+        ui->pause_button->setText("暂停 ");
+
+    }
+
+
 }

@@ -51,6 +51,9 @@
    <property name="text">
     <string>开始</string>
    </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QPushButton" name="pause_button">
    <property name="geometry">
@@ -63,6 +66,12 @@
    </property>
    <property name="text">
     <string>暂停</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="timetitle">

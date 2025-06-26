@@ -47,14 +47,14 @@ private slots:
 
     void on_back_menu_button_clicked();//返回主菜单按钮
 
-    void on_start_button_clicked();//开始游戏按钮
-
-    void on_pause_button_clicked();//暂停游戏按钮
-
     void do_timechange();//响应每秒变化
 
     void do_tickchange();//响应每tick变化
 
+
+    void on_start_button_clicked(bool checked);//开始(重置)游戏按钮
+
+    void on_pause_button_clicked(bool checked);//暂停游戏按钮
 
 private:
     Ui::Cboard_single *ui;
