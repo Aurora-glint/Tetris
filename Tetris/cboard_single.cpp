@@ -18,7 +18,7 @@ Cboard_single::Cboard_single(QWidget *parent)
     connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
     connect(this, SIGNAL(tick()), this, SLOT(do_tickchange())); // 关联返回信号
 
-    ui->start_button->setStyleSheet(buttonstyle);
+    //ui->start_button->setStyleSheet(buttonstyle);
 }
 
 Cboard_single::~Cboard_single()

@@ -10,11 +10,24 @@
     <height>879</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>721</width>
+    <height>879</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>721</width>
+    <height>879</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Tetris</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255)</string>
+   <string notr="true">background-color: rgb(255, 255, 255);
+</string>
   </property>
   <widget class="QLabel" name="timetitle_3">
    <property name="geometry">
@@ -54,7 +67,16 @@
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QPushButton:checked {
+    background-color: #4CAF50; /* 选中时的背景色 */
+    color: white;              /* 选中时的文字颜色 */
+    border: 2px solid #388E3C; /* 选中时的边框 */
+}
+QPushButton{
+    
+	background-color: rgb(170, 255, 255);
+    border: 2px solid #388E3C; /* 选中时的边框 */
+}</string>
       </property>
       <property name="text">
        <string>开始</string>
@@ -76,7 +98,11 @@
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QPushButton:checked {
+    background-color: #4CAF50; /* 选中时的背景色 */
+    color: white;              /* 选中时的文字颜色 */
+    border: 2px solid #388E3C; /* 选中时的边框 */
+}</string>
       </property>
       <property name="text">
        <string>暂停</string>
