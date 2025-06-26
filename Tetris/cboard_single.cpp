@@ -100,7 +100,7 @@ void Cboard_single::do_timechange()
 void Cboard_single::do_tickchange()
 {
     this->update();//每tick更新绘图
-    ui->lcd_score->display(score);
+    ui->lcd_score->display(score);//每tick更新分数
     //qDebug()<<"refresh"<<Qt::endl;
 
 };//响应每tick变化
@@ -290,8 +290,41 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     QPen pen(Qt::black);//pen绘制边框
     painter.setPen(pen);
     QRectF frame(o_ , s_);
-
     painter.drawRect(frame);
+
+    QPixmap pre_shape;
+    if(next_block.getType()==O_shape)
+    {
+        pre_shape.load(":/image/O");
+    }
+    else if(next_block.getType()==Z_shape)
+    {
+        pre_shape.load(":/image/Z");
+    }
+    else if(next_block.getType()==S_shape)
+    {
+        pre_shape.load(":/image/S");
+    }
+    else if(next_block.getType()==T_shape)
+    {
+        pre_shape.load(":/image/T");
+    }
+    else if(next_block.getType()==I_shape)
+    {
+        pre_shape.load(":/image/I");
+    }
+    else if(next_block.getType()==L_shape)
+    {
+        pre_shape.load(":/image/L");
+    }
+    else if(next_block.getType()==J_shape)
+    {
+        pre_shape.load(":/image/J");
+    }
+    QPixmap scaledKeepRatio = pre_shape.scaled(90,90,Qt::KeepAspectRatio,Qt::FastTransformation);
+
+
+    painter.drawPixmap(10,50,scaledKeepRatio);
 
     QRect one_block;
 
