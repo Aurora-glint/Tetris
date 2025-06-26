@@ -102,6 +102,9 @@ QPushButton{
     background-color: #4CAF50; /* 选中时的背景色 */
     color: white;              /* 选中时的文字颜色 */
     border: 2px solid #388E3C; /* 选中时的边框 */
+	padding: 8px; /* 选中时增加内边距 */
+    border-width: 2px; /* 选中时加粗边框 */
+
 }</string>
       </property>
       <property name="text">
