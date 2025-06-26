@@ -12,13 +12,12 @@ Cboard_single::Cboard_single(QWidget *parent)
     ui->setupUi(this);
 
     initBoard(); // 初始化游戏面板
+    curDifficulty = crasy; // 初始化游戏难度
 
     Ispaused = true;
     connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号
     connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
     connect(this, SIGNAL(tick()), this, SLOT(do_tickchange())); // 关联返回信号
-
-    //ui->start_button->setStyleSheet(buttonstyle);
 }
 
 Cboard_single::~Cboard_single()
@@ -72,12 +71,19 @@ void Cboard_single::timerEvent(QTimerEvent *event)
 {
     if(!Ispaused)
     {
-        // 下移一行
+        if((event->timerId() == id && !Ispaused)) time += 1; // 每秒存活时间加一
 
-        if((event->timerId() == id && !Ispaused)) // 1秒事件
+        if (curDifficulty == normal)
         {
-            time += 1; // 每秒存活时间加一
-            goDown(); // 每秒下落一格
+            if((event->timerId() == id && !Ispaused)) goDown();
+        }
+        else if (curDifficulty == hard)
+        {
+            if((event->timerId() == id_hard && !Ispaused)) goDown();
+        }
+        else if (curDifficulty == crasy)
+        {
+            if((event->timerId() == id_crasy && !Ispaused)) goDown();
         }
 
         if((event->timerId() == id_t && !Ispaused)) // 30毫秒事件
@@ -158,6 +164,11 @@ void Cboard_single::rotate()
     pos[1] += p;
     cur_block = rotated;
     for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
+}
+
+void Cboard_single::changeDifficulty()
+{
+    curDifficulty = Difficulty(((int)curDifficulty + 1) % 3);
 }
 
 // 判断移动位置是否会发生碰撞或越界
@@ -307,11 +318,10 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     }
 }
 
-
 void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape)
 {
+    painter.fillRect(one_block,Qt::gray);
 
-    //
     switch((int)shape)
     {
     case 0:
@@ -338,9 +348,10 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
     case 7:
         painter.fillRect(one_block,Qt::red);
         break;
-
     }
+
     painter.drawRect(one_block);//绘制该方块
+
 
 }
 
@@ -362,7 +373,6 @@ void Cboard_single::on_start_button_clicked(bool checked)
     qDebug() << "game started " << Qt::endl;
     startGame();
 }
-
 
 void Cboard_single::on_pause_button_clicked(bool checked)
 {

@@ -11,6 +11,7 @@
 
 //#include "Cboard.h"
 
+enum Difficulty {normal, hard, crasy};
 
 namespace Ui {
 class Cboard_single;
@@ -29,7 +30,6 @@ public:
     //暂停状态标志
     void keyPressEvent(QKeyEvent *k)override;
     //监听按键事件
-
 
     const QString buttonstyle = "QPushButton {"
                                 "   background-color: #2980b9;"
@@ -66,7 +66,6 @@ private slots:
 
     void do_tickchange();//响应每tick变化
 
-
     void on_start_button_clicked(bool checked);//开始(重置)游戏按钮
 
     void on_pause_button_clicked(bool checked);//暂停游戏按钮
@@ -83,6 +82,8 @@ private:
     int id_t = startTimer(30);
     int id = startTimer(1000);
     int id_1 = startTimer(3000);
+    int id_crasy = startTimer(200);
+    int id_hard = startTimer(500);
 
 //方块颜色设置，可根据爱好修改(16进制)
     static constexpr QRgb colorTable[8]
@@ -100,12 +101,15 @@ public slots:
     void goRight(); // 方块右移
     void rotate(); // 方块旋转（逆时针）
 
+    void changeDifficulty(); // 修改难度
+
 private:
     CTetrimino cur_block; // 当前正在下落的块
     CTetrimino next_block; // 显示的下一个待下落的块
     int pos[2]; // 块在游戏面板的绝对坐标（以左下角为基准）
     All_Shape all_board[ROW][COL]; // 游戏状态面板
-    int score;
+    int score; // 游戏得分
+    Difficulty curDifficulty; // 游戏难度
 
     bool tryMove(int direction); // 判断是否可以移动（无碰撞，方向左移为-1，右移为1，下移为0）
 
