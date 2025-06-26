@@ -321,6 +321,10 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     {
         pre_shape.load(":/image/J");
     }
+    else if(next_block.getType()==None_shape)
+    {
+        pre_shape.load(":/image/Blank");
+    }
     QPixmap scaledKeepRatio = pre_shape.scaled(90,90,Qt::KeepAspectRatio,Qt::FastTransformation);
 
 
