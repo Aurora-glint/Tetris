@@ -117,6 +117,7 @@ debug/qrc_myresources.cpp: ../../myresources.qrc \
 		../../S.png \
 		../../L.png \
 		../../T.png \
+		../../Blank.png \
 		../../J.png \
 		../../I.png \
 		../../O.png \
@@ -1015,6 +1016,11 @@ debug/cboard_single.o: ../../cboard_single.cpp ../../cboard_single.h \
 		D:/Qt/6.8.2/mingw_64/include/QtWidgets/QPushButton \
 		D:/Qt/6.8.2/mingw_64/include/QtWidgets/qpushbutton.h \
 		D:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractbutton.h \
+		D:/Qt/6.8.2/mingw_64/include/QtWidgets/QVBoxLayout \
+		D:/Qt/6.8.2/mingw_64/include/QtWidgets/qboxlayout.h \
+		D:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayout.h \
+		D:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayoutitem.h \
+		D:/Qt/6.8.2/mingw_64/include/QtWidgets/qgridlayout.h \
 		D:/Qt/6.8.2/mingw_64/include/QtGui/QKeyEvent \
 		D:/Qt/6.8.2/mingw_64/include/QtWidgets/QFrame
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\cboard_single.o ..\..\cboard_single.cpp

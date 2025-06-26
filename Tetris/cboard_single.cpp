@@ -273,8 +273,6 @@ void Cboard_single::saveBegin()
         return;
     }
 
-    // paintPreview(); // 更新next_block预览
-
     // 开始新一轮方块降落
     initPos();
     cur_block = next_block;
@@ -286,22 +284,6 @@ void Cboard_single::endGame()
     Ispaused = true;
 }
 
-// QPixmap Cboard_single::paintPreview()
-// {
-//     QPoint point(10, 40);
-//     QPixmap pixmap(120, 120);
-//     QPainter pixmapPainter(&pixmap);
-//     pixmapPainter.fillRect(pixmap.rect(), QColor(3, 54, 73));
-
-//     for (int i = 0; i < 4; ++i)
-//     {
-//         QRect one_block(point.x() + next_block.Y(i), point.y() + next_block.X(i), BLOCKSIZE, BLOCKSIZE);
-//         pixmapPainter.drawRect(one_block);
-//     }
-
-//     return pixmap;
-// }
-
 void Cboard_single::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);//作绘图区域
@@ -310,39 +292,43 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     QRectF frame(o_ , s_);
     painter.drawRect(frame);
 
-    // QPixmap pre_shape;
-    // if(next_block.getType()==O_shape)
-    // {
-    //     pre_shape.load(":/image/O");
-    // }
-    // else if(next_block.getType()==Z_shape)
-    // {
-    //     pre_shape.load(":/image/Z");
-    // }
-    // else if(next_block.getType()==S_shape)
-    // {
-    //     pre_shape.load(":/image/S");
-    // }
-    // else if(next_block.getType()==T_shape)
-    // {
-    //     pre_shape.load(":/image/T");
-    // }
-    // else if(next_block.getType()==I_shape)
-    // {
-    //     pre_shape.load(":/image/I");
-    // }
-    // else if(next_block.getType()==L_shape)
-    // {
-    //     pre_shape.load(":/image/L");
-    // }
-    // else if(next_block.getType()==J_shape)
-    // {
-    //     pre_shape.load(":/image/J");
-    // }
-    // QPixmap scaledKeepRatio = pre_shape.scaled(90,90,Qt::KeepAspectRatio,Qt::FastTransformation);
+    QPixmap pre_shape;
+    if(next_block.getType()==O_shape)
+    {
+        pre_shape.load(":/image/O");
+    }
+    else if(next_block.getType()==Z_shape)
+    {
+        pre_shape.load(":/image/Z");
+    }
+    else if(next_block.getType()==S_shape)
+    {
+        pre_shape.load(":/image/S");
+    }
+    else if(next_block.getType()==T_shape)
+    {
+        pre_shape.load(":/image/T");
+    }
+    else if(next_block.getType()==I_shape)
+    {
+        pre_shape.load(":/image/I");
+    }
+    else if(next_block.getType()==L_shape)
+    {
+        pre_shape.load(":/image/L");
+    }
+    else if(next_block.getType()==J_shape)
+    {
+        pre_shape.load(":/image/J");
+    }
+    else if(next_block.getType()==None_shape)
+    {
+        pre_shape.load(":/image/Blank");
+    }
+    QPixmap scaledKeepRatio = pre_shape.scaled(90,90,Qt::KeepAspectRatio,Qt::FastTransformation);
 
 
-    // painter.drawPixmap(10,50,scaledKeepRatio);
+    painter.drawPixmap(10,50,scaledKeepRatio);
 
     QRect one_block;
 
@@ -360,6 +346,7 @@ void Cboard_single::paintEvent(QPaintEvent *event)
         }
     }
 }
+
 
 void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape)
 {
@@ -414,7 +401,7 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
 
         else if(shape==None_shape)
             painter.fillRect(one_block,Qt::white);
-    painter.drawRect(one_block); // 绘制该方块
+    painter.drawRect(one_block);//绘制该方块
 
 }
 

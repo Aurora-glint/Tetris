@@ -7,5 +7,6 @@
         <file>S.png</file>
         <file>T.png</file>
         <file>Z.png</file>
+        <file>Blank.png</file>
     </qresource>
 </RCC>
