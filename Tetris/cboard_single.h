@@ -61,6 +61,8 @@ private:
 
     int time = 0;//计时变量
 
+    int score = 0;//分数变量
+
     void timerEvent(QTimerEvent *event) override;//定时器事件
 
     //定时器timer

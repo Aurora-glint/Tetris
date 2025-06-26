@@ -409,7 +409,8 @@ Makefile: ../../Tetris.pro D:/Qt/6.8.2/mingw_64/mkspecs/win32-g++/qmake.conf D:/
 		D:/Qt/6.8.2/mingw_64/lib/Qt6Gui.prl \
 		D:/Qt/6.8.2/mingw_64/lib/Qt6Core.prl \
 		D:/Qt/6.8.2/mingw_64/lib/Qt6EntryPoint.prl \
-		D:/Qt/6.8.2/mingw_64/mkspecs/features/build_pass.prf
+		D:/Qt/6.8.2/mingw_64/mkspecs/features/build_pass.prf \
+		../../myresources.qrc
 	$(QMAKE) -o Makefile ..\..\Tetris.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 D:/Qt/6.8.2/mingw_64/mkspecs/features/spec_pre.prf:
 D:/Qt/6.8.2/mingw_64/mkspecs/features/device_config.prf:
@@ -751,6 +752,7 @@ D:/Qt/6.8.2/mingw_64/lib/Qt6Gui.prl:
 D:/Qt/6.8.2/mingw_64/lib/Qt6Core.prl:
 D:/Qt/6.8.2/mingw_64/lib/Qt6EntryPoint.prl:
 D:/Qt/6.8.2/mingw_64/mkspecs/features/build_pass.prf:
+../../myresources.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\..\Tetris.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 
