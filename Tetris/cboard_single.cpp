@@ -406,6 +406,10 @@ void Cboard_single::on_pause_button_clicked(bool checked)
     }
 }
 
+void Cboard_single::setDifficulty(Difficulty diff)
+{
+    curDifficulty = diff;
+}
 void Cboard_single::on_difchange_button_clicked(bool checked)
 {
     changeDifficulty();

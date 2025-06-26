@@ -1,7 +1,6 @@
 #ifndef CBOARD_H
 #define CBOARD_H
 
-
 #ifndef ROW
 #define ROW 25
 #endif
@@ -20,8 +19,6 @@ namespace Ui {
 class MainWindow;
 }
 QT_END_NAMESPACE
-
-
 
 class MainWindow : public QMainWindow
 {

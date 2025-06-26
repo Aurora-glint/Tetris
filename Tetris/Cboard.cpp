@@ -44,11 +44,6 @@ void MainWindow::on_exit_button_clicked()
     emit quit();
     qDebug() << "quit signal emitted " << Qt::endl;
     //this->close();
-
 }
 
 //时间变化事件
-
-
-
-
