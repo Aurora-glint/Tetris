@@ -46,12 +46,12 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
     {
         if (k->key() == Qt::Key_Escape)
         {
-            Ispaused = false;//关闭暂停
+            Ispaused = false; // 关闭暂停
             k->accept();
         }
         else
         {
-            k->ignore();//忽视该按键事件
+            k->ignore(); // 忽视该按键事件
         }
     }
     else
@@ -63,47 +63,37 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
     }
 }
 
-//计时器达到周期后处理事件
+// 计时器达到周期后处理事件
 void Cboard_single::timerEvent(QTimerEvent *event)
 {
     if(!Ispaused)
     {
-       //下移一行
+        // 下移一行
 
-        if((event->timerId() == id && !Ispaused))//1秒事件
+        if((event->timerId() == id && !Ispaused)) // 1秒事件
         {
             time += 1; // 每秒存活时间加一
             goDown(); // 每秒下落一格
         }
 
-        if((event->timerId() == id_t && !Ispaused))//30毫秒事件
+        if((event->timerId() == id_t && !Ispaused)) // 30毫秒事件
         {
-            //qDebug()<<"tick"<<Qt::endl;
             emit tick();
-
         }
         emit timechange(time);
-
-        //qDebug()<<"已发出 timechange "<<time<<Qt::endl;
-
     }
 }
 
 void Cboard_single::do_timechange()
 {
-    //qDebug()<<"收到 "<<time<<Qt::endl;
     ui->lcd_time->display(time);
-    //show_all_board();
-
 }
 
 void Cboard_single::do_tickchange()
 {
-    this->update();//每tick更新绘图
-    ui->lcd_score->display(score);//每tick更新分数
-    //qDebug()<<"refresh"<<Qt::endl;
-
-};//响应每tick变化
+    this->update(); // 每tick更新绘图
+    ui->lcd_score->display(score); // 每tick更新分数
+}; // 响应每tick变化
 
 // 以下为郝润熙所写
 void Cboard_single::startGame()
@@ -163,8 +153,6 @@ void Cboard_single::rotate()
 
     pos[1] += p;
     cur_block = rotated;
-    // qDebug() << rotated.getType() << Qt::endl;
-    // qDebug() << cur_block.getType() << Qt::endl;
     for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
 }
 
@@ -357,59 +345,23 @@ void Cboard_single::paintEvent(QPaintEvent *event)
 
 void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape)
 {
-    /*
-    //painter.fillRect(one_block,Qt::red);
-    // switch((int)shape)
-    // {
-    // case 0:
-    //     painter.fillRect(one_block,Qt::black);
-    //     break;
-    // case 1:
-    //     painter.fillRect(one_block,Qt::GlobalColor::red);
-    //     break;
-    // case 2:
-    //     painter.fillRect(one_block,Qt::yellow);
-    //     break;
-    // case 3:
-    //     painter.fillRect(one_block,Qt::green);
-    //     break;
-    // case 4:
-    //     painter.fillRect(one_block,Qt::cyan);
-    //     break;
-    // case 5:
-    //     painter.fillRect(one_block,Qt::blue);
-    //     break;
-    // case 6:
-    //     painter.fillRect(one_block,Qt::magenta);
-    //     break;
+    if ( shape == O_shape) painter.fillRect(one_block, Qt::gray);
 
-    // }
-*/
-     if(shape==O_shape)
-        painter.fillRect(one_block,Qt::gray);
+    else if(shape == I_shape) painter.fillRect(one_block, Qt::GlobalColor::red);
 
-        else if(shape==I_shape)
-        painter.fillRect(one_block,Qt::GlobalColor::red);
+    else if(shape == Z_shape) painter.fillRect(one_block, Qt::yellow);
 
-        else if(shape==Z_shape)
-        painter.fillRect(one_block,Qt::yellow);
+    else if(shape == S_shape) painter.fillRect(one_block, Qt::green);
 
-        else if(shape==S_shape)
-        painter.fillRect(one_block,Qt::green);
+    else if(shape == L_shape) painter.fillRect(one_block, Qt::cyan);
 
-        else if(shape==L_shape)
-        painter.fillRect(one_block,Qt::cyan);
+    else if(shape == J_shape) painter.fillRect(one_block, Qt::blue);
 
-        else if(shape==J_shape)
-        painter.fillRect(one_block,Qt::blue);
+    else if(shape == T_shape) painter.fillRect(one_block, Qt::magenta);
 
-        else if(shape==T_shape)
-        painter.fillRect(one_block,Qt::magenta);
+    else if(shape == None_shape) painter.fillRect(one_block, Qt::white);
 
-        else if(shape==None_shape)
-            painter.fillRect(one_block,Qt::white);
     painter.drawRect(one_block);//绘制该方块
-
 }
 
 void Cboard_single::on_start_button_clicked(bool checked)
@@ -425,7 +377,6 @@ void Cboard_single::on_start_button_clicked(bool checked)
     else if(checked)
     {
         ui->start_button->setText("重新开始");
-
     }
 
     qDebug() << "game started " << Qt::endl;
@@ -446,6 +397,4 @@ void Cboard_single::on_pause_button_clicked(bool checked)
         qDebug() << "game continue " << Qt::endl;
         ui->pause_button->setText("暂停 ");
     }
-
-
 }
