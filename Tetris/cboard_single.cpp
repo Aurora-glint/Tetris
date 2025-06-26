@@ -12,13 +12,12 @@ Cboard_single::Cboard_single(QWidget *parent)
     ui->setupUi(this);
 
     initBoard(); // 初始化游戏面板
+    curDifficulty = crasy; // 初始化游戏难度
 
     Ispaused = true;
     connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号
     connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
     connect(this, SIGNAL(tick()), this, SLOT(do_tickchange())); // 关联返回信号
-
-    //ui->start_button->setStyleSheet(buttonstyle);
 }
 
 Cboard_single::~Cboard_single()
@@ -70,12 +69,19 @@ void Cboard_single::timerEvent(QTimerEvent *event)
 {
     if(!Ispaused)
     {
-        // 下移一行
+        if((event->timerId() == id && !Ispaused)) time += 1; // 每秒存活时间加一
 
-        if((event->timerId() == id && !Ispaused)) // 1秒事件
+        if (curDifficulty == normal)
         {
-            time += 1; // 每秒存活时间加一
-            goDown(); // 每秒下落一格
+            if((event->timerId() == id && !Ispaused)) goDown();
+        }
+        else if (curDifficulty == hard)
+        {
+            if((event->timerId() == id_hard && !Ispaused)) goDown();
+        }
+        else if (curDifficulty == crasy)
+        {
+            if((event->timerId() == id_crasy && !Ispaused)) goDown();
         }
 
         if((event->timerId() == id_t && !Ispaused)) // 30毫秒事件
@@ -156,6 +162,11 @@ void Cboard_single::rotate()
     pos[1] += p;
     cur_block = rotated;
     for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
+}
+
+void Cboard_single::changeDifficulty()
+{
+    curDifficulty = Difficulty(((int)curDifficulty + 1) % 3);
 }
 
 // 判断移动位置是否会发生碰撞或越界
@@ -282,44 +293,6 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     QRectF frame(o_ , s_);
     painter.drawRect(frame);
 
-    // QPixmap pre_shape;
-    // if(next_block.getType()==O_shape)
-    // {
-    //     pre_shape.load(":/image/O");
-    // }
-    // else if(next_block.getType()==Z_shape)
-    // {
-    //     pre_shape.load(":/image/Z");
-    // }
-    // else if(next_block.getType()==S_shape)
-    // {
-    //     pre_shape.load(":/image/S");
-    // }
-    // else if(next_block.getType()==T_shape)
-    // {
-    //     pre_shape.load(":/image/T");
-    // }
-    // else if(next_block.getType()==I_shape)
-    // {
-    //     pre_shape.load(":/image/I");
-    // }
-    // else if(next_block.getType()==L_shape)
-    // {
-    //     pre_shape.load(":/image/L");
-    // }
-    // else if(next_block.getType()==J_shape)
-    // {
-    //     pre_shape.load(":/image/J");
-    // }
-    // else if(next_block.getType()==None_shape)
-    // {
-    //     pre_shape.load(":/image/Blank");
-    // }
-    // QPixmap scaledKeepRatio = pre_shape.scaled(90,90,Qt::KeepAspectRatio,Qt::FastTransformation);
-
-
-    // painter.drawPixmap(10,50,scaledKeepRatio);
-
     QRect one_block;
 
     for (int r = 0; r < ROW; ++r)
@@ -343,7 +316,6 @@ void Cboard_single::paintEvent(QPaintEvent *event)
         paint_one_block(painter, one_block, next_block.getType());
     }
 }
-
 
 void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape)
 {
@@ -398,7 +370,6 @@ void Cboard_single::on_start_button_clicked(bool checked)
     qDebug() << "game started " << Qt::endl;
     startGame();
 }
-
 
 void Cboard_single::on_pause_button_clicked(bool checked)
 {
