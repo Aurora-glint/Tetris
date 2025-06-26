@@ -385,3 +385,8 @@ void Cboard_single::on_pause_button_clicked(bool checked)
         ui->pause_button->setText("暂停 ");
     }
 }
+
+void Cboard_single::setDifficulty(Difficulty diff)
+{
+    curDifficulty = diff;
+}

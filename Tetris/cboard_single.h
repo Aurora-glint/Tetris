@@ -9,8 +9,6 @@
 #include <QPainter>
 #include <QPaintEvent>
 
-//#include "Cboard.h"
-
 enum Difficulty {normal, hard, crasy};
 
 namespace Ui {
@@ -129,6 +127,9 @@ private:
 
     QPoint o_ = QPoint(100,60);//游戏框起始点
     QPoint s_ = o_ + QPoint(450,750);//游戏框右下点
+
+public:
+    void setDifficulty(Difficulty diff); // 游戏难度设置
 };
 
 #endif // CBOARD_SINGLE_H
