@@ -100,6 +100,7 @@ void Cboard_single::do_timechange()
 void Cboard_single::do_tickchange()
 {
     this->update();//每tick更新绘图
+    ui->lcd_score->display(score);
     //qDebug()<<"refresh"<<Qt::endl;
 
 };//响应每tick变化
@@ -307,29 +308,12 @@ void Cboard_single::paintEvent(QPaintEvent *event)
             if (all_board[r][c] != None_shape) paint_one_block(painter, one_block, all_board[r][c]);
         }
     }
-
-    // for(int r=0;r<ROW;r++)
-    // {
-    //     for(int c=0;c<COL;c++)
-    //     {
-    //         x+=BLOCKSIZE;
-    //         one_block.setRect(x,y,BLOCKSIZE,BLOCKSIZE);
-
-    //         if(all_board[r][c]!=None_shape)
-    //         {
-    //             paint_one_block(painter,one_block,all_board[r][c]);
-
-    //         }
-    //     }
-    //     x=60;
-    //     y+=BLOCKSIZE;
-
-    // }
 }
 
 
 void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape)
-{/*
+{
+    /*
     //painter.fillRect(one_block,Qt::red);
     // switch((int)shape)
     // {
@@ -418,4 +402,6 @@ void Cboard_single::on_pause_button_clicked(bool checked)
         qDebug() << "game continue " << Qt::endl;
         ui->pause_button->setText("暂停 ");
     }
+
+
 }
