@@ -110,6 +110,7 @@ void Cboard_single::startGame()
     initBoard(); // 清空游戏面板
     cur_block = getNewBlock(); // 获取初始方块
     next_block = getNewBlock(); // 获取下一个方块
+    score = 0; // 清空分数
 
     initPos(); // 设置下落位置
     for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType(); // 将方块存入游戏面板中
@@ -238,8 +239,10 @@ void Cboard_single::saveBegin()
         if (line > up) up = line;
         if (line < down) down = line;
     }
+    score += 10; // 每成功下落一个方块，得分加10
 
     // 判断是否需要消行
+    int delete_num = 0;
     for (int line = up; line >= down; --line)
     {
         if (isDelete(line))
@@ -252,8 +255,15 @@ void Cboard_single::saveBegin()
 
             line++;
             down++;
+            delete_num++;
         }
     }
+
+    // 获得分数
+    score += 100 * delete_num;
+    if (delete_num == 2) score += 50;
+    else if (delete_num == 3) score += 125;
+    else if (delete_num == 4) score += 200;
 
     // 判断游戏是否结束
     if (down < 4)
