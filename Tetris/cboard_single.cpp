@@ -48,12 +48,12 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
     {
         if (k->key() == Qt::Key_Escape)
         {
-            Ispaused = false;//关闭暂停
+            Ispaused = false; // 关闭暂停
             k->accept();
         }
         else
         {
-            k->ignore();//忽视该按键事件
+            k->ignore(); // 忽视该按键事件
         }
     }
     else
@@ -65,47 +65,37 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
     }
 }
 
-//计时器达到周期后处理事件
+// 计时器达到周期后处理事件
 void Cboard_single::timerEvent(QTimerEvent *event)
 {
     if(!Ispaused)
     {
-       //下移一行
+        // 下移一行
 
-        if((event->timerId() == id && !Ispaused))//1秒事件
+        if((event->timerId() == id && !Ispaused)) // 1秒事件
         {
             time += 1; // 每秒存活时间加一
             goDown(); // 每秒下落一格
         }
 
-        if((event->timerId() == id_t && !Ispaused))//30毫秒事件
+        if((event->timerId() == id_t && !Ispaused)) // 30毫秒事件
         {
-            //qDebug()<<"tick"<<Qt::endl;
             emit tick();
-
         }
         emit timechange(time);
-
-        //qDebug()<<"已发出 timechange "<<time<<Qt::endl;
-
     }
 }
 
 void Cboard_single::do_timechange()
 {
-    //qDebug()<<"收到 "<<time<<Qt::endl;
     ui->lcd_time->display(time);
-    //show_all_board();
-
 }
 
 void Cboard_single::do_tickchange()
 {
-    this->update();//每tick更新绘图
-    ui->lcd_score->display(score);//每tick更新分数
-    //qDebug()<<"refresh"<<Qt::endl;
-
-};//响应每tick变化
+    this->update(); // 每tick更新绘图
+    ui->lcd_score->display(score); // 每tick更新分数
+}; // 响应每tick变化
 
 // 以下为郝润熙所写
 void Cboard_single::startGame()
@@ -165,8 +155,6 @@ void Cboard_single::rotate()
 
     pos[1] += p;
     cur_block = rotated;
-    // qDebug() << rotated.getType() << Qt::endl;
-    // qDebug() << cur_block.getType() << Qt::endl;
     for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType();
 }
 
@@ -288,49 +276,49 @@ void Cboard_single::endGame()
 
 void Cboard_single::paintEvent(QPaintEvent *event)
 {
-    QPainter painter(this);//作绘图区域
-    QPen pen(Qt::black);//pen绘制边框
+    QPainter painter(this); // 作绘图区域
+    QPen pen(Qt::black); // pen绘制边框
     painter.setPen(pen);
     QRectF frame(o_ , s_);
     painter.drawRect(frame);
 
-    QPixmap pre_shape;
-    if(next_block.getType()==O_shape)
-    {
-        pre_shape.load(":/image/O");
-    }
-    else if(next_block.getType()==Z_shape)
-    {
-        pre_shape.load(":/image/Z");
-    }
-    else if(next_block.getType()==S_shape)
-    {
-        pre_shape.load(":/image/S");
-    }
-    else if(next_block.getType()==T_shape)
-    {
-        pre_shape.load(":/image/T");
-    }
-    else if(next_block.getType()==I_shape)
-    {
-        pre_shape.load(":/image/I");
-    }
-    else if(next_block.getType()==L_shape)
-    {
-        pre_shape.load(":/image/L");
-    }
-    else if(next_block.getType()==J_shape)
-    {
-        pre_shape.load(":/image/J");
-    }
-    else if(next_block.getType()==None_shape)
-    {
-        pre_shape.load(":/image/Blank");
-    }
-    QPixmap scaledKeepRatio = pre_shape.scaled(90,90,Qt::KeepAspectRatio,Qt::FastTransformation);
+    // QPixmap pre_shape;
+    // if(next_block.getType()==O_shape)
+    // {
+    //     pre_shape.load(":/image/O");
+    // }
+    // else if(next_block.getType()==Z_shape)
+    // {
+    //     pre_shape.load(":/image/Z");
+    // }
+    // else if(next_block.getType()==S_shape)
+    // {
+    //     pre_shape.load(":/image/S");
+    // }
+    // else if(next_block.getType()==T_shape)
+    // {
+    //     pre_shape.load(":/image/T");
+    // }
+    // else if(next_block.getType()==I_shape)
+    // {
+    //     pre_shape.load(":/image/I");
+    // }
+    // else if(next_block.getType()==L_shape)
+    // {
+    //     pre_shape.load(":/image/L");
+    // }
+    // else if(next_block.getType()==J_shape)
+    // {
+    //     pre_shape.load(":/image/J");
+    // }
+    // else if(next_block.getType()==None_shape)
+    // {
+    //     pre_shape.load(":/image/Blank");
+    // }
+    // QPixmap scaledKeepRatio = pre_shape.scaled(90,90,Qt::KeepAspectRatio,Qt::FastTransformation);
 
 
-    painter.drawPixmap(10,50,scaledKeepRatio);
+    // painter.drawPixmap(10,50,scaledKeepRatio);
 
     QRect one_block;
 
@@ -346,6 +334,13 @@ void Cboard_single::paintEvent(QPaintEvent *event)
 
             if (all_board[r][c] != None_shape) paint_one_block(painter, one_block, all_board[r][c]);
         }
+    }
+
+    // 刷新下一个方块预览图
+    for (int i = 0; i < 4; ++i)
+    {
+        one_block.setRect(10 + 20 * next_block.Y(i), 30 + 20 * next_block.X(i), 20, 20);
+        paint_one_block(painter, one_block, next_block.getType());
     }
 }
 
@@ -384,28 +379,24 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
      if(shape==O_shape)
         painter.fillRect(one_block,Qt::gray);
 
-        else if(shape==I_shape)
-        painter.fillRect(one_block,Qt::GlobalColor::red);
+    else if(shape == Z_shape) painter.fillRect(one_block, Qt::yellow);
 
-        else if(shape==Z_shape)
-        painter.fillRect(one_block,Qt::yellow);
+    else if(shape == S_shape) painter.fillRect(one_block, Qt::green);
 
-        else if(shape==S_shape)
-        painter.fillRect(one_block,Qt::green);
+    else if(shape == L_shape) painter.fillRect(one_block, Qt::cyan);
 
-        else if(shape==L_shape)
-        painter.fillRect(one_block,Qt::cyan);
+    else if(shape == J_shape) painter.fillRect(one_block, Qt::blue);
 
-        else if(shape==J_shape)
-        painter.fillRect(one_block,Qt::blue);
+    else if(shape == T_shape) painter.fillRect(one_block, Qt::magenta);
 
-        else if(shape==T_shape)
-        painter.fillRect(one_block,Qt::magenta);
+    else if(shape == None_shape) painter.fillRect(one_block, Qt::white);
 
         else if(shape==None_shape)
             painter.fillRect(one_block,Qt::white);
 
 */
+    painter.drawRect(one_block);//绘制该方块
+
 }
 
 void Cboard_single::on_start_button_clicked(bool checked)
@@ -421,7 +412,6 @@ void Cboard_single::on_start_button_clicked(bool checked)
     else if(checked)
     {
         ui->start_button->setText("重新开始");
-
     }
 
     qDebug() << "game started " << Qt::endl;
@@ -442,6 +432,4 @@ void Cboard_single::on_pause_button_clicked(bool checked)
         qDebug() << "game continue " << Qt::endl;
         ui->pause_button->setText("暂停 ");
     }
-
-
 }
