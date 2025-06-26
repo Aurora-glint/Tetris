@@ -240,7 +240,7 @@ void Cboard_single::saveBegin()
     }
 
     // 判断是否需要消行
-    for (int line = down; line <= up; ++line)
+    for (int line = up; line >= down; --line)
     {
         if (isDelete(line))
         {
@@ -250,8 +250,8 @@ void Cboard_single::saveBegin()
             }
             for (int j = 0; j < COL; ++j) all_board[0][j] = None_shape;
 
-            line--;
-            up--;
+            line++;
+            down++;
         }
     }
 
@@ -359,18 +359,18 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
 
 }
 
-void Cboard_single::show_all_board()
-{
-    for(int i=0;i<ROW;i++)
-    {
-        for(int j=0;j<COL;j++)
-        {
-            qDebug()<<all_board[i][j];
-        }
-        qDebug()<<Qt::endl;
-    }
-    qDebug()<<"---------------"<<Qt::endl;
-}
+// void Cboard_single::show_all_board()
+// {
+//     for(int i=0;i<ROW;i++)
+//     {
+//         for(int j=0;j<COL;j++)
+//         {
+//             qDebug()<<all_board[i][j];
+//         }
+//         qDebug()<<Qt::endl;
+//     }
+//     qDebug()<<"---------------"<<Qt::endl;
+// }
 
 void Cboard_single::on_start_button_clicked(bool checked)
 {
