@@ -108,12 +108,8 @@ private:
 
     void show_all_board();//debug用，控制台输出all_board
 
-    QPoint o_ = QPoint(160,60);//游戏框起始点
+    QPoint o_ = QPoint(100,60);//游戏框起始点
     QPoint s_ = o_ + QPoint(450,750);//游戏框右下点
 };
-
-
-
-//全局方法
 
 #endif // CBOARD_SINGLE_H
