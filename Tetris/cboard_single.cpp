@@ -93,7 +93,7 @@ void Cboard_single::do_timechange()
 {
     qDebug()<<"收到 "<<time<<Qt::endl;
     ui->lcd_time->display(time);
-    show_all_board();
+    //show_all_board();
 
 }
 
