@@ -11,6 +11,7 @@
 
 //#include "Cboard.h"
 
+
 namespace Ui {
 class Cboard_single;
 }
@@ -28,6 +29,20 @@ public:
     //暂停状态标志
     void keyPressEvent(QKeyEvent *k)override;
     //监听按键事件
+
+
+    const QString buttonstyle = "QPushButton {"
+                                "   background-color: #2980b9;"
+                                "   border: none;"
+                                "}"
+                                "QPushButton:hover {"
+                                "   background-color: #3498db;"
+                                "}"
+                                "QPushButton:pressed {"
+                              "background-color: #1d6fa5;"
+                                "}"
+        ;
+
 
 signals:
     void back();//返回信号

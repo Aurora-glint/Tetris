@@ -19,6 +19,8 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -41,8 +43,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
     Cboard_single *widgets = new Cboard_single ;//单人游戏窗口对象
+
+public:
 
 };
 #endif // CBOARD_H

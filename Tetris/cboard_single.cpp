@@ -17,6 +17,8 @@ Cboard_single::Cboard_single(QWidget *parent)
     connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号
     connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
     connect(this, SIGNAL(tick()), this, SLOT(do_tickchange())); // 关联返回信号
+
+    ui->start_button->setStyleSheet(buttonstyle);
 }
 
 Cboard_single::~Cboard_single()
@@ -377,6 +379,7 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
         break;
 
     }
+    painter.drawRect(one_block);//绘制该方块
 /*
      if(shape==O_shape)
         painter.fillRect(one_block,Qt::gray);
@@ -401,7 +404,7 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
 
         else if(shape==None_shape)
             painter.fillRect(one_block,Qt::white);
-    painter.drawRect(one_block);//绘制该方块
+
 */
 }
 
