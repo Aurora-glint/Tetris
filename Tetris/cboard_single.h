@@ -104,7 +104,7 @@ private:
 
     void paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape);
 
-    void show_all_board();//debug用，控制台输出all_board
+//    void show_all_board();//debug用，控制台输出all_board
 };
 
 
