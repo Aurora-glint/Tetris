@@ -266,16 +266,19 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     QPainter painter(this);//作绘图区域
     QPen pen(Qt::black);//pen绘制边框
     painter.setPen(pen);
+    QRectF frame(o_ , s_);
+
+    painter.drawRect(frame);
 
     QRect one_block;
 
     for (int r = 0; r < ROW; ++r)
     {
-        int x = 60 + BLOCKSIZE * r;
+        int x = o_.y() + BLOCKSIZE * r;
         int y;
         for (int c = 0; c < COL; ++c)
         {
-            y = 10 + BLOCKSIZE * c;
+            y = o_.x() + BLOCKSIZE * c;
 
             one_block.setRect(y,x,BLOCKSIZE,BLOCKSIZE);
 
@@ -380,10 +383,12 @@ void Cboard_single::on_start_button_clicked(bool checked)
     if(!checked)
     {
         ui->start_button->setText("开始");
+        time=0;
     }
     else if(checked)
     {
         ui->start_button->setText("重新开始");
+
     }
 
     qDebug() << "game started " << Qt::endl;

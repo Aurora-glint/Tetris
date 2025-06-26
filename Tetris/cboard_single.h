@@ -105,6 +105,9 @@ private:
     void paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape);
 
     void show_all_board();//debug用，控制台输出all_board
+
+    QPoint o_ = QPoint(160,60);//游戏框起始点
+    QPoint s_ = o_ + QPoint(450,750);//游戏框右下点
 };
 
 
