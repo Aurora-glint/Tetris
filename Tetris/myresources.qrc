@@ -9,5 +9,7 @@
         <file>Z.png</file>
         <file>Blank.png</file>
         <file>tetrisbg.png</file>
+        <file>neko.ico</file>
+        <file>neko22.ico</file>
     </qresource>
 </RCC>
