@@ -13,7 +13,6 @@
 #include <Cboard_single.h>
 #include <QButtonGroup>
 
-
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;

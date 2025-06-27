@@ -14,7 +14,6 @@ Cboard_single::Cboard_single(QWidget *parent)
     initBoard(); // 初始化游戏面板
     curDifficulty = crasy; // 初始化游戏难度
 
-
     Ispaused = true;
     connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号
     connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
@@ -368,9 +367,7 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
         break;
     }
 
-    painter.drawRect(one_block);//绘制该方块
-
-
+    painter.drawRect(one_block); // 绘制该方块
 }
 
 void Cboard_single::on_start_button_clicked(bool checked)
@@ -381,6 +378,7 @@ void Cboard_single::on_start_button_clicked(bool checked)
     if(!checked)
     {
         ui->start_button->setText("开始");
+        time = 0;
     }
     else if(checked)
     {
@@ -414,20 +412,25 @@ void Cboard_single::setDifficulty(Difficulty diff)
     switch(curDifficulty)
     {
     case 0:
-        Difname="Normal";
+        Difname = "Normal";
         break;
     case 1:
-        Difname="Hard";
+        Difname = "Hard";
         break;
     case 2:
-        Difname="Crazy";
+        Difname = "Crazy";
         break;
     }
 
     ui->difficulty_label->setText(Difname);
 }
+
+Difficulty Cboard_single::getDifficulty()
+{
+    return curDifficulty;
+}
+
 void Cboard_single::on_difchange_button_clicked(bool checked)
 {
     changeDifficulty();
 }
-
