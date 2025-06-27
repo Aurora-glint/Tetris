@@ -5,6 +5,8 @@
 #include "CTetrimino.h"
 #include <queue>
 #include "Cboard.h"
+#include <QPainter>
+#include <QPaintEvent>
 
 namespace Ui {
 class Cboard_pair;
@@ -31,13 +33,14 @@ private slots:
 
     void do_timechange();//每秒触发一次的槽函数
 
-    void on_difchange_button_p_clicked(bool checked);//难度切换按钮
+    void on_difchange_button_p_clicked(bool checked); // 难度切换按钮
 
 private:
     Ui::Cboard_pair *ui;
 
     bool Ispaused;
 
+    void paintEvent(QPaintEvent *event) override; // 界面刷新
 // 游戏部分
 public slots:
     void startGame(); // 开始游戏按键

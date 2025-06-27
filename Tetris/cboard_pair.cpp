@@ -34,6 +34,37 @@ void Cboard_pair::on_quit_game_p_clicked()
     qDebug() << "quit signal launched " << Qt::endl;
 }
 
+// void Cboard_pair::paintEvent(QPaintEvent *event)
+// {
+//     QPainter painter(this); // 作绘图区域
+//     QPen pen(Qt::black); // pen绘制边框
+//     painter.setPen(pen);
+//     QRectF frame(o_ , s_);
+//     painter.drawRect(frame);
+//     QRect one_block;
+
+//     for (int r = 0; r < ROW; ++r)
+//     {
+//         int x = o_.y() + BLOCKSIZE * r;
+//         int y;
+//         for (int c = 0; c < COL; ++c)
+//         {
+//             y = o_.x() + BLOCKSIZE * c;
+
+//             one_block.setRect(y,x,BLOCKSIZE,BLOCKSIZE);
+
+//             if (all_board[r][c] != None_shape) paint_one_block(painter, one_block, all_board[r][c]);
+//         }
+//     }
+
+//     // 刷新下一个方块预览图
+//     for (int i = 0; i < 4; ++i)
+//     {
+//         one_block.setRect(10 + 20 * next_block.Y(i), 30 + 20 * next_block.X(i), 20, 20);
+//         paint_one_block(painter, one_block, next_block.getType());
+//     }
+// }
+
 void Cboard_pair::startGame()
 {
     score[0] = score[1] = 0;
@@ -267,8 +298,6 @@ void Cboard_pair::changeDifficulty()
 
     ui->difficulty_label->setText(Difname);//设置single难度文本显示
 }
-
-
 
 void Cboard_pair::on_difchange_button_p_clicked(bool checked)
 {
