@@ -6,6 +6,11 @@ Cboard_pair::Cboard_pair(QWidget *parent)
     , ui(new Ui::Cboard_pair)
 {
     ui->setupUi(this);
+
+    connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
+
+
+
 }
 
 Cboard_pair::~Cboard_pair()
@@ -37,3 +42,9 @@ void Cboard_pair::p_setDifficulty(Difficulty diff)
 {
     p_curDifficulty = diff;
 }
+void Cboard_pair::do_timechange()
+{
+    ui->lcd_time->display(time);
+}
+
+

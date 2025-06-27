@@ -29,6 +29,8 @@ private slots:
 
     void on_quit_game_p_clicked();
 
+    void do_timechange();
+
 private:
     Ui::Cboard_pair *ui;
 
@@ -41,6 +43,10 @@ private:
 public:
     Difficulty p_getDifficulty(); // 获取双人游戏难度
     void p_setDifficulty(); // 双人界面难度设置
+
+    int time = 0;//计时变量
+
+
 };
 
 #endif // CBOARD_PAIR_H

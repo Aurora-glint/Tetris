@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
                     qDebug() << "选择的难度:" << btnText << "(ID:" << id << ")";
 
                     // 3. 更新游戏设置
-                    widgets->setDifficulty(Difficulty(id));
+                    widgets->setDifficulty(Difficulty(id));//设置单人游戏的难度
 
                     // 4. 界面反馈
                     //showSelectionFeedback(btn);
@@ -55,6 +55,7 @@ void MainWindow::do_showmyshelf()
 {
     this->show();
     setDifficulty(widgets->getDifficulty());
+    setDifficulty(widgetp->getDifficulty());
 
 }
 
