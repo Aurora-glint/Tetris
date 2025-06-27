@@ -113,6 +113,7 @@ void Cboard_single::startGame()
     cur_block = getNewBlock(); // 获取初始方块
     next_block = getNewBlock(); // 获取下一个方块
     score = 0; // 清空分数
+    time=0;//清空时间
 
     initPos(); // 设置下落位置
     for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType(); // 将方块存入游戏面板中
@@ -380,7 +381,6 @@ void Cboard_single::on_start_button_clicked(bool checked)
     if(!checked)
     {
         ui->start_button->setText("开始");
-        time=0;
     }
     else if(checked)
     {
