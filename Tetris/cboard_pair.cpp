@@ -213,8 +213,6 @@ CTetrimino Cboard_pair::getNewBlock()
     return CTetrimino(0); // 构造随机形状的方块并返回
 }
 
-Difficulty Cboard_pair::p_getDifficulty()
-
 void Cboard_pair::do_timechange()
 {
     qDebug()<<"do_timechange"<<Qt::endl;
