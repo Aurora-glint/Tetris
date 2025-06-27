@@ -125,7 +125,7 @@ private:
     QPoint s_ = o_ + QPoint(450,750);//游戏框右下点
 
 public:
-    void setDifficulty(Difficulty diff); // 游戏难度设置
+    void setDifficulty(Difficulty diff); // single游戏难度设置
     Difficulty getDifficulty(); // 主页面获取single游戏难度
 };
 

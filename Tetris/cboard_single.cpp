@@ -13,6 +13,7 @@ Cboard_single::Cboard_single(QWidget *parent)
 
     initBoard(); // 初始化游戏面板
     next_block = CTetrimino();
+    curDifficulty = crasy; // 初始化游戏难度
 
     Ispaused = true;
     connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号
@@ -185,7 +186,7 @@ void Cboard_single::changeDifficulty()
             break;
     }
 
-    ui->difficulty_label->setText(Difname);
+    ui->difficulty_label->setText(Difname);//设置single难度文本显示
 }
 
 // 判断移动位置是否会发生碰撞或越界
@@ -422,7 +423,7 @@ void Cboard_single::setDifficulty(Difficulty diff)
         break;
     }
 
-    ui->difficulty_label->setText(Difname);
+    ui->difficulty_label->setText(Difname);//设置single文本难度显示
 }
 
 Difficulty Cboard_single::getDifficulty()
