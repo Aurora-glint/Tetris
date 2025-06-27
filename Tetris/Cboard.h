@@ -11,6 +11,7 @@
 
 #include <QMainWindow>
 #include <Cboard_single.h>
+#include <cboard_pair.h>
 #include <QButtonGroup>
 
 QT_BEGIN_NAMESPACE
@@ -41,10 +42,12 @@ private slots:
 
     void on_exit_button_clicked();//主窗口退出按钮
 
+    void on_pairbutton_clicked();//跳转双人游戏按钮
+
 private:
     Ui::MainWindow *ui;
     Cboard_single *widgets = new Cboard_single ;//单人游戏窗口对象
-
+    Cboard_pair *widgetp = new Cboard_pair ;//双人游戏窗口对象
     QButtonGroup *group = new QButtonGroup(this);
 
 public:

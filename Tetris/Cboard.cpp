@@ -86,3 +86,12 @@ void MainWindow::setDifficulty(Difficulty diff)
     }
 
 }
+
+
+
+void MainWindow::on_pairbutton_clicked()
+{
+    this->hide();
+    widgetp->show();
+}
+
