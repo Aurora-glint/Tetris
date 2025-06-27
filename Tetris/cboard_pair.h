@@ -35,11 +35,14 @@ private slots:
 private:
     Ui::Cboard_pair *ui;
 
+    bool Ispaused;
+
 // 游戏部分
 private:
     All_Shape p1_board[ROW][COL], p2_board[ROW][COL]; // 玩家游戏面板
     int p1_score, p2_score;
     Difficulty p_curDifficulty;//当前难度
+    void keyPressEvent(QKeyEvent *k)override;
 
 public:
     Difficulty p_getDifficulty(); // 获取双人游戏难度

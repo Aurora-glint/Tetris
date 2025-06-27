@@ -1,16 +1,14 @@
 #include "cboard_pair.h"
 #include "ui_cboard_pair.h"
 #include "CTetrimino.h"
+#include <QKeyEvent>
+
 
 Cboard_pair::Cboard_pair(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Cboard_pair)
 {
-    ui->setupUi(this);
-
-    connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
-
-
+    ui->setupUi(this); 
 
 }
 
@@ -39,6 +37,8 @@ void Cboard_pair::on_quit_game_p_clicked()
 
 void Cboard_pair::do_timechange()
 {
+    qDebug()<<"do_timechange"<<Qt::endl;
+    time+=1;
     ui->lcd_time->display(time);//更新时间显示
 }
 
@@ -98,3 +98,28 @@ void Cboard_pair::on_difchange_button_p_clicked(bool checked)
     changeDifficulty();
 }
 
+
+
+// 监听按键事件
+void Cboard_pair::keyPressEvent(QKeyEvent *k)
+{
+    if (Ispaused == true)
+    {
+        if (k->key() == Qt::Key_Escape)
+        {
+            Ispaused = false; // 关闭暂停
+            k->accept();
+        }
+        else
+        {
+            k->ignore(); // 忽视该按键事件
+        }
+    }
+    else
+    {
+        if(k->key() == Qt::Key_W) qDebug()<<"W"<<Qt::endl;
+        if(k->key() == Qt::Key_A) qDebug()<<"A"<<Qt::endl;
+        if(k->key() == Qt::Key_S) qDebug()<<"S"<<Qt::endl;
+        if(k->key() == Qt::Key_D) qDebug()<<"D"<<Qt::endl;
+    }
+}

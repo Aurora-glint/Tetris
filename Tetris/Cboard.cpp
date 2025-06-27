@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, SIGNAL(quit()), this, SLOT(do_quit_program())); // 主窗口退出按钮与关闭
     connect(this->widgets, SIGNAL(quit()), this, SLOT(do_quit_program())); // 单人游戏退出按钮与关闭
     connect(this->widgetp, SIGNAL(quit()), this, SLOT(do_quit_program())); // 双人游戏退出按钮与关闭
+    connect(this->widgets, SIGNAL(timechange(int)), this->widgetp, SLOT(do_timechange())); // 关联timechang信号和pairdotimechange槽函数
 
     group->addButton(ui->EasyradioButton,0);
     group->addButton(ui->HardradioButton,1);
