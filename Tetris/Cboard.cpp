@@ -1,6 +1,9 @@
 #include "Cboard.h"
 #include "ui_Cboard.h"
 #include <QDebug>
+#include <cboard_single.h>
+#include <cboard_pair.h>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,11 +11,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    widgets = new Cboard_single;
+    widgetp = new Cboard_pair ;
+
     connect(this->widgets, SIGNAL(back()), this, SLOT(do_showmyshelf())); // 单人游戏返回信号与显示主窗口
     connect(this->widgetp, SIGNAL(back()), this, SLOT(do_showmyshelf())); // 双人游戏返回信号与显示主窗口
     connect(this, SIGNAL(quit()), this, SLOT(do_quit_program())); // 主窗口退出按钮与关闭
     connect(this->widgets, SIGNAL(quit()), this, SLOT(do_quit_program())); // 单人游戏退出按钮与关闭
     connect(this->widgetp, SIGNAL(quit()), this, SLOT(do_quit_program())); // 双人游戏退出按钮与关闭
+    connect(this->widgets, SIGNAL(timechange(int)), this->widgetp, SLOT(do_timechange())); // 关联timechang信号和pairdotimechange槽函数
 
     group->addButton(ui->EasyradioButton,0);
     group->addButton(ui->HardradioButton,1);
@@ -31,7 +38,8 @@ MainWindow::MainWindow(QWidget *parent)
                     qDebug() << "选择的难度:" << btnText << "(ID:" << id << ")";
 
                     // 3. 更新游戏设置
-                    widgets->setDifficulty(Difficulty(id));
+                    widgets->setDifficulty(Difficulty(id));//设置单人游戏的难度
+                    widgetp->p_setDifficulty(Difficulty(id));
 
                     // 4. 界面反馈
                     //showSelectionFeedback(btn);
@@ -54,8 +62,9 @@ void MainWindow::on_single_button_clicked()
 void MainWindow::do_showmyshelf()
 {
     this->show();
-    setDifficulty(widgets->getDifficulty());
-
+    setDifficulty(widgets->s_getDifficulty());
+    setDifficulty(widgetp->p_getDifficulty());
+    //运行两次，结果会以上一次更新的难度为准
 }
 
 void MainWindow::do_quit_program()
@@ -90,11 +99,10 @@ void MainWindow::setDifficulty(Difficulty diff)
 
 }
 
-
-
 void MainWindow::on_pairbutton_clicked()
 {
     this->hide();
     widgetp->show();
+   // p_setDifficulty(widgetp->getDiff)
 }
 

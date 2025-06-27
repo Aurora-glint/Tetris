@@ -3,13 +3,12 @@
 #include <QWidget>
 #include <QTimer>
 #include <QElapsedTimer>
-#include <CTetrimino.h>
+#include "CTetrimino.h"
 #include <QPoint>
 #include <QBasicTimer>
 #include <QPainter>
 #include <QPaintEvent>
-
-enum Difficulty {normal, hard, crasy};
+#include "Cboard.h"
 
 namespace Ui {
 class Cboard_single;
@@ -21,7 +20,6 @@ class Cboard_single : public QWidget
 
 public:
     explicit Cboard_single(QWidget *parent = nullptr);
-
     ~Cboard_single();
 
     bool Ispaused;
@@ -40,7 +38,6 @@ public:
                               "background-color: #1d6fa5;"
                                 "}"
         ;
-
 signals:
     void back();//返回信号
 
@@ -64,7 +61,8 @@ private slots:
 
     void on_pause_button_clicked(bool checked);//暂停游戏按钮
 
-    void on_difchange_button_clicked(bool checked);
+    void on_difchange_button_clicked(bool checked);//点击切换难度按钮
+
 
 private:
     Ui::Cboard_single *ui;
@@ -73,7 +71,7 @@ private:
 
     void timerEvent(QTimerEvent *event) override;//定时器事件
 
-    //定时器timer
+    //定时器timer及定时事件
     QBasicTimer timer;
     int id_t = startTimer(30);
     int id = startTimer(1000);
@@ -82,11 +80,11 @@ private:
     int id_hard = startTimer(500);
 
 //方块颜色设置，可根据爱好修改(16进制)
-    static constexpr QRgb colorTable[8]
-        {
-            0x000000,0xCC6666,0x66CC66,0x6666CC,
-            0xCCCC66,0xCC66CC,0x66CCCC,0xDAAA00
-        };
+    // static constexpr QRgb colorTable[8]
+    //     {
+    //         0x000000,0xCC6666,0x66CC66,0x6666CC,
+    //         0xCCCC66,0xCC66CC,0x66CCCC,0xDAAA00
+    //     };
 
 // 以下为郝润熙所写
 public slots:
@@ -125,8 +123,8 @@ private:
     QPoint s_ = o_ + QPoint(450,750);//游戏框右下点
 
 public:
-    void setDifficulty(Difficulty diff); // 游戏难度设置
-    Difficulty getDifficulty(); // 主页面获取single游戏难度
+    void setDifficulty(Difficulty diff); // single游戏难度设置
+    Difficulty s_getDifficulty(); // 主页面获取single游戏难度
 };
 
 #endif // CBOARD_SINGLE_H

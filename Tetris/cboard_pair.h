@@ -4,8 +4,7 @@
 #include <QWidget>
 #include "CTetrimino.h"
 #include <queue>
-
-enum Difficulty {normal, hard, crasy};
+#include "Cboard.h"
 
 namespace Ui {
 class Cboard_pair;
@@ -30,8 +29,14 @@ private slots:
 
     void on_quit_game_p_clicked();
 
+    void do_timechange();//每秒触发一次的槽函数
+
+    void on_difchange_button_p_clicked(bool checked);//难度切换按钮
+
 private:
     Ui::Cboard_pair *ui;
+
+    bool Ispaused;
 
 // 游戏部分
 public slots:
@@ -65,5 +70,6 @@ public:
     Difficulty p_getDifficulty(); // 获取双人游戏难度
     void p_setDifficulty(Difficulty diff); // 双人界面难度设置
 };
+
 
 #endif // CBOARD_PAIR_H

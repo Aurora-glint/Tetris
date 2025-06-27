@@ -10,8 +10,8 @@
 #endif
 
 #include <QMainWindow>
-#include <Cboard_single.h>
-#include <cboard_pair.h>
+// #include <Cboard_single.h>
+// #include <cboard_pair.h>
 #include <QButtonGroup>
 
 QT_BEGIN_NAMESPACE
@@ -19,6 +19,11 @@ namespace Ui {
 class MainWindow;
 }
 QT_END_NAMESPACE
+
+class Cboard_single;
+class Cboard_pair;
+
+enum Difficulty {normal, hard, crasy};
 
 class MainWindow : public QMainWindow
 {
@@ -29,7 +34,7 @@ public:
     ~MainWindow();
 
 protected:
-    void setDifficulty(Difficulty);
+    void setDifficulty(Difficulty);//设置主窗口显示难度（与传入一致）
 signals:
     void quit();
 
@@ -46,8 +51,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Cboard_single *widgets = new Cboard_single ;//单人游戏窗口对象
-    Cboard_pair *widgetp = new Cboard_pair ;//双人游戏窗口对象
+    Cboard_single *widgets ;//单人游戏窗口对象
+    Cboard_pair *widgetp  ;//双人游戏窗口对象
     QButtonGroup *group = new QButtonGroup(this);
 
 public:
