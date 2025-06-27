@@ -35,12 +35,18 @@ private slots:
 
     void on_difchange_button_p_clicked(bool checked); // 难度切换按钮
 
+    void keyPressEvent(QKeyEvent *k)override;
+
 private:
     Ui::Cboard_pair *ui;
 
     bool Ispaused;
 
     void paintEvent(QPaintEvent *event) override; // 界面刷新
+    int time;
+
+    void changeDifficulty();//循环修改pair难度
+
 // 游戏部分
 public slots:
     void startGame(); // 开始游戏按键
