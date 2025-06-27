@@ -61,9 +61,9 @@ void MainWindow::on_single_button_clicked()
 void MainWindow::do_showmyshelf()
 {
     this->show();
-    widgets->setDifficulty(widgets->getDifficulty());
-    widgetp->p_setDifficulty(widgetp->p_getDifficulty());
-
+    setDifficulty(widgets->s_getDifficulty());
+    setDifficulty(widgetp->p_getDifficulty());
+    //运行两次，结果会以上一次更新的难度为准
 }
 
 void MainWindow::do_quit_program()
@@ -78,7 +78,7 @@ void MainWindow::on_exit_button_clicked()
     emit quit();
     qDebug() << "quit signal emitted " << Qt::endl;
 }
-/*
+
 void MainWindow::setDifficulty(Difficulty diff)
 {
     //QString Difname;
@@ -97,7 +97,7 @@ void MainWindow::setDifficulty(Difficulty diff)
     }
 
 }
-*/
+
 void MainWindow::on_pairbutton_clicked()
 {
     this->hide();

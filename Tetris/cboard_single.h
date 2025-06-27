@@ -126,7 +126,7 @@ private:
 
 public:
     void setDifficulty(Difficulty diff); // single游戏难度设置
-    Difficulty getDifficulty(); // 主页面获取single游戏难度
+    Difficulty s_getDifficulty(); // 主页面获取single游戏难度
 };
 
 #endif // CBOARD_SINGLE_H

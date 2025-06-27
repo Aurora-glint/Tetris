@@ -426,7 +426,7 @@ void Cboard_single::setDifficulty(Difficulty diff)
     ui->difficulty_label->setText(Difname);//设置single文本难度显示
 }
 
-Difficulty Cboard_single::getDifficulty()
+Difficulty Cboard_single::s_getDifficulty()
 {
     return curDifficulty;
 }
