@@ -247,7 +247,6 @@ Difficulty Cboard_pair::p_getDifficulty()
     return p_curDifficulty;
 }
 
-
 void Cboard_pair::changeDifficulty()
 {
     p_curDifficulty = Difficulty(((int)p_curDifficulty + 1) % 3);
@@ -275,8 +274,6 @@ void Cboard_pair::on_difchange_button_p_clicked(bool checked)
 {
     changeDifficulty();
 }
-
-
 
 // 监听按键事件
 void Cboard_pair::keyPressEvent(QKeyEvent *k)
