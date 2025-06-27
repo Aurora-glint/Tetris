@@ -11,16 +11,19 @@ CONFIG += c++17
 SOURCES += \
     CTetrimino.cpp \
     Cboard.cpp \
+    cboard_pair.cpp \
     cboard_single.cpp \
     main.cpp
 
 HEADERS += \
     CTetrimino.h \
     Cboard.h \
+    cboard_pair.h \
     cboard_single.h
 
 FORMS += \
     Cboard.ui \
+    cboard_pair.ui \
     cboard_single.ui
 
 # Default rules for deployment.
