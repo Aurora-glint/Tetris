@@ -27,6 +27,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    void setDifficulty(Difficulty);
 signals:
     void quit();
 

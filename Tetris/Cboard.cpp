@@ -52,6 +52,8 @@ void MainWindow::on_single_button_clicked()
 void MainWindow::do_showmyshelf()
 {
     this->show();
+    setDifficulty(widgets->getDifficulty());
+
 }
 
 void MainWindow::do_quit_program()
@@ -64,4 +66,23 @@ void MainWindow::on_exit_button_clicked()
 {
     emit quit();
     qDebug() << "quit signal emitted " << Qt::endl;
+}
+
+void MainWindow::setDifficulty(Difficulty diff)
+{
+    //QString Difname;
+
+    switch(diff)
+    {
+    case 0:
+        ui->EasyradioButton->setChecked(true);
+        break;
+    case 1:
+        ui->HardradioButton->setChecked(true);
+        break;
+    case 2:
+        ui->CrazyradioButton->setChecked(true);
+        break;
+    }
+
 }
