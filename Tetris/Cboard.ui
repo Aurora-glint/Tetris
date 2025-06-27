@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Teris_game</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="myresources.qrc">
+    <normaloff>:/image/neko22.ico</normaloff>:/image/neko22.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="layoutWidget">
@@ -161,12 +165,20 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>18</height>
+     <height>17</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menumenu">
+    <property name="title">
+     <string>menu</string>
+    </property>
+   </widget>
+   <addaction name="menumenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="myresources.qrc"/>
+ </resources>
  <connections/>
 </ui>
