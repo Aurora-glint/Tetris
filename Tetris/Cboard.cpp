@@ -9,8 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     connect(this->widgets, SIGNAL(back()), this, SLOT(do_showmyshelf())); // 单人游戏返回信号与显示主窗口
+    connect(this->widgetp, SIGNAL(back()), this, SLOT(do_showmyshelf())); // 双人游戏返回信号与显示主窗口
     connect(this, SIGNAL(quit()), this, SLOT(do_quit_program())); // 主窗口退出按钮与关闭
     connect(this->widgets, SIGNAL(quit()), this, SLOT(do_quit_program())); // 单人游戏退出按钮与关闭
+    connect(this->widgetp, SIGNAL(quit()), this, SLOT(do_quit_program())); // 双人游戏退出按钮与关闭
 
     group->addButton(ui->EasyradioButton,0);
     group->addButton(ui->HardradioButton,1);
@@ -59,6 +61,7 @@ void MainWindow::do_showmyshelf()
 void MainWindow::do_quit_program()
 {
     this->widgets->close(); // 关闭子窗口
+    this->widgetp->close();//关闭双人游戏
     this->close(); // 关闭主窗口
 }
 
