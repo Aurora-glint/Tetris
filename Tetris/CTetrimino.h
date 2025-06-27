@@ -47,7 +47,7 @@ private:
 
 public:
     CTetrimino(); // 无参构造函数，默认为None_shape
-    CTetrimino(int); // 有参构造函数，产生随机形状的方块
+    CTetrimino(int); // 有参构造函数，0产生随机形状的方块，其余产生相应的方块
 
     CTetrimino operator=(const CTetrimino&);
 

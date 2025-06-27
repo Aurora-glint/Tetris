@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "CTetrimino.h"
+#include <queue>
 
 enum Difficulty {normal, hard, crasy};
 
@@ -33,14 +34,36 @@ private:
     Ui::Cboard_pair *ui;
 
 // 游戏部分
+public slots:
+    void startGame(); // 开始游戏按键
+
+    void goDown(int p); // 方块下落
+    void goLeft(int p); // 方块左移
+    void goRight(int p); // 方块右移
+    void rotate(int p); // 方块旋转（逆时针）
+
 private:
-    All_Shape p1_board[ROW][COL], p2_board[ROW][COL]; // 玩家游戏面板
-    int p1_score, p2_score;
+    All_Shape board[2][ROW][COL]; // 玩家游戏面板
+    int score[2], pos[2][2];
     Difficulty p_curDifficulty;
+    std::queue<CTetrimino> shape[2];
+    CTetrimino cur_block[2];
+
+    void init_board(); // 清空游戏面板
+    void initPos(int p); // 重置方块位置（下落位置）
+
+    bool tryMove(int direction, int p); // 判断是否可以移动（无碰撞，方向左移为-1，右移为1，下移为0）
+    bool isDelete(int line, int p); // 判断某一行是否需要消除
+    void saveBegin(int p); // 保存下落到底的方块并进行消行，同时开始下一个方块的下落
+    void endGame(); // 游戏结束
+
+    void pushShape(); // 产生随机形状
+
+    CTetrimino getNewBlock(); // 随机获取新的方块
 
 public:
     Difficulty p_getDifficulty(); // 获取双人游戏难度
-    void p_setDifficulty(); // 双人界面难度设置
+    void p_setDifficulty(Difficulty diff); // 双人界面难度设置
 };
 
 #endif // CBOARD_PAIR_H

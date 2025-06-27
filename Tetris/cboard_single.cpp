@@ -234,9 +234,8 @@ void Cboard_single::initPos()
 
 CTetrimino Cboard_single::getNewBlock()
 {
-    return CTetrimino(1); // 构造随机形状的方块并返回
+    return CTetrimino(0); // 构造随机形状的方块并返回
 }
-
 
 bool Cboard_single::isDelete(int line)
 {
