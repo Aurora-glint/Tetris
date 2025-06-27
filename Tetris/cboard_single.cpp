@@ -367,7 +367,7 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
         break;
     }
 
-    painter.drawRect(one_block); // 绘制该方块
+    if (shape) painter.drawRect(one_block); // 绘制该方块
 }
 
 void Cboard_single::on_start_button_clicked(bool checked)
