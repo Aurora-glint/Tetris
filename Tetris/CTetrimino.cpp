@@ -58,7 +58,7 @@ CTetrimino::CTetrimino():type(None_shape){}
 
 CTetrimino::CTetrimino(int):type(None_shape)
 {
-    else creatRandomShape();
+    creatRandomShape();
 }
 
 CTetrimino CTetrimino::operator=(const CTetrimino& date)
