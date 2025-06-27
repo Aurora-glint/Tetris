@@ -1,5 +1,6 @@
 #include "cboard_pair.h"
 #include "ui_cboard_pair.h"
+#include "CTetrimino.h"
 
 Cboard_pair::Cboard_pair(QWidget *parent)
     : QWidget(parent)

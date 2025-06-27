@@ -12,6 +12,7 @@ Cboard_single::Cboard_single(QWidget *parent)
     ui->setupUi(this);
 
     initBoard(); // 初始化游戏面板
+    next_block = CTetrimino();
     curDifficulty = crasy; // 初始化游戏难度
 
     Ispaused = true;
@@ -367,7 +368,7 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
         break;
     }
 
-    if (shape) painter.drawRect(one_block); // 绘制该方块
+    if (shape != None_shape) painter.drawRect(one_block); // 绘制该方块
 }
 
 void Cboard_single::on_start_button_clicked(bool checked)
