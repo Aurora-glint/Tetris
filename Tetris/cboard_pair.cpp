@@ -8,15 +8,15 @@ Cboard_pair::Cboard_pair(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Cboard_pair)
 {
-    ui->setupUi(this); 
+    ui->setupUi(this);
 
+    init_board(); // 初始化游戏面板
 }
 
 Cboard_pair::~Cboard_pair()
 {
     delete ui;
 }
-
 
 void Cboard_pair::on_back_menu_button_p_clicked()
 {
@@ -26,7 +26,6 @@ void Cboard_pair::on_back_menu_button_p_clicked()
     //on_pause_button_clicked(0);
     qDebug() << "back signal launched " << Qt::endl;
 }
-
 
 void Cboard_pair::on_quit_game_p_clicked()
 {
@@ -53,16 +52,52 @@ void Cboard_pair::on_quit_game_p_clicked()
 
 //             one_block.setRect(y,x,BLOCKSIZE,BLOCKSIZE);
 
-//             if (all_board[r][c] != None_shape) paint_one_block(painter, one_block, all_board[r][c]);
+//             if (board[0][r][c] != None_shape) paint_one_block(painter, one_block, board[0][r][c]);
+//             // if (board[1][r][c] != None_shape) paint_one_block(painter, one_block, board[1][r][c]);
 //         }
 //     }
 
 //     // 刷新下一个方块预览图
-//     for (int i = 0; i < 4; ++i)
+//     // for (int i = 0; i < 4; ++i)
+//     // {
+//     //     one_block.setRect(10 + 20 * next_block.Y(i), 30 + 20 * next_block.X(i), 20, 20);
+//     //     paint_one_block(painter, one_block, next_block.getType());
+//     // }
+// }
+
+// void Cboard_pair::paint_one_block(QPainter &painter, const QRect &one_block, const All_Shape shape)
+// {
+//     painter.fillRect(one_block, Qt::gray);
+
+//     switch((int)shape)
 //     {
-//         one_block.setRect(10 + 20 * next_block.Y(i), 30 + 20 * next_block.X(i), 20, 20);
-//         paint_one_block(painter, one_block, next_block.getType());
+//     case 0:
+//         painter.fillRect(one_block,Qt::black);
+//         break;
+//     case 1:
+//         painter.fillRect(one_block,Qt::gray);
+//         break;
+//     case 2:
+//         painter.fillRect(one_block,Qt::yellow);
+//         break;
+//     case 3:
+//         painter.fillRect(one_block,Qt::green);
+//         break;
+//     case 4:
+//         painter.fillRect(one_block,Qt::cyan);
+//         break;
+//     case 5:
+//         painter.fillRect(one_block,Qt::blue);
+//         break;
+//     case 6:
+//         painter.fillRect(one_block,Qt::magenta);
+//         break;
+//     case 7:
+//         painter.fillRect(one_block,Qt::red);
+//         break;
 //     }
+
+//     if (shape != None_shape) painter.drawRect(one_block); // 绘制该方块
 // }
 
 void Cboard_pair::startGame()

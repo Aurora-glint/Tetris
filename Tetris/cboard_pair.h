@@ -7,6 +7,7 @@
 #include "Cboard.h"
 #include <QPainter>
 #include <QPaintEvent>
+#include <QPoint>
 
 namespace Ui {
 class Cboard_pair;
@@ -42,7 +43,11 @@ private:
 
     bool Ispaused;
 
-    void paintEvent(QPaintEvent *event) override; // 界面刷新
+    QPoint o_ = QPoint(100,60); // 游戏框起始点
+    QPoint s_ = o_ + QPoint(450,750); // 游戏框右下点
+//    void paintEvent(QPaintEvent *event) override; // 界面刷新
+//    void paint_one_block(QPainter &painter, const QRect &one_block, const All_Shape shape);
+
     int time;
 
     void changeDifficulty();//循环修改pair难度
