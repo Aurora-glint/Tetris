@@ -70,10 +70,23 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
 // 计时器达到周期后处理事件
 void Cboard_single::timerEvent(QTimerEvent *event)
 {
+
+
+        if((event->timerId() == id))
+        {
+            emit timechange(time);//每秒发出timechange信号
+            if(!Ispaused)
+            {
+                time += 1; // 非暂停时，每秒存活时间加一
+            }
+        }
+
+        if((event->timerId() == id_t )) // 30毫秒事件
+        {
+            emit tick();//每30毫秒发出timechange信号
+        }
     if(!Ispaused)
     {
-        if((event->timerId() == id && !Ispaused)) time += 1; // 每秒存活时间加一
-
         if (curDifficulty == normal)
         {
             if((event->timerId() == id && !Ispaused)) goDown();
@@ -86,12 +99,6 @@ void Cboard_single::timerEvent(QTimerEvent *event)
         {
             if((event->timerId() == id_crasy && !Ispaused)) goDown();
         }
-
-        if((event->timerId() == id_t && !Ispaused)) // 30毫秒事件
-        {
-            emit tick();
-        }
-        emit timechange(time);
     }
 }
 

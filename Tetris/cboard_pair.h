@@ -32,7 +32,9 @@ private slots:
 
     void on_quit_game_p_clicked();
 
-    void do_timechange();//每秒触发一次的槽函数
+    void do_timechange(int);//每秒触发一次的槽函数
+
+    void do_tickchange(int);//每tick触发一次的槽函数
 
     void on_difchange_button_p_clicked(bool checked); // 难度切换按钮
 

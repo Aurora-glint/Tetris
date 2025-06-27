@@ -11,6 +11,8 @@ Cboard_pair::Cboard_pair(QWidget *parent)
     ui->setupUi(this);
 
     init_board(); // 初始化游戏面板
+
+    Ispaused = true;
 }
 
 Cboard_pair::~Cboard_pair()
@@ -283,12 +285,20 @@ CTetrimino Cboard_pair::getNewBlock()
     return CTetrimino(0); // 构造随机形状的方块并返回
 }
 
-void Cboard_pair::do_timechange()
+void Cboard_pair::do_timechange(int time)
 {
     qDebug()<<"do_timechange"<<Qt::endl;
-    time+=1;
+    if(!Ispaused)
+    {
+        time+=1;
+    }
     ui->lcd_time->display(time);//更新时间显示
 }
+
+void Cboard_pair::do_tickchange(int time)
+    {
+
+    }//每tick
 
 void Cboard_pair::p_setDifficulty(Difficulty diff)
 {

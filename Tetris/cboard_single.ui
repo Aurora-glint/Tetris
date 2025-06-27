@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>Tetris</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="myresources.qrc">
+    <normaloff>:/image/neko.ico</normaloff>:/image/neko.ico</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">/*background-color: rgb(255, 255, 255);*/
 /*background-image:url(:/image/tetrisbg.png)*/
@@ -298,6 +302,8 @@ QPushButton{
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="myresources.qrc"/>
+ </resources>
  <connections/>
 </ui>
