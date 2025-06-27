@@ -13,7 +13,6 @@ Cboard_single::Cboard_single(QWidget *parent)
 
     initBoard(); // 初始化游戏面板
     next_block = CTetrimino();
-    curDifficulty = crasy; // 初始化游戏难度
 
     Ispaused = true;
     connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号

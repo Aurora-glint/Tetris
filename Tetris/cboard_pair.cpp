@@ -1,6 +1,5 @@
 #include "cboard_pair.h"
 #include "ui_cboard_pair.h"
-#include "CTetrimino.h"
 
 Cboard_pair::Cboard_pair(QWidget *parent)
     : QWidget(parent)
@@ -14,8 +13,6 @@ Cboard_pair::~Cboard_pair()
     delete ui;
 }
 
-
-
 void Cboard_pair::on_back_menu_button_p_clicked()
 {
     emit back();
@@ -25,10 +22,18 @@ void Cboard_pair::on_back_menu_button_p_clicked()
     qDebug() << "back signal launched " << Qt::endl;
 }
 
-
 void Cboard_pair::on_quit_game_p_clicked()
 {
     emit quit();
     qDebug() << "quit signal launched " << Qt::endl;
 }
 
+Difficulty Cboard_pair::p_getDifficulty()
+{
+    return p_curDifficulty;
+}
+
+void Cboard_pair::p_setDifficulty(Difficulty diff)
+{
+    p_curDifficulty = diff;
+}
