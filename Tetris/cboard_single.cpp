@@ -14,7 +14,6 @@ Cboard_single::Cboard_single(QWidget *parent)
     initBoard(); // 初始化游戏面板
     curDifficulty = crasy; // 初始化游戏难度
 
-
     Ispaused = true;
     connect(ui->back_menu_button, SIGNAL(back()), this, SLOT(back_menu())); // 关联返回信号
     connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
@@ -426,6 +425,12 @@ void Cboard_single::setDifficulty(Difficulty diff)
 
     ui->difficulty_label->setText(Difname);
 }
+
+Difficulty Cboard_single::getDifficulty()
+{
+    return curDifficulty;
+}
+
 void Cboard_single::on_difchange_button_clicked(bool checked)
 {
     changeDifficulty();

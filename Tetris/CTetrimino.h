@@ -34,6 +34,7 @@ class CTetrimino{
         {{1, 2}, {2, 2}, {3, 2}, {3, 1}},  // J_shape
         {{2, 0}, {2, 1}, {1, 1}, {2, 2}}   // T_shape
     };
+
 private:
     int Tetri_shape[4][2];
     All_Shape type;
