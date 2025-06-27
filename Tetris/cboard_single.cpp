@@ -366,9 +366,7 @@ void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,con
         break;
     }
 
-    painter.drawRect(one_block);//绘制该方块
-
-
+    painter.drawRect(one_block); // 绘制该方块
 }
 
 void Cboard_single::on_start_button_clicked(bool checked)
@@ -379,7 +377,7 @@ void Cboard_single::on_start_button_clicked(bool checked)
     if(!checked)
     {
         ui->start_button->setText("开始");
-        time=0;
+        time = 0;
     }
     else if(checked)
     {
@@ -413,13 +411,13 @@ void Cboard_single::setDifficulty(Difficulty diff)
     switch(curDifficulty)
     {
     case 0:
-        Difname="Normal";
+        Difname = "Normal";
         break;
     case 1:
-        Difname="Hard";
+        Difname = "Hard";
         break;
     case 2:
-        Difname="Crazy";
+        Difname = "Crazy";
         break;
     }
 
@@ -435,4 +433,3 @@ void Cboard_single::on_difchange_button_clicked(bool checked)
 {
     changeDifficulty();
 }
-
