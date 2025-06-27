@@ -8,8 +8,7 @@
 #include <QBasicTimer>
 #include <QPainter>
 #include <QPaintEvent>
-
-enum Difficulty {normal, hard, crasy};
+#include <Cboard.h>
 
 namespace Ui {
 class Cboard_single;
@@ -64,7 +63,8 @@ private slots:
 
     void on_pause_button_clicked(bool checked);//暂停游戏按钮
 
-    void on_difchange_button_clicked(bool checked);
+    void on_difchange_button_clicked(bool checked);//点击切换难度按钮
+
 
 private:
     Ui::Cboard_single *ui;

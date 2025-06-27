@@ -1,12 +1,18 @@
 #include "Cboard.h"
 #include "ui_Cboard.h"
 #include <QDebug>
+#include <cboard_single.h>
+#include <cboard_pair.h>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    widgets = new Cboard_single;
+    widgetp = new Cboard_pair ;
 
     connect(this->widgets, SIGNAL(back()), this, SLOT(do_showmyshelf())); // 单人游戏返回信号与显示主窗口
     connect(this->widgetp, SIGNAL(back()), this, SLOT(do_showmyshelf())); // 双人游戏返回信号与显示主窗口
@@ -32,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
 
                     // 3. 更新游戏设置
                     widgets->setDifficulty(Difficulty(id));//设置单人游戏的难度
+                    widgetp->p_setDifficulty(Difficulty(id));
 
                     // 4. 界面反馈
                     //showSelectionFeedback(btn);
@@ -54,8 +61,8 @@ void MainWindow::on_single_button_clicked()
 void MainWindow::do_showmyshelf()
 {
     this->show();
-    setDifficulty(widgets->getDifficulty());
-    setDifficulty(widgetp->getDifficulty());
+    widgets->setDifficulty(widgets->getDifficulty());
+    widgetp->p_setDifficulty(widgetp->p_getDifficulty());
 
 }
 
@@ -71,7 +78,7 @@ void MainWindow::on_exit_button_clicked()
     emit quit();
     qDebug() << "quit signal emitted " << Qt::endl;
 }
-
+/*
 void MainWindow::setDifficulty(Difficulty diff)
 {
     //QString Difname;
@@ -90,12 +97,11 @@ void MainWindow::setDifficulty(Difficulty diff)
     }
 
 }
-
-
-
+*/
 void MainWindow::on_pairbutton_clicked()
 {
     this->hide();
     widgetp->show();
+   // p_setDifficulty(widgetp->getDiff)
 }
 
