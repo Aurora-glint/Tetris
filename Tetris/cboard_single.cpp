@@ -36,13 +36,13 @@ void Cboard_single::on_back_menu_button_clicked()
 {
     emit back();
     this->hide();
-    //调用暂停
+    // 调用暂停
     on_pause_button_clicked(0);
     qDebug() << "back signal launched " << Qt::endl;
 }
 
 
-//监听按键事件
+// 监听按键事件
 void Cboard_single::keyPressEvent(QKeyEvent *k)
 {
     if (Ispaused == true)
@@ -173,15 +173,15 @@ void Cboard_single::changeDifficulty()
 
     switch(curDifficulty)
     {
-    case 0:
-        Difname="Normal";
-        break;
-    case 1:
-        Difname="Hard";
-        break;
-    case 2:
-        Difname="Crazy";
-        break;
+        case 0:
+            Difname="Normal";
+            break;
+        case 1:
+            Difname="Hard";
+            break;
+        case 2:
+            Difname="Crazy";
+            break;
     }
 
     ui->difficulty_label->setText(Difname);

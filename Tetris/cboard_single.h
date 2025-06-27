@@ -41,7 +41,6 @@ public:
                                 "}"
         ;
 
-
 signals:
     void back();//返回信号
 
@@ -51,9 +50,6 @@ signals:
 
     void tick();//tick信号30ms
 
-    //void start_single();
-
-    //void pause_single();
 private slots:
 
     void on_quit_game_clicked();//退出游戏按钮
@@ -121,11 +117,9 @@ private:
     void saveBegin(); // 保存下落到底的方块并进行消行，同时开始下一个方块的下落
     void endGame(); // 游戏结束
 
-    void paintEvent(QPaintEvent *event) override;//绘制函数（每tick一次）
+    void paintEvent(QPaintEvent *event) override; // 绘制函数（每tick一次）
 
     void paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape);
-
-    void show_all_board();//debug用，控制台输出all_board
 
     QPoint o_ = QPoint(100,60);//游戏框起始点
     QPoint s_ = o_ + QPoint(450,750);//游戏框右下点
