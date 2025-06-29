@@ -295,9 +295,12 @@ void Cboard_pair::do_timechange(int time)
     ui->lcd_time->display(time);//更新时间显示
 }
 
-void Cboard_pair::do_tickchange(int time)
+void Cboard_pair::do_tickchange()
     {
 
+        this->update(); // 每tick更新绘图
+        //qDebug()<<"do_tickchange"<<Qt::endl;//成功运行
+        // ui->lcd_score->display(score); // 每tick更新分数
     }//每tick
 
 void Cboard_pair::p_setDifficulty(Difficulty diff)

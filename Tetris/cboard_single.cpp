@@ -110,6 +110,7 @@ void Cboard_single::do_timechange()
 void Cboard_single::do_tickchange()
 {
     this->update(); // 每tick更新绘图
+
     ui->lcd_score->display(score); // 每tick更新分数
 }; // 响应每tick变化
 
