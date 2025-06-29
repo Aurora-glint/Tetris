@@ -290,9 +290,10 @@ void Cboard_pair::do_timechange(int time)
     qDebug()<<"do_timechange"<<Qt::endl;
     if(!Ispaused)
     {
-        time+=1;
+        this->time+=1;
+        qDebug()<<"time"<<this->time<<Qt::endl;
     }
-    ui->lcd_time->display(time);//更新时间显示
+    ui->lcd_time->display(this->time);//更新时间显示
 }
 
 void Cboard_pair::do_tickchange()
@@ -300,7 +301,7 @@ void Cboard_pair::do_tickchange()
 
         this->update(); // 每tick更新绘图
         //qDebug()<<"do_tickchange"<<Qt::endl;//成功运行
-        // ui->lcd_score->display(score); // 每tick更新分数
+         //ui->lcd_score1->display(score); // 每tick更新分数
     }//每tick
 
 void Cboard_pair::p_setDifficulty(Difficulty diff)
@@ -379,3 +380,25 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
         if(k->key() == Qt::Key_D) qDebug()<<"D"<<Qt::endl;
     }
 }
+
+void Cboard_pair::on_start_button_p_clicked(bool checked)
+{
+
+        Ispaused = false;
+        ui->pause_button_p->setChecked(true);
+        ui->pause_button_p->setText("暂停 ");
+        if(!checked)
+        {
+            ui->start_button_p->setText("开始");
+            time = 0;
+        }
+        else if(checked)
+        {
+            ui->start_button_p->setText("重新开始");
+        }
+
+        qDebug() << "game started " << Qt::endl;
+        startGame();
+
+}
+
