@@ -402,3 +402,18 @@ void Cboard_pair::on_start_button_p_clicked(bool checked)
 
 }
 
+void Cboard_pair::on_pause_button_p_clicked(bool checked)
+{
+    if(!checked)
+    {
+        Ispaused = true;
+        ui->pause_button_p->setText("继续");
+    }
+    else if(checked)
+    {
+        Ispaused = false;
+        qDebug() << "game continue " << Qt::endl;
+        ui->pause_button_p->setText("暂停 ");
+    }
+}
+

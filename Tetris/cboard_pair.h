@@ -43,6 +43,8 @@ private slots:
 
     void on_start_button_p_clicked(bool checked);
 
+    void on_pause_button_p_clicked(bool checked);
+
 private:
     Ui::Cboard_pair *ui;
 
