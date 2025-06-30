@@ -13,6 +13,8 @@ Cboard_pair::Cboard_pair(QWidget *parent)
     initBoard(); // 初始化游戏面板
 
     Ispaused = true;
+
+
 }
 
 Cboard_pair::~Cboard_pair()
@@ -408,11 +410,32 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
         if(k->key() == Qt::Key_S) goDown(0);
         if(k->key() == Qt::Key_D) goRight(0);
 
+        qDebug() << "Key pressed:" << k->key();
+
         // 玩家2操作按键
-        if(k->key() == Qt::Key_Up) rotate(1);
-        if(k->key() == Qt::Key_Left) goLeft(1);
-        if(k->key() == Qt::Key_Down) goDown(1);
-        if(k->key() == Qt::Key_Right) goRight(1);
+
+        switch(k->key())
+        {
+        case Qt::Key_Up:
+            rotate(1);
+            //qDebug() << "UP pressed";  // 上箭头
+            break;
+        case Qt::Key_Down:
+            goDown(1);
+            //qDebug() << "DOWN pressed";  // 下箭头
+            break;
+        case Qt::Key_Left:
+            goLeft(1);
+           // qDebug() << "LEFT pressed";  // 左箭头
+            break;
+        case Qt::Key_Right:
+            goRight(1);
+            //qDebug() << "RIGHT pressed";  // 右箭头
+            break;
+        default:
+            QWidget::keyPressEvent(k);  // 其他按键传递给父类
+        }
+
     }
 }
 
@@ -451,4 +474,5 @@ void Cboard_pair::on_pause_button_p_clicked(bool checked)
         ui->pause_button_p->setText("暂停 ");
     }
 }
+
 
