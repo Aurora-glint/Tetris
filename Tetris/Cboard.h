@@ -10,9 +10,10 @@
 #endif
 
 #include <QMainWindow>
-// #include <Cboard_single.h>
-// #include <cboard_pair.h>
 #include <QButtonGroup>
+#include <QSoundEffect>
+#include <QAudioOutput>
+#include <QMediaPlayer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

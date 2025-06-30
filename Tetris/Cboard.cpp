@@ -19,6 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, SIGNAL(quit()), this, SLOT(do_quit_program())); // 主窗口退出按钮与关闭
     connect(this->widgets, SIGNAL(quit()), this, SLOT(do_quit_program())); // 单人游戏退出按钮与关闭
     connect(this->widgetp, SIGNAL(quit()), this, SLOT(do_quit_program())); // 双人游戏退出按钮与关闭
+
+    connect(this->widgets, SIGNAL(timechange(int)), this->widgets, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
+    connect(this->widgets, SIGNAL(tick()), this->widgets, SLOT(do_tickchange())); // 关联tick信号
+
     connect(this->widgets, SIGNAL(timechange(int)), this->widgetp, SLOT(do_timechange(int))); // 关联timechange信号和pairdotimechange槽函数
     connect(this->widgets, SIGNAL(tick()), this->widgetp, SLOT(do_tickchange())); // 关联tickchange信号和pairdotickchange槽函数
     connect(this->widgets, SIGNAL(time_hard()), this->widgetp, SLOT(do_time_hard())); // 关联time_hard信号和pair::do_time_hard槽函数
@@ -27,7 +31,6 @@ MainWindow::MainWindow(QWidget *parent)
     group->addButton(ui->EasyradioButton,0);
     group->addButton(ui->HardradioButton,1);
     group->addButton(ui->CrazyradioButton,2);
-
 
     // 优化后的状态监听
     connect(group, &QButtonGroup::buttonToggled,
@@ -72,8 +75,8 @@ void MainWindow::do_showmyshelf()
 
 void MainWindow::do_quit_program()
 {
-    this->widgets->close(); // 关闭子窗口
     this->widgetp->close();//关闭双人游戏
+    this->widgets->close(); // 关闭子窗口
     this->close(); // 关闭主窗口
 }
 

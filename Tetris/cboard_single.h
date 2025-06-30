@@ -10,6 +10,7 @@
 #include <QPaintEvent>
 #include "Cboard.h"
 
+
 namespace Ui {
 class Cboard_single;
 }

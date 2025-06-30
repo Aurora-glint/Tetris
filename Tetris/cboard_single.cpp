@@ -18,8 +18,7 @@ Cboard_single::Cboard_single(QWidget *parent)
 
     Ispaused = true;
 
-    connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
-    connect(this, SIGNAL(tick()), this, SLOT(do_tickchange())); // 关联tick信号
+
 }
 
 Cboard_single::~Cboard_single()
@@ -296,6 +295,13 @@ void Cboard_single::saveBegin()
             delete_num++;
         }
     }
+
+    // QMediaPlayer player;
+    // qDebug()<<"sonud!"<<Qt::endl;
+    // player.setAudioOutput(new QAudioOutput);
+    // player.setSource(QUrl("qrc:/Sound/1447_magic-wand-01.wav"));
+    // player.setLoops(1);
+    // player.play();
 
     // 获得分数
     score += 100 * delete_num;
