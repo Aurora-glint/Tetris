@@ -392,30 +392,30 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
     if (k->key() == Qt::Key_Space) on_pause_button_p_clicked(Ispaused);
     if (Ispaused == true)
     {
-        if (k->key() == Qt::Key_Escape)
-        {
-            Ispaused = false; // 关闭暂停
-            k->accept();
-        }
-        else
-        {
             k->ignore(); // 忽视该按键事件
-        }
     }
     else
     {
-        // 玩家1操作按键
-        if(k->key() == Qt::Key_W) rotate(0);
-        if(k->key() == Qt::Key_A) goLeft(0);
-        if(k->key() == Qt::Key_S) goDown(0);
-        if(k->key() == Qt::Key_D) goRight(0);
-
         qDebug() << "Key pressed:" << k->key();
-
-        // 玩家2操作按键
 
         switch(k->key())
         {
+ // 玩家1操作按键
+        case Qt::Key_W:
+            rotate(0);
+            break;
+        case Qt::Key_A:
+            goLeft(0);
+            break;
+        case Qt::Key_S:
+           goDown(0);
+            break;
+        case Qt::Key_D:
+            goRight(0);
+            break;
+
+
+// 玩家2操作按键
         case Qt::Key_Up:
             rotate(1);
             //qDebug() << "UP pressed";  // 上箭头
