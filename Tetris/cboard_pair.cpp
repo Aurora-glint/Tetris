@@ -14,6 +14,8 @@ Cboard_pair::Cboard_pair(QWidget *parent)
 
     Ispaused = true;
 
+    time=0;
+
 
 }
 
@@ -331,7 +333,8 @@ void Cboard_pair::do_tickchange()
 {
     this->update(); // 每tick更新绘图
     //qDebug()<<"do_tickchange"<<Qt::endl; // 成功运行
-    //ui->lcd_score1->display(score); // 每tick更新分数
+    ui->lcd_score1->display(score[0]); // 每tick更新分数
+    ui->lcd_score2->display(score[1]); // 每tick更新分数
 }//每tick
 
 void Cboard_pair::p_setDifficulty(Difficulty diff)
@@ -395,6 +398,7 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
     {
             k->ignore(); // 忽视该按键事件
     }
+
     else
     {
         qDebug() << "Key pressed:" << k->key();
