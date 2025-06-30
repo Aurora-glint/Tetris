@@ -22,9 +22,9 @@ public:
     ~Cboard_pair();
 
 signals:
-    void quit();//退出信号（由主窗口接收）
+    void quit(); // 退出信号（由主窗口接收）
 
-    void back();//返回信号
+    void back(); // 返回信号
 
 private slots:
 
@@ -32,17 +32,17 @@ private slots:
 
     void on_quit_game_p_clicked();
 
-    void do_timechange(int);//每秒触发一次的槽函数
+    void do_timechange(int); // 每秒触发一次的槽函数
 
     void do_time_hard();
 
     void do_time_crazy();
 
-    void do_tickchange();//每tick触发一次的槽函数
+    void do_tickchange(); // 每tick触发一次的槽函数
 
     void on_difchange_button_p_clicked(bool checked); // 难度切换按钮
 
-    void keyPressEvent(QKeyEvent *k)override;
+    void keyPressEvent(QKeyEvent *k) override;
 
     void on_start_button_p_clicked(bool checked);
 
@@ -63,7 +63,7 @@ private:
 
     int time;
 
-    void changeDifficulty();//循环修改pair难度
+    void changeDifficulty(); // 循环修改pair难度
 
 // 游戏部分
 public slots:
@@ -97,6 +97,5 @@ public:
     Difficulty p_getDifficulty(); // 获取双人游戏难度
     void p_setDifficulty(Difficulty diff); // 双人界面难度设置
 };
-
 
 #endif // CBOARD_PAIR_H

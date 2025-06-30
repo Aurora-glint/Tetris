@@ -15,7 +15,7 @@ Cboard_pair::Cboard_pair(QWidget *parent)
 
     Ispaused = true;
 
-    time=0;
+    time = 0;
 }
 
 Cboard_pair::~Cboard_pair()
@@ -27,15 +27,11 @@ void Cboard_pair::on_back_menu_button_p_clicked()
 {
     emit back();
     this->hide();
-    // 调用暂停
-    // on_pause_button_clicked(0);
-    qDebug() << "back signal launched " << Qt::endl;
 }
 
 void Cboard_pair::on_quit_game_p_clicked()
 {
     emit quit();
-    qDebug() << "quit signal launched " << Qt::endl;
 }
 
 void Cboard_pair::paintEvent(QPaintEvent *event)
@@ -84,28 +80,28 @@ void Cboard_pair::paint_one_block(QPainter &painter, const QRect &one_block, con
     switch((int)shape)
     {
     case 0:
-        painter.fillRect(one_block,Qt::black);
+        painter.fillRect(one_block, Qt::black);
         break;
     case 1:
-        painter.fillRect(one_block,Qt::gray);
+        painter.fillRect(one_block, Qt::gray);
         break;
     case 2:
-        painter.fillRect(one_block,Qt::yellow);
+        painter.fillRect(one_block, Qt::yellow);
         break;
     case 3:
-        painter.fillRect(one_block,Qt::green);
+        painter.fillRect(one_block, Qt::green);
         break;
     case 4:
-        painter.fillRect(one_block,Qt::cyan);
+        painter.fillRect(one_block, Qt::cyan);
         break;
     case 5:
-        painter.fillRect(one_block,Qt::blue);
+        painter.fillRect(one_block, Qt::blue);
         break;
     case 6:
-        painter.fillRect(one_block,Qt::magenta);
+        painter.fillRect(one_block, Qt::magenta);
         break;
     case 7:
-        painter.fillRect(one_block,Qt::red);
+        painter.fillRect(one_block, Qt::red);
         break;
     }
 
@@ -299,7 +295,7 @@ void Cboard_pair::do_timechange(int time)
 {
     if(!Ispaused)
     {
-        this->time+=1;
+        this->time += 1;
 
         if(p_curDifficulty == normal)
         {
@@ -312,7 +308,7 @@ void Cboard_pair::do_timechange(int time)
 
 void Cboard_pair::do_time_hard()
 {
-    if(p_curDifficulty==hard)
+    if(!Ispaused && p_curDifficulty == hard)
     {
         goDown(0);
         goDown(1);
@@ -321,7 +317,7 @@ void Cboard_pair::do_time_hard()
 
 void Cboard_pair::do_time_crazy()
 {
-    if(p_curDifficulty==crazy)
+    if(!Ispaused && p_curDifficulty == crazy)
     {
         goDown(0);
         goDown(1);
@@ -331,7 +327,6 @@ void Cboard_pair::do_time_crazy()
 void Cboard_pair::do_tickchange()
 {
     this->update(); // 每tick更新绘图
-    //qDebug()<<"do_tickchange"<<Qt::endl; // 成功运行
     ui->lcd_score1->display(score[0]); // 每tick更新分数
     ui->lcd_score2->display(score[1]); // 每tick更新分数
 }//每tick
@@ -371,13 +366,13 @@ void Cboard_pair::changeDifficulty()
     switch(p_curDifficulty)
     {
     case 0:
-        Difname="Normal";
+        Difname = "Normal";
         break;
     case 1:
-        Difname="Hard";
+        Difname = "Hard";
         break;
     case 2:
-        Difname="Crazy";
+        Difname = "Crazy";
         break;
     }
 
@@ -422,22 +417,18 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
 // 玩家2操作按键
         case Qt::Key_Up:
             rotate(1);
-            //qDebug() << "UP pressed";  // 上箭头
             break;
         case Qt::Key_Down:
             goDown(1);
-            //qDebug() << "DOWN pressed";  // 下箭头
             break;
         case Qt::Key_Left:
             goLeft(1);
-           // qDebug() << "LEFT pressed";  // 左箭头
             break;
         case Qt::Key_Right:
             goRight(1);
-            //qDebug() << "RIGHT pressed";  // 右箭头
             break;
         default:
-            QWidget::keyPressEvent(k);  // 其他按键传递给父类
+            QWidget::keyPressEvent(k); // 其他按键传递给父类
         }
 
     }
@@ -459,7 +450,6 @@ void Cboard_pair::on_start_button_p_clicked(bool checked)
             ui->start_button_p->setText("重新开始");
         }
 
-        qDebug() << "game started " << Qt::endl;
         startGame();
 
 }
@@ -476,7 +466,6 @@ void Cboard_pair::on_pause_button_p_clicked(bool checked)
         else if(checked)
         {
             Ispaused = false;
-            qDebug() << "game continue " << Qt::endl;
             ui->pause_button_p->setText("暂停 ");
         }
     }

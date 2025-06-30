@@ -10,8 +10,6 @@
 #endif
 
 #include <QMainWindow>
-// #include <Cboard_single.h>
-// #include <cboard_pair.h>
 #include <QButtonGroup>
 
 QT_BEGIN_NAMESPACE
