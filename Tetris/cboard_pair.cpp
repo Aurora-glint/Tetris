@@ -295,13 +295,33 @@ void Cboard_pair::do_timechange(int time)
 {
     if(!Ispaused)
     {
-        this->time += 1;
+        this->time+=1;
 
-        // 玩家方块下落
+        if(p_curDifficulty == normal)
+        {
+            goDown(0);
+            goDown(1);
+        }
+    }
+    ui->lcd_time->display(this->time);//更新时间显示
+}
+
+void Cboard_pair::do_time_hard()
+{
+    if(p_curDifficulty==hard)
+    {
         goDown(0);
         goDown(1);
     }
-    ui->lcd_time->display(this->time);//更新时间显示
+}
+
+void Cboard_pair::do_time_crazy()
+{
+    if(p_curDifficulty==crazy)
+    {
+        goDown(0);
+        goDown(1);
+    }
 }
 
 void Cboard_pair::do_tickchange()

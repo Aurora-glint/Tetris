@@ -47,6 +47,10 @@ signals:
 
     void tick();//tick信号30ms
 
+    void time_hard();
+
+    void time_crazy();
+
 private slots:
 
     void on_quit_game_clicked();//退出游戏按钮
@@ -75,7 +79,7 @@ private:
     QBasicTimer timer;
     int id_t = startTimer(30);
     int id = startTimer(1000);
-    int id_crasy = startTimer(200);
+    int id_crazy = startTimer(200);
     int id_hard = startTimer(500);
 
 //方块颜色设置，可根据爱好修改(16进制)

@@ -13,7 +13,7 @@ Cboard_single::Cboard_single(QWidget *parent)
 
     initBoard(); // 初始化游戏面板
     next_block = CTetrimino();
-    curDifficulty = crasy; // 初始化游戏难度
+    curDifficulty = crazy; // 初始化游戏难度
 
     Ispaused = true;
 
@@ -85,6 +85,15 @@ void Cboard_single::timerEvent(QTimerEvent *event)
         {
             emit tick();//每30毫秒发出timechange信号
         }
+        if((event->timerId() == id_hard )) // hard事件
+        {
+            emit time_hard();//
+        }
+        if((event->timerId() == id_crazy )) // crazy事件
+        {
+            emit time_crazy();//
+        }
+
     if(!Ispaused)
     {
         if (curDifficulty == normal)
@@ -95,9 +104,9 @@ void Cboard_single::timerEvent(QTimerEvent *event)
         {
             if((event->timerId() == id_hard && !Ispaused)) goDown();
         }
-        else if (curDifficulty == crasy)
+        else if (curDifficulty == crazy)
         {
-            if((event->timerId() == id_crasy && !Ispaused)) goDown();
+            if((event->timerId() == id_crazy && !Ispaused)) goDown();
         }
     }
 }
