@@ -11,12 +11,11 @@ Cboard_pair::Cboard_pair(QWidget *parent)
     ui->setupUi(this);
 
     initBoard(); // 初始化游戏面板
+    score[0] = score[1] = 0;
 
     Ispaused = true;
 
     time=0;
-
-
 }
 
 Cboard_pair::~Cboard_pair()
@@ -162,7 +161,7 @@ void Cboard_pair::rotate(int p)
 
     for (int i = 0; i < 4; ++i)
     {
-        if (board[p][pos[p][0] + rotated.X(i)][pos[p][1] + rotated.Y(i) + py] != None_shape)
+        if (board[p][pos[p][0] + rotated.X(i)][pos[p][1] + rotated.Y(i) + py] != None_shape || pos[p][0] + rotated.X(i) >= ROW)
         {
             for (int j = 0; j < 4; ++j) board[p][pos[p][0] + cur_block[p].X(j)][pos[p][1] + cur_block[p].Y(j)] = cur_block[p].getType();
             return; // 若有重合，不旋转

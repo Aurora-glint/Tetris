@@ -14,6 +14,7 @@ Cboard_single::Cboard_single(QWidget *parent)
     initBoard(); // 初始化游戏面板
     next_block = CTetrimino();
     curDifficulty = crazy; // 初始化游戏难度
+    score = 0;
 
     Ispaused = true;
 
@@ -70,8 +71,6 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
 // 计时器达到周期后处理事件
 void Cboard_single::timerEvent(QTimerEvent *event)
 {
-
-
         if((event->timerId() == id))
         {
             emit timechange(time);//每秒发出timechange信号
