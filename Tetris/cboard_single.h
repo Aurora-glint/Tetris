@@ -22,6 +22,7 @@ public:
     explicit Cboard_single(QWidget *parent = nullptr);
     ~Cboard_single();
 
+    bool Isend;
     bool Ispaused;
     //暂停状态标志
     void keyPressEvent(QKeyEvent *k)override;

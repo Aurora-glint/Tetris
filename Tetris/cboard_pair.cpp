@@ -115,6 +115,7 @@ void Cboard_pair::startGame()
 {
     score[0] = score[1] = 0;
     initBoard();
+    Isend = false;
 
     cur_block[0] = cur_block[1] = getNewBlock();
     pushShape();
@@ -278,7 +279,7 @@ void Cboard_pair::saveBegin(int p)
 void Cboard_pair::endGame()
 {
     Ispaused = true;
-    return;
+    Isend = true;
 }
 
 void Cboard_pair::pushShape()
@@ -462,16 +463,19 @@ void Cboard_pair::on_start_button_p_clicked(bool checked)
 
 void Cboard_pair::on_pause_button_p_clicked(bool checked)
 {
-    if(!checked)
+    if (!Isend)
     {
-        Ispaused = true;
-        ui->pause_button_p->setText("继续");
-    }
-    else if(checked)
-    {
-        Ispaused = false;
-        qDebug() << "game continue " << Qt::endl;
-        ui->pause_button_p->setText("暂停 ");
+        if(!checked)
+        {
+            Ispaused = true;
+            ui->pause_button_p->setText("继续");
+        }
+        else if(checked)
+        {
+            Ispaused = false;
+            qDebug() << "game continue " << Qt::endl;
+            ui->pause_button_p->setText("暂停 ");
+        }
     }
 }
 
