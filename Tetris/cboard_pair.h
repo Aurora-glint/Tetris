@@ -34,12 +34,15 @@ private slots:
 
     void do_timechange(int);//每秒触发一次的槽函数
 
+    void do_time_hard();
+
+    void do_time_crazy();
+
     void do_tickchange();//每tick触发一次的槽函数
 
     void on_difchange_button_p_clicked(bool checked); // 难度切换按钮
 
     void keyPressEvent(QKeyEvent *k)override;
-
 
     void on_start_button_p_clicked(bool checked);
 

@@ -23,7 +23,7 @@ QT_END_NAMESPACE
 class Cboard_single;
 class Cboard_pair;
 
-enum Difficulty {normal, hard, crasy};
+enum Difficulty {normal, hard, crazy};
 
 class MainWindow : public QMainWindow
 {
