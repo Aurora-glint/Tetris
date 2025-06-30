@@ -10,7 +10,7 @@ Cboard_pair::Cboard_pair(QWidget *parent)
 {
     ui->setupUi(this);
 
-    init_board(); // 初始化游戏面板
+    initBoard(); // 初始化游戏面板
 
     Ispaused = true;
 }
@@ -48,17 +48,17 @@ void Cboard_pair::paintEvent(QPaintEvent *event)
 
     for (int r = 0; r < ROW; ++r)
     {
-        int p1_x = p1_o_.y() + BLOCKSIZE * r;
-        int p2_x = p2_o_.y() + BLOCKSIZE * r;
-        int y;
+        int x = p1_o_.y() + BLOCKSIZE * r;
+
         for (int c = 0; c < COL; ++c)
         {
-            y = p1_o_.x() + BLOCKSIZE * c;
+            int p1_y = p1_o_.x() + BLOCKSIZE * c;
+            int p2_y = p2_o_.x() + BLOCKSIZE * c;
 
-            one_block.setRect(y, p1_x, BLOCKSIZE, BLOCKSIZE);
+            one_block.setRect(p1_y, x, BLOCKSIZE, BLOCKSIZE);
             if (board[0][r][c] != None_shape) paint_one_block(painter, one_block, board[0][r][c]);
 
-            one_block.setRect(y, p2_x, BLOCKSIZE, BLOCKSIZE);
+            one_block.setRect(p2_y, x, BLOCKSIZE, BLOCKSIZE);
             if (board[1][r][c] != None_shape) paint_one_block(painter, one_block, board[1][r][c]);
         }
     }
@@ -112,10 +112,12 @@ void Cboard_pair::paint_one_block(QPainter &painter, const QRect &one_block, con
 void Cboard_pair::startGame()
 {
     score[0] = score[1] = 0;
-    init_board();
+    initBoard();
 
     cur_block[0] = cur_block[1] = getNewBlock();
     pushShape();
+    initPos(0);
+    initPos(1);
 }
 
 void Cboard_pair::goDown(int p)
@@ -167,7 +169,7 @@ void Cboard_pair::rotate(int p)
     for (int i = 0; i < 4; ++i) board[p][pos[p][0] + cur_block[p].X(i)][pos[p][1] + cur_block[p].Y(i)] = cur_block[p].getType();
 }
 
-void Cboard_pair::init_board()
+void Cboard_pair::initBoard()
 {
     for (int i = 0; i < ROW; ++i)
     {
@@ -291,22 +293,23 @@ CTetrimino Cboard_pair::getNewBlock()
 
 void Cboard_pair::do_timechange(int time)
 {
-    qDebug()<<"do_timechange"<<Qt::endl;
     if(!Ispaused)
     {
-        this->time+=1;
-        qDebug()<<"time"<<this->time<<Qt::endl;
+        this->time += 1;
+
+        // 玩家方块下落
+        goDown(0);
+        goDown(1);
     }
     ui->lcd_time->display(this->time);//更新时间显示
 }
 
 void Cboard_pair::do_tickchange()
-    {
-
-        this->update(); // 每tick更新绘图
-        //qDebug()<<"do_tickchange"<<Qt::endl;//成功运行
-         //ui->lcd_score1->display(score); // 每tick更新分数
-    }//每tick
+{
+    this->update(); // 每tick更新绘图
+    //qDebug()<<"do_tickchange"<<Qt::endl; // 成功运行
+    //ui->lcd_score1->display(score); // 每tick更新分数
+}//每tick
 
 void Cboard_pair::p_setDifficulty(Difficulty diff)
 {
@@ -378,10 +381,13 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
     }
     else
     {
-        if(k->key() == Qt::Key_W) qDebug()<<"W"<<Qt::endl;
-        if(k->key() == Qt::Key_A) qDebug()<<"A"<<Qt::endl;
-        if(k->key() == Qt::Key_S) qDebug()<<"S"<<Qt::endl;
-        if(k->key() == Qt::Key_D) qDebug()<<"D"<<Qt::endl;
+        // 玩家1操作按键
+        if(k->key() == Qt::Key_W) rotate(0);
+        if(k->key() == Qt::Key_A) goLeft(0);
+        if(k->key() == Qt::Key_S) goDown(0);
+        if(k->key() == Qt::Key_D) goRight(0);
+
+        // 玩家2操作按键
     }
 }
 

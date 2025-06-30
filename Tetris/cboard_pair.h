@@ -77,7 +77,7 @@ private:
     std::queue<CTetrimino> shape[2];
     CTetrimino cur_block[2];
 
-    void init_board(); // 清空游戏面板
+    void initBoard(); // 清空游戏面板
     void initPos(int p); // 重置方块位置（下落位置）
 
     bool tryMove(int direction, int p); // 判断是否可以移动（无碰撞，方向左移为-1，右移为1，下移为0）
