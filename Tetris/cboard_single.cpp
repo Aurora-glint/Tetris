@@ -130,7 +130,8 @@ void Cboard_single::startGame()
     cur_block = getNewBlock(); // 获取初始方块
     next_block = getNewBlock(); // 获取下一个方块
     score = 0; // 清空分数
-    time=0;//清空时间
+    time = 0; // 清空时间
+    Isend = false; // 结束标志为false
 
     initPos(); // 设置下落位置
     for (int i = 0; i < 4; ++i) all_board[pos[0] + cur_block.X(i)][pos[1] + cur_block.Y(i)] = cur_block.getType(); // 将方块存入游戏面板中
@@ -173,10 +174,10 @@ void Cboard_single::rotate()
 
     for (int i = 0; i < 4; ++i)
     {
-        if (all_board[pos[0] + rotated.X(i)][pos[1] + rotated.Y(i) + p] != None_shape)
+        if (all_board[pos[0] + rotated.X(i)][pos[1] + rotated.Y(i) + p] != None_shape || pos[0] + rotated.X(i) >= ROW)
         {
             for (int j = 0; j < 4; ++j) all_board[pos[0] + cur_block.X(j)][pos[1] + cur_block.Y(j)] = cur_block.getType();
-            return; // 若有重合，不旋转
+            return; // 若有重合或下越界，不旋转
         }
     }
 
@@ -319,6 +320,7 @@ void Cboard_single::saveBegin()
 void Cboard_single::endGame()
 {
     Ispaused = true;
+    Isend = true;
 }
 
 void Cboard_single::paintEvent(QPaintEvent *event)
@@ -408,16 +410,19 @@ void Cboard_single::on_start_button_clicked(bool checked)
 
 void Cboard_single::on_pause_button_clicked(bool checked)
 {
-    if(!checked)
+    if (!Isend)
     {
-        Ispaused = true;
-        ui->pause_button->setText("继续");
-    }
-    else if(checked)
-    {
-        Ispaused = false;
-        qDebug() << "game continue " << Qt::endl;
-        ui->pause_button->setText("暂停 ");
+        if(!checked)
+        {
+            Ispaused = true;
+            ui->pause_button->setText("继续");
+        }
+        else if(checked)
+        {
+            Ispaused = false;
+            qDebug() << "game continue " << Qt::endl;
+            ui->pause_button->setText("暂停 ");
+        }
     }
 }
 

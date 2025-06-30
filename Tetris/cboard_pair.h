@@ -52,6 +52,7 @@ private:
     Ui::Cboard_pair *ui;
 
     bool Ispaused;
+    bool Isend;
 
     QPoint p1_o_ = QPoint(145, 60); // p1游戏框起始点
     QPoint p2_o_ = QPoint(900, 60); // p2游戏框起始点
