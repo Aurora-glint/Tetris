@@ -11,6 +11,8 @@ Cboard_pair::Cboard_pair(QWidget *parent)
     ui->setupUi(this);
 
     init_board(); // 初始化游戏面板
+
+    Ispaused = true;
 }
 
 Cboard_pair::~Cboard_pair()
@@ -287,12 +289,24 @@ CTetrimino Cboard_pair::getNewBlock()
     return CTetrimino(0); // 构造随机形状的方块并返回
 }
 
-void Cboard_pair::do_timechange()
+void Cboard_pair::do_timechange(int time)
 {
     qDebug()<<"do_timechange"<<Qt::endl;
-    time+=1;
-    ui->lcd_time->display(time); // 更新时间显示
+    if(!Ispaused)
+    {
+        this->time+=1;
+        qDebug()<<"time"<<this->time<<Qt::endl;
+    }
+    ui->lcd_time->display(this->time);//更新时间显示
 }
+
+void Cboard_pair::do_tickchange()
+    {
+
+        this->update(); // 每tick更新绘图
+        //qDebug()<<"do_tickchange"<<Qt::endl;//成功运行
+         //ui->lcd_score1->display(score); // 每tick更新分数
+    }//每tick
 
 void Cboard_pair::p_setDifficulty(Difficulty diff)
 {
@@ -370,3 +384,40 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
         if(k->key() == Qt::Key_D) qDebug()<<"D"<<Qt::endl;
     }
 }
+
+void Cboard_pair::on_start_button_p_clicked(bool checked)
+{
+
+        Ispaused = false;
+        ui->pause_button_p->setChecked(true);
+        ui->pause_button_p->setText("暂停 ");
+        if(!checked)
+        {
+            ui->start_button_p->setText("开始");
+            time = 0;
+        }
+        else if(checked)
+        {
+            ui->start_button_p->setText("重新开始");
+        }
+
+        qDebug() << "game started " << Qt::endl;
+        startGame();
+
+}
+
+void Cboard_pair::on_pause_button_p_clicked(bool checked)
+{
+    if(!checked)
+    {
+        Ispaused = true;
+        ui->pause_button_p->setText("继续");
+    }
+    else if(checked)
+    {
+        Ispaused = false;
+        qDebug() << "game continue " << Qt::endl;
+        ui->pause_button_p->setText("暂停 ");
+    }
+}
+
