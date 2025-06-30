@@ -75,7 +75,6 @@ private:
     QBasicTimer timer;
     int id_t = startTimer(30);
     int id = startTimer(1000);
-    int id_1 = startTimer(3000);
     int id_crasy = startTimer(200);
     int id_hard = startTimer(500);
 

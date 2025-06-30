@@ -23,7 +23,7 @@ void Cboard_pair::on_back_menu_button_p_clicked()
     emit back();
     this->hide();
     // 调用暂停
-    //on_pause_button_clicked(0);
+    // on_pause_button_clicked(0);
     qDebug() << "back signal launched " << Qt::endl;
 }
 
@@ -62,11 +62,14 @@ void Cboard_pair::paintEvent(QPaintEvent *event)
     }
 
     // 刷新下一个方块预览图
-    // for (int i = 0; i < 4; ++i)
-    // {
-    //     one_block.setRect(10 + 20 * next_block.Y(i), 30 + 20 * next_block.X(i), 20, 20);
-    //     paint_one_block(painter, one_block, next_block.getType());
-    // }
+    for (int i = 0; i < 4; ++i)
+    {
+        one_block.setRect(10 + 20 * shape[0].front().Y(i), 30 + 20 * shape[0].front().X(i), 20, 20);
+        paint_one_block(painter, one_block, shape[0].front().getType());
+
+        one_block.setRect(1400 + 20 * shape[1].front().Y(i), 30 + 20 * shape[1].front().X(i), 20, 20);
+        paint_one_block(painter, one_block, shape[1].front().getType());
+    }
 }
 
 void Cboard_pair::paint_one_block(QPainter &painter, const QRect &one_block, const All_Shape shape)
@@ -268,6 +271,7 @@ void Cboard_pair::saveBegin(int p)
 
 void Cboard_pair::endGame()
 {
+    Ispaused = true;
     return;
 }
 
@@ -287,7 +291,7 @@ void Cboard_pair::do_timechange()
 {
     qDebug()<<"do_timechange"<<Qt::endl;
     time+=1;
-    ui->lcd_time->display(time);//更新时间显示
+    ui->lcd_time->display(time); // 更新时间显示
 }
 
 void Cboard_pair::p_setDifficulty(Difficulty diff)
@@ -308,7 +312,7 @@ void Cboard_pair::p_setDifficulty(Difficulty diff)
         break;
     }
 
-    ui->difficulty_label->setText(Difname);//设置pair文本难度显示
+    ui->difficulty_label->setText(Difname); // 设置pair文本难度显示
 }
 
 
@@ -335,7 +339,7 @@ void Cboard_pair::changeDifficulty()
         break;
     }
 
-    ui->difficulty_label->setText(Difname);//设置single难度文本显示
+    ui->difficulty_label->setText(Difname); // 设置single难度文本显示
 }
 
 void Cboard_pair::on_difchange_button_p_clicked(bool checked)
