@@ -80,7 +80,7 @@ QPushButton{
        <bool>true</bool>
       </property>
       <property name="focusPolicy">
-       <enum>Qt::FocusPolicy::TabFocus</enum>
+       <enum>Qt::FocusPolicy::NoFocus</enum>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton:checked {

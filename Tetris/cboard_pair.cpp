@@ -387,6 +387,7 @@ void Cboard_pair::on_difchange_button_p_clicked(bool checked)
 // 监听按键事件
 void Cboard_pair::keyPressEvent(QKeyEvent *k)
 {
+    if (k->key() == Qt::Key_Space) on_pause_button_p_clicked(Ispaused);
     if (Ispaused == true)
     {
         if (k->key() == Qt::Key_Escape)
@@ -408,6 +409,10 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
         if(k->key() == Qt::Key_D) goRight(0);
 
         // 玩家2操作按键
+        if(k->key() == Qt::Key_Up) rotate(1);
+        if(k->key() == Qt::Key_Left) goLeft(1);
+        if(k->key() == Qt::Key_Down) goDown(1);
+        if(k->key() == Qt::Key_Right) goRight(1);
     }
 }
 
