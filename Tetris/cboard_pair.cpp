@@ -477,5 +477,3 @@ void Cboard_pair::on_pause_button_p_clicked(bool checked)
         }
     }
 }
-
-
