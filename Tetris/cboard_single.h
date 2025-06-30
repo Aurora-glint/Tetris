@@ -23,11 +23,10 @@ public:
     explicit Cboard_single(QWidget *parent = nullptr);
     ~Cboard_single();
 
-    bool Isend;
-    bool Ispaused;
-    //暂停状态标志
-    void keyPressEvent(QKeyEvent *k)override;
-    //监听按键事件
+    bool Isend; // 游戏结束标志
+    bool Ispaused; // 暂停状态标志
+
+    void keyPressEvent(QKeyEvent *k)override; // 监听按键事件
 
     const QString buttonstyle = "QPushButton {"
                                 "   background-color: #2980b9;"
@@ -69,7 +68,6 @@ private slots:
 
     void on_difchange_button_clicked(bool checked);//点击切换难度按钮
 
-
 private:
     Ui::Cboard_single *ui;
 
@@ -83,13 +81,6 @@ private:
     int id = startTimer(1000);
     int id_crazy = startTimer(200);
     int id_hard = startTimer(500);
-
-//方块颜色设置，可根据爱好修改(16进制)
-    // static constexpr QRgb colorTable[8]
-    //     {
-    //         0x000000,0xCC6666,0x66CC66,0x6666CC,
-    //         0xCCCC66,0xCC66CC,0x66CCCC,0xDAAA00
-    //     };
 
 // 以下为郝润熙所写
 public slots:

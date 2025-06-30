@@ -28,9 +28,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this->widgets, SIGNAL(time_hard()), this->widgetp, SLOT(do_time_hard())); // 关联time_hard信号和pair::do_time_hard槽函数
     connect(this->widgets, SIGNAL(time_crazy()), this->widgetp, SLOT(do_time_crazy())); // 关联time_crazy信号和pair::do_time_crazy槽函数
 
-    group->addButton(ui->EasyradioButton,0);
-    group->addButton(ui->HardradioButton,1);
-    group->addButton(ui->CrazyradioButton,2);
+    group->addButton(ui->EasyradioButton, 0);
+    group->addButton(ui->HardradioButton, 1);
+    group->addButton(ui->CrazyradioButton, 2);
 
     // 优化后的状态监听
     connect(group, &QButtonGroup::buttonToggled,
@@ -83,13 +83,10 @@ void MainWindow::do_quit_program()
 void MainWindow::on_exit_button_clicked()
 {
     emit quit();
-    qDebug() << "quit signal emitted " << Qt::endl;
 }
 
 void MainWindow::setDifficulty(Difficulty diff)
 {
-    //QString Difname;
-
     switch(diff)
     {
     case 0:
@@ -102,13 +99,10 @@ void MainWindow::setDifficulty(Difficulty diff)
         ui->CrazyradioButton->setChecked(true);
         break;
     }
-
 }
 
 void MainWindow::on_pairbutton_clicked()
 {
     this->hide();
     widgetp->show();
-   // p_setDifficulty(widgetp->getDiff)
 }
-

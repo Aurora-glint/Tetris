@@ -29,19 +29,14 @@ Cboard_single::~Cboard_single()
 void Cboard_single::on_quit_game_clicked()
 {
     emit quit();
-    qDebug() << "quit signal launched " << Qt::endl;
 }
-
 
 void Cboard_single::on_back_menu_button_clicked()
 {
     emit back();
     this->hide();
-    // 调用暂停
     on_pause_button_clicked(0);
-    qDebug() << "back signal launched " << Qt::endl;
 }
-
 
 // 监听按键事件
 void Cboard_single::keyPressEvent(QKeyEvent *k)
@@ -70,27 +65,27 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
 // 计时器达到周期后处理事件
 void Cboard_single::timerEvent(QTimerEvent *event)
 {
-        if((event->timerId() == id))
+    if((event->timerId() == id))
+    {
+        emit timechange(time); // 每秒发出timechange信号
+        if(!Ispaused)
         {
-            emit timechange(time);//每秒发出timechange信号
-            if(!Ispaused)
-            {
-                time += 1; // 非暂停时，每秒存活时间加一
-            }
+            time += 1; // 非暂停时，每秒存活时间加一
         }
+    }
 
-        if((event->timerId() == id_t )) // 30毫秒事件
-        {
-            emit tick();//每30毫秒发出timechange信号
-        }
-        if((event->timerId() == id_hard )) // hard事件
-        {
-            emit time_hard();//
-        }
-        if((event->timerId() == id_crazy )) // crazy事件
-        {
-            emit time_crazy();//
-        }
+    if((event->timerId() == id_t )) // 30毫秒事件
+    {
+        emit tick(); // 每30毫秒发出timechange信号
+    }
+    if((event->timerId() == id_hard )) // hard事件
+    {
+        emit time_hard();
+    }
+    if((event->timerId() == id_crazy )) // crazy事件
+    {
+        emit time_crazy();
+    }
 
     if(!Ispaused)
     {
@@ -192,17 +187,17 @@ void Cboard_single::changeDifficulty()
     switch(curDifficulty)
     {
         case 0:
-            Difname="Normal";
+            Difname = "Normal";
             break;
         case 1:
-            Difname="Hard";
+            Difname = "Hard";
             break;
         case 2:
-            Difname="Crazy";
+            Difname = "Crazy";
             break;
     }
 
-    ui->difficulty_label->setText(Difname);//设置single难度文本显示
+    ui->difficulty_label->setText(Difname); // 设置single难度文本显示
 }
 
 // 判断移动位置是否会发生碰撞或越界
@@ -359,35 +354,35 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     }
 }
 
-void Cboard_single::paint_one_block(QPainter &painter,const QRect &one_block,const All_Shape shape)
+void Cboard_single::paint_one_block(QPainter &painter, const QRect &one_block, const All_Shape shape)
 {
-    painter.fillRect(one_block,Qt::gray);
+    painter.fillRect(one_block, Qt::gray);
 
     switch((int)shape)
     {
     case 0:
-        painter.fillRect(one_block,Qt::black);
+        painter.fillRect(one_block, Qt::black);
         break;
     case 1:
-        painter.fillRect(one_block,Qt::gray);
+        painter.fillRect(one_block, Qt::gray);
         break;
     case 2:
-        painter.fillRect(one_block,Qt::yellow);
+        painter.fillRect(one_block, Qt::yellow);
         break;
     case 3:
-        painter.fillRect(one_block,Qt::green);
+        painter.fillRect(one_block, Qt::green);
         break;
     case 4:
-        painter.fillRect(one_block,Qt::cyan);
+        painter.fillRect(one_block, Qt::cyan);
         break;
     case 5:
-        painter.fillRect(one_block,Qt::blue);
+        painter.fillRect(one_block, Qt::blue);
         break;
     case 6:
-        painter.fillRect(one_block,Qt::magenta);
+        painter.fillRect(one_block, Qt::magenta);
         break;
     case 7:
-        painter.fillRect(one_block,Qt::red);
+        painter.fillRect(one_block, Qt::red);
         break;
     }
 
@@ -409,7 +404,6 @@ void Cboard_single::on_start_button_clicked(bool checked)
         ui->start_button->setText("重新开始");
     }
 
-    qDebug() << "game started " << Qt::endl;
     startGame();
 }
 
@@ -425,7 +419,6 @@ void Cboard_single::on_pause_button_clicked(bool checked)
         else if(checked)
         {
             Ispaused = false;
-            qDebug() << "game continue " << Qt::endl;
             ui->pause_button->setText("暂停 ");
         }
     }
