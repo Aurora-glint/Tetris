@@ -3,7 +3,6 @@
 #include "CTetrimino.h"
 #include <QKeyEvent>
 
-
 Cboard_pair::Cboard_pair(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Cboard_pair)
@@ -112,7 +111,7 @@ void Cboard_pair::startGame()
 {
     score[0] = score[1] = 0;
     initBoard();
-    Isend = false;
+    Isend[0] = Isend[1] = false;
 
     cur_block[0] = cur_block[1] = getNewBlock();
     pushShape();
@@ -122,28 +121,38 @@ void Cboard_pair::startGame()
 
 void Cboard_pair::goDown(int p)
 {
-    if (tryMove(0, p))
+    if (!Isend[p])
     {
-        pos[p][0]++;
-        for (int i = 0; i < 4; ++i) board[p][pos[p][0] + cur_block[p].X(i)][pos[p][1] + cur_block[p].Y(i)] = cur_block[p].getType();
+        if (tryMove(0, p))
+        {
+            pos[p][0]++;
+            for (int i = 0; i < 4; ++i) board[p][pos[p][0] + cur_block[p].X(i)][pos[p][1] + cur_block[p].Y(i)] = cur_block[p].getType();
+        }
+        else saveBegin(p);
     }
-    else saveBegin(p);
 }
 
 void Cboard_pair::goLeft(int p)
 {
-    if (tryMove(-1, p)) pos[p][1]--;
-    for (int i = 0; i < 4; ++i) board[p][pos[p][0] + cur_block[p].X(i)][pos[p][1] + cur_block[p].Y(i)] = cur_block[p].getType();
+    if (!Isend[p])
+    {
+        if (tryMove(-1, p)) pos[p][1]--;
+        for (int i = 0; i < 4; ++i) board[p][pos[p][0] + cur_block[p].X(i)][pos[p][1] + cur_block[p].Y(i)] = cur_block[p].getType();
+    }
 }
 
 void Cboard_pair::goRight(int p)
 {
-    if (tryMove(1, p)) pos[p][1]++;
-    for (int i = 0; i < 4; ++i) board[p][pos[p][0] + cur_block[p].X(i)][pos[p][1] + cur_block[p].Y(i)] = cur_block[p].getType();
+    if (!Isend[p])
+    {
+        if (tryMove(1, p)) pos[p][1]++;
+        for (int i = 0; i < 4; ++i) board[p][pos[p][0] + cur_block[p].X(i)][pos[p][1] + cur_block[p].Y(i)] = cur_block[p].getType();
+    }
 }
 
 void Cboard_pair::rotate(int p)
 {
+    if (Isend[p]) return;
     CTetrimino rotated = cur_block[p].getRotatedLeft(); // 得到旋转后的图形
     int py = 0;
 
@@ -262,7 +271,7 @@ void Cboard_pair::saveBegin(int p)
     // 判断游戏是否结束
     if (down < 4)
     {
-        endGame();
+        endGame(p);
         return;
     }
 
@@ -273,10 +282,10 @@ void Cboard_pair::saveBegin(int p)
     if (shape[p].empty()) pushShape();
 }
 
-void Cboard_pair::endGame()
+void Cboard_pair::endGame(int p)
 {
-    Ispaused = true;
-    Isend = true;
+    Isend[p] = true;
+    if (Isend[0] && Isend[1]) Ispaused = true;
 }
 
 void Cboard_pair::pushShape()
@@ -329,7 +338,7 @@ void Cboard_pair::do_tickchange()
     this->update(); // 每tick更新绘图
     ui->lcd_score1->display(score[0]); // 每tick更新分数
     ui->lcd_score2->display(score[1]); // 每tick更新分数
-}//每tick
+} // 每tick
 
 void Cboard_pair::p_setDifficulty(Difficulty diff)
 {
@@ -392,14 +401,13 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
     {
             k->ignore(); // 忽视该按键事件
     }
-
     else
     {
         qDebug() << "Key pressed:" << k->key();
 
         switch(k->key())
         {
- // 玩家1操作按键
+        // 玩家1操作按键
         case Qt::Key_W:
             rotate(0);
             break;
@@ -413,8 +421,7 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
             goRight(0);
             break;
 
-
-// 玩家2操作按键
+        // 玩家2操作按键
         case Qt::Key_Up:
             rotate(1);
             break;
@@ -430,33 +437,30 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
         default:
             QWidget::keyPressEvent(k); // 其他按键传递给父类
         }
-
     }
 }
 
 void Cboard_pair::on_start_button_p_clicked(bool checked)
 {
+    Ispaused = false;
+    ui->pause_button_p->setChecked(true);
+    ui->pause_button_p->setText("暂停 ");
+    if(!checked)
+    {
+        ui->start_button_p->setText("开始");
+        time = 0;
+    }
+    else if(checked)
+    {
+        ui->start_button_p->setText("重新开始");
+    }
 
-        Ispaused = false;
-        ui->pause_button_p->setChecked(true);
-        ui->pause_button_p->setText("暂停 ");
-        if(!checked)
-        {
-            ui->start_button_p->setText("开始");
-            time = 0;
-        }
-        else if(checked)
-        {
-            ui->start_button_p->setText("重新开始");
-        }
-
-        startGame();
-
+    startGame();
 }
 
 void Cboard_pair::on_pause_button_p_clicked(bool checked)
 {
-    if (!Isend)
+    if (!Isend[0] || !Isend[1])
     {
         if(!checked)
         {

@@ -13,7 +13,7 @@
         <file>neko22.ico</file>
     </qresource>
     <qresource prefix="/Sound">
-        <file>1447_magic-wand-01.wav</file>
+        <file>magic-wand.wav</file>
         <file>down.wav</file>
         <file>gameover.wav</file>
         <file>remove.wav</file>

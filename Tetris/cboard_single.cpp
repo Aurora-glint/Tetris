@@ -20,19 +20,15 @@ Cboard_single::Cboard_single(QWidget *parent)
 
     audiooutput->setVolume(0.8f);
 
-
     player_0->setSource(QUrl("qrc:/Sound/down.wav"));
-    player_0->setLoops(1);
-
 
     player_1->setSource(QUrl("qrc:/Sound/remove.wav"));
 
+    player_2->setSource(QUrl("qrc:/Sound/remove.wav"));
 
-    player_2->setSource(QUrl("qrc:/Sound/gameover.wav"));
+    player_3->setSource(QUrl("qrc:/Sound/magic-wand.wav"));
 
-
-
-
+    player_end->setSource(QUrl("qrc:/Sound/gameover.wav"));
 }
 
 Cboard_single::~Cboard_single()
@@ -356,6 +352,8 @@ void Cboard_single::endGame()
 {
     Ispaused = true;
     Isend = true;
+    player_end->setAudioOutput(audiooutput);
+    player_end->play();
 }
 
 void Cboard_single::paintEvent(QPaintEvent *event)

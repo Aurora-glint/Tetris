@@ -123,7 +123,7 @@ private:
     QMediaPlayer *player_2 = new QMediaPlayer;
     QMediaPlayer *player_3 = new QMediaPlayer;
     QAudioOutput *audiooutput = new QAudioOutput;
-
+    QMediaPlayer *player_end = new QMediaPlayer;
 
 public:
     void setDifficulty(Difficulty diff); // single游戏难度设置

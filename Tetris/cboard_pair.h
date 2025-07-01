@@ -52,7 +52,7 @@ private:
     Ui::Cboard_pair *ui;
 
     bool Ispaused;
-    bool Isend;
+    bool Isend[2];
 
     QPoint p1_o_ = QPoint(145, 60); // p1游戏框起始点
     QPoint p2_o_ = QPoint(900, 60); // p2游戏框起始点
@@ -87,7 +87,7 @@ private:
     bool tryMove(int direction, int p); // 判断是否可以移动（无碰撞，方向左移为-1，右移为1，下移为0）
     bool isDelete(int line, int p); // 判断某一行是否需要消除
     void saveBegin(int p); // 保存下落到底的方块并进行消行，同时开始下一个方块的下落
-    void endGame(); // 游戏结束
+    void endGame(int p); // 游戏结束
 
     void pushShape(); // 产生随机形状
 
