@@ -26,7 +26,9 @@ Cboard_single::Cboard_single(QWidget *parent)
 
     player_2->setSource(QUrl("qrc:/Sound/remove.wav"));
 
-    player_3->setSource(QUrl("qrc:/Sound/magic-wand.wav"));
+    player_3->setSource(QUrl("qrc:/Sound/remove.wav"));
+
+    player_4->setSource(QUrl("qrc:/Sound/magic-wand.wav"));
 
     player_end->setSource(QUrl("qrc:/Sound/gameover.wav"));
 }
@@ -51,24 +53,36 @@ void Cboard_single::on_back_menu_button_clicked()
 // 监听按键事件
 void Cboard_single::keyPressEvent(QKeyEvent *k)
 {
+    if (k->key() == Qt::Key_Space) on_pause_button_clicked(Ispaused);
     if (Ispaused == true)
     {
-        if (k->key() == Qt::Key_Escape)
-        {
-            Ispaused = false; // 关闭暂停
-            k->accept();
-        }
-        else
-        {
             k->ignore(); // 忽视该按键事件
-        }
     }
     else
-    {
+    {/*
         if(k->key() == Qt::Key_W) rotate();
         if(k->key() == Qt::Key_A) goLeft();
         if(k->key() == Qt::Key_S) goDown();
         if(k->key() == Qt::Key_D) goRight();
+        */
+        switch(k->key())
+        {
+            // 玩家1操作按键
+        case Qt::Key_W:
+            rotate();
+            break;
+        case Qt::Key_A:
+            goLeft();
+            break;
+        case Qt::Key_S:
+            goDown();
+            break;
+        case Qt::Key_D:
+            goRight();
+            break;
+        default:
+            QWidget::keyPressEvent(k); // 其他按键传递给父类
+        }
     }
 }
 
@@ -282,9 +296,12 @@ void Cboard_single::saveBegin()
         if (line < down) down = line;
     }
     score += 10; // 每成功下落一个方块，得分加10
+
+    audiooutput->setVolume(0.9);
     player_0->setAudioOutput(audiooutput);
     qDebug()<<"sonud_0 !"<<Qt::endl;
     player_0->play();
+    //audiooutput->setVolume(0.1);
 
     // 判断是否需要消行
     int delete_num = 0;
@@ -304,6 +321,8 @@ void Cboard_single::saveBegin()
         }
     }
      score += 100 * delete_num;
+
+    //audiooutput->setVolume(0.1);//音量校准
 
     switch(delete_num)
     {
@@ -325,6 +344,9 @@ void Cboard_single::saveBegin()
         score += 125;
         break;
     case 4:
+        qDebug()<<"sonud_4 !"<<Qt::endl;
+        player_4->setAudioOutput(audiooutput);
+        player_4->play();
         score += 200;
         break;
     }

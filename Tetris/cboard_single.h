@@ -118,10 +118,12 @@ private:
     QPoint o_ = QPoint(100,60);//游戏框起始点
     QPoint s_ = o_ + QPoint(450,750);//游戏框右下点
 
+
     QMediaPlayer *player_0 = new QMediaPlayer;
     QMediaPlayer *player_1 = new QMediaPlayer;
     QMediaPlayer *player_2 = new QMediaPlayer;
     QMediaPlayer *player_3 = new QMediaPlayer;
+    QMediaPlayer *player_4 = new QMediaPlayer;
     QAudioOutput *audiooutput = new QAudioOutput;
     QMediaPlayer *player_end = new QMediaPlayer;
 

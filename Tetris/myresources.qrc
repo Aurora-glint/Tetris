@@ -17,5 +17,6 @@
         <file>down.wav</file>
         <file>gameover.wav</file>
         <file>remove.wav</file>
+        <file>magic-wand.wav</file>
     </qresource>
 </RCC>
