@@ -118,6 +118,13 @@ private:
     QPoint o_ = QPoint(100,60);//游戏框起始点
     QPoint s_ = o_ + QPoint(450,750);//游戏框右下点
 
+    QMediaPlayer *player_0 = new QMediaPlayer;
+    QMediaPlayer *player_1 = new QMediaPlayer;
+    QMediaPlayer *player_2 = new QMediaPlayer;
+    QMediaPlayer *player_3 = new QMediaPlayer;
+    QAudioOutput *audiooutput = new QAudioOutput;
+
+
 public:
     void setDifficulty(Difficulty diff); // single游戏难度设置
     Difficulty s_getDifficulty(); // 主页面获取single游戏难度
