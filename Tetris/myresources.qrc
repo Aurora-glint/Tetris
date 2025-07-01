@@ -11,6 +11,7 @@
         <file>tetrisbg.png</file>
         <file>neko.ico</file>
         <file>neko22.ico</file>
+        <file>MISC1139.ICO</file>
     </qresource>
     <qresource prefix="/Sound">
         <file>magic-wand.wav</file>

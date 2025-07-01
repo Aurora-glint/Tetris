@@ -51,6 +51,15 @@ void Cboard_pair::on_quit_game_p_clicked()
 void Cboard_pair::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this); // 作绘图区域
+
+
+    QPen penl(Qt::red); // penl绘制上界
+    penl.setStyle(Qt::DashLine);
+    painter.setPen(penl);
+    painter.drawLine(p1_o_ + QPoint(0,2*BLOCKSIZE), p1_o_ + QPoint(COL*BLOCKSIZE,2*BLOCKSIZE));
+    painter.drawLine(p2_o_ + QPoint(0,2*BLOCKSIZE), p2_o_ + QPoint(COL*BLOCKSIZE,2*BLOCKSIZE));
+
+
     QPen pen(Qt::black); // pen绘制边框
     painter.setPen(pen);
     QRectF frame1(p1_o_ , p1_s_);

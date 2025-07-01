@@ -159,7 +159,8 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -168,14 +169,22 @@
      <height>17</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menumenu">
+   <widget class="QMenu" name="menu">
     <property name="title">
-     <string>menu</string>
+     <string>帮助</string>
     </property>
+    <addaction name="actionhelp"/>
    </widget>
-   <addaction name="menumenu"/>
+   <addaction name="menu"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionhelp">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditFind"/>
+   </property>
+   <property name="text">
+    <string>how to play</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="myresources.qrc"/>

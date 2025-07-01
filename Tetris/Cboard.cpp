@@ -106,3 +106,13 @@ void MainWindow::on_pairbutton_clicked()
     this->hide();
     widgetp->show();
 }
+
+void MainWindow::on_actionhelp_triggered()
+{
+    qDebug()<<"help "<<Qt::endl;
+    QString helptitle = "游戏指南";
+    QString helpinfo = "单人游戏：使用A S D控制方块向左、下、右移动，W使方块旋转\n\n"
+                       "多人游戏：player1使用WASD，player2使用方向键⬆⬇⬅➡ ";
+    QMessageBox::information(this,helptitle,helpinfo);
+}
+
