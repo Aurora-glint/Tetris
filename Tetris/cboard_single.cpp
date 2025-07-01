@@ -26,7 +26,9 @@ Cboard_single::Cboard_single(QWidget *parent)
 
     player_2->setSource(QUrl("qrc:/Sound/remove.wav"));
 
-    player_3->setSource(QUrl("qrc:/Sound/magic-wand.wav"));
+    player_3->setSource(QUrl("qrc:/Sound/remove.wav"));
+
+    player_4->setSource(QUrl("qrc:/Sound/magic-wand.wav"));
 
     player_end->setSource(QUrl("qrc:/Sound/gameover.wav"));
 }
@@ -342,6 +344,9 @@ void Cboard_single::saveBegin()
         score += 125;
         break;
     case 4:
+        qDebug()<<"sonud_4 !"<<Qt::endl;
+        player_4->setAudioOutput(audiooutput);
+        player_4->play();
         score += 200;
         break;
     }

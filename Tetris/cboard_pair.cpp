@@ -16,6 +16,21 @@ Cboard_pair::Cboard_pair(QWidget *parent)
     Ispaused = true;
 
     time = 0;
+
+    audiooutput->setVolume(0.8f);
+
+    player_0->setSource(QUrl("qrc:/Sound/down.wav"));
+
+    player_1->setSource(QUrl("qrc:/Sound/remove.wav"));
+
+    player_2->setSource(QUrl("qrc:/Sound/remove.wav"));
+
+    player_3->setSource(QUrl("qrc:/Sound/remove.wav"));
+
+    player_4->setSource(QUrl("qrc:/Sound/magic-wand.wav"));
+
+    player_end->setSource(QUrl("qrc:/Sound/gameover.wav"));
+
 }
 
 Cboard_pair::~Cboard_pair()
@@ -235,6 +250,11 @@ void Cboard_pair::saveBegin(int p)
     }
     score[p] += 10; // 每成功下落一个方块，得分加10
 
+    audiooutput->setVolume(0.9);
+    player_0->setAudioOutput(audiooutput);
+    qDebug()<<"sonud_0 !"<<Qt::endl;
+    player_0->play();
+
     // 判断是否需要消行
     int delete_num = 0;
     for (int line = up; line >= down; --line)
@@ -255,9 +275,34 @@ void Cboard_pair::saveBegin(int p)
 
     // 获得分数
     score[p] += 100 * delete_num;
-    if (delete_num == 2) score[p] += 50;
-    else if (delete_num == 3) score[p] += 125;
-    else if (delete_num == 4) score[p] += 200;
+
+    switch(delete_num)
+    {
+    case 1:
+        qDebug()<<"sonud_1 !"<<Qt::endl;
+        player_1->setAudioOutput(audiooutput);
+        player_1->play();
+        break;
+    case 2:
+        qDebug()<<"sonud_2 !"<<Qt::endl;
+        player_2->setAudioOutput(audiooutput);
+        player_2->play();
+        score[p] += 50;
+        break;
+    case 3:
+        qDebug()<<"sonud_3 !"<<Qt::endl;
+        player_3->setAudioOutput(audiooutput);
+        player_3->play();
+        score[p] += 125;
+        break;
+    case 4:
+        qDebug()<<"sonud_4 !"<<Qt::endl;
+        player_4->setAudioOutput(audiooutput);
+        player_4->play();
+        score[p] += 200;
+        break;
+    }
+
 
     // 判断游戏是否结束
     if (down < 4)
@@ -277,6 +322,8 @@ void Cboard_pair::endGame()
 {
     Ispaused = true;
     Isend = true;
+    player_end->setAudioOutput(audiooutput);
+    player_end->play();
 }
 
 void Cboard_pair::pushShape()

@@ -123,6 +123,7 @@ private:
     QMediaPlayer *player_1 = new QMediaPlayer;
     QMediaPlayer *player_2 = new QMediaPlayer;
     QMediaPlayer *player_3 = new QMediaPlayer;
+    QMediaPlayer *player_4 = new QMediaPlayer;
     QAudioOutput *audiooutput = new QAudioOutput;
     QMediaPlayer *player_end = new QMediaPlayer;
 
