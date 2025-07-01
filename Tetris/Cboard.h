@@ -11,6 +11,11 @@
 
 #include <QMainWindow>
 #include <QButtonGroup>
+#include <QtMultimedia>
+#include <QSoundEffect>
+#include <QAudioOutput>
+#include <QMediaPlayer>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

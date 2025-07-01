@@ -18,8 +18,21 @@ Cboard_single::Cboard_single(QWidget *parent)
 
     Ispaused = true;
 
-    connect(this, SIGNAL(timechange(int)), this, SLOT(do_timechange())); // 关联timechnagne信号和dotimechange槽函数
-    connect(this, SIGNAL(tick()), this, SLOT(do_tickchange())); // 关联tick信号
+    audiooutput->setVolume(0.8f);
+
+
+    player_0->setSource(QUrl("qrc:/Sound/down.wav"));
+    player_0->setLoops(1);
+
+
+    player_1->setSource(QUrl("qrc:/Sound/remove.wav"));
+
+
+    player_2->setSource(QUrl("qrc:/Sound/gameover.wav"));
+
+
+
+
 }
 
 Cboard_single::~Cboard_single()
@@ -273,6 +286,9 @@ void Cboard_single::saveBegin()
         if (line < down) down = line;
     }
     score += 10; // 每成功下落一个方块，得分加10
+    player_0->setAudioOutput(audiooutput);
+    qDebug()<<"sonud_0 !"<<Qt::endl;
+    player_0->play();
 
     // 判断是否需要消行
     int delete_num = 0;
@@ -291,13 +307,38 @@ void Cboard_single::saveBegin()
             delete_num++;
         }
     }
+     score += 100 * delete_num;
 
+    switch(delete_num)
+    {
+    case 1:
+        qDebug()<<"sonud_1 !"<<Qt::endl;
+        player_1->setAudioOutput(audiooutput);
+        player_1->play();
+        break;
+    case 2:
+        qDebug()<<"sonud_2 !"<<Qt::endl;
+        player_2->setAudioOutput(audiooutput);
+        player_2->play();
+        score += 50;
+        break;
+    case 3:
+        qDebug()<<"sonud_3 !"<<Qt::endl;
+        player_3->setAudioOutput(audiooutput);
+        player_3->play();
+        score += 125;
+        break;
+    case 4:
+        score += 200;
+        break;
+    }
+/*
     // 获得分数
     score += 100 * delete_num;
     if (delete_num == 2) score += 50;
     else if (delete_num == 3) score += 125;
     else if (delete_num == 4) score += 200;
-
+*/
     // 判断游戏是否结束
     if (down < 4)
     {
