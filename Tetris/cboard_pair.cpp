@@ -395,7 +395,7 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
 
     else
     {
-        qDebug() << "Key pressed:" << k->key();
+        //qDebug() << "Key pressed:" << k->key();
 
         switch(k->key())
         {
