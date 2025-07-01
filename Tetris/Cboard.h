@@ -38,6 +38,7 @@ public:
 
 protected:
     void setDifficulty(Difficulty);//设置主窗口显示难度（与传入一致）
+
 signals:
     void quit();
 
