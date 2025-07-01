@@ -37,7 +37,6 @@ MainWindow::MainWindow(QWidget *parent)
             [=](QAbstractButton *btn, bool checked) {
                 if (checked) {
                     //  获取按钮信息
-                    QString btnText = btn->text();
                     int id = group->id(btn);
 
                     //  更新游戏设置
