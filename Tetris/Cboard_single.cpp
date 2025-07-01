@@ -1,5 +1,5 @@
-#include "cboard_single.h"
-#include "ui_cboard_single.h"
+#include "Cboard_single.h"
+#include "ui_Cboard_single.h"
 #include <QKeyEvent>
 #include <QFrame>
 
@@ -299,7 +299,7 @@ void Cboard_single::saveBegin()
 
     audiooutput->setVolume(0.9);
     player_0->setAudioOutput(audiooutput);
-    qDebug()<<"sonud_0 !"<<Qt::endl;
+
     player_0->play();
     //audiooutput->setVolume(0.1);
 
@@ -327,36 +327,29 @@ void Cboard_single::saveBegin()
     switch(delete_num)
     {
     case 1:
-        qDebug()<<"sonud_1 !"<<Qt::endl;
+
         player_1->setAudioOutput(audiooutput);
         player_1->play();
         break;
     case 2:
-        qDebug()<<"sonud_2 !"<<Qt::endl;
+
         player_2->setAudioOutput(audiooutput);
         player_2->play();
         score += 50;
         break;
     case 3:
-        qDebug()<<"sonud_3 !"<<Qt::endl;
+
         player_3->setAudioOutput(audiooutput);
         player_3->play();
         score += 125;
         break;
     case 4:
-        qDebug()<<"sonud_4 !"<<Qt::endl;
+
         player_4->setAudioOutput(audiooutput);
         player_4->play();
         score += 200;
         break;
     }
-/*
-    // 获得分数
-    score += 100 * delete_num;
-    if (delete_num == 2) score += 50;
-    else if (delete_num == 3) score += 125;
-    else if (delete_num == 4) score += 200;
-*/
     // 判断游戏是否结束
     if (down < 4)
     {

@@ -1,5 +1,5 @@
-#ifndef CBOARD_H
-#define CBOARD_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #ifndef ROW
 #define ROW 25
@@ -64,4 +64,4 @@ private:
 public:
 
 };
-#endif // CBOARD_H
+#endif // MAINWINDOW_H

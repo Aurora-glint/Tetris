@@ -1,5 +1,5 @@
-#include "cboard_pair.h"
-#include "ui_cboard_pair.h"
+#include "Cboard_pair.h"
+#include "ui_Cboard_pair.h"
 #include "CTetrimino.h"
 #include <QKeyEvent>
 
@@ -270,7 +270,7 @@ void Cboard_pair::saveBegin(int p)
 
     audiooutput->setVolume(0.9);
     player_0->setAudioOutput(audiooutput);
-    qDebug()<<"sonud_0 !"<<Qt::endl;
+
     player_0->play();
 
     // 判断是否需要消行
@@ -297,24 +297,24 @@ void Cboard_pair::saveBegin(int p)
     switch(delete_num)
     {
     case 1:
-        qDebug()<<"sonud_1 !"<<Qt::endl;
+
         player_1->setAudioOutput(audiooutput);
         player_1->play();
         break;
     case 2:
-        qDebug()<<"sonud_2 !"<<Qt::endl;
+
         player_2->setAudioOutput(audiooutput);
         player_2->play();
         score[p] += 50;
         break;
     case 3:
-        qDebug()<<"sonud_3 !"<<Qt::endl;
+
         player_3->setAudioOutput(audiooutput);
         player_3->play();
         score[p] += 125;
         break;
     case 4:
-        qDebug()<<"sonud_4 !"<<Qt::endl;
+
         player_4->setAudioOutput(audiooutput);
         player_4->play();
         score[p] += 200;
@@ -459,8 +459,6 @@ void Cboard_pair::keyPressEvent(QKeyEvent *k)
     }
     else
     {
-        //qDebug() << "Key pressed:" << k->key();
-
         switch(k->key())
         {
         // 玩家1操作按键

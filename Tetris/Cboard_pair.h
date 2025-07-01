@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "CTetrimino.h"
 #include <queue>
-#include "Cboard.h"
+#include "MainWindow.h"
 #include <QPainter>
 #include <QPaintEvent>
 #include <QPoint>

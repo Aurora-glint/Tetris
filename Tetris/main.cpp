@@ -1,4 +1,4 @@
-#include "Cboard.h"
+#include "MainWindow.h"
 
 #include <QApplication>
 
