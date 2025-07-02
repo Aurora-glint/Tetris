@@ -74,7 +74,7 @@ private:
     QAudioOutput *audiooutput = new QAudioOutput;
     QMediaPlayer *player_end = new QMediaPlayer;
 
-
+    void playMedia(int delete_num);
 
 // 游戏部分
 public slots:
