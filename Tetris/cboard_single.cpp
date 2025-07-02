@@ -346,10 +346,17 @@ void Cboard_single::endGame()
 void Cboard_single::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this); // 作绘图区域
+
+    QPen penl(Qt::red); // penl绘制上界
+    penl.setStyle(Qt::DashLine);
+    painter.setPen(penl);
+    painter.drawLine(o_ + QPoint(0,2*BLOCKSIZE), o_ + QPoint(COL*BLOCKSIZE,2*BLOCKSIZE));
+
     QPen pen(Qt::black); // pen绘制边框
     painter.setPen(pen);
     QRectF frame(o_ , s_);
     painter.drawRect(frame);
+
     QRect one_block;
 
     for (int r = 0; r < ROW; ++r)

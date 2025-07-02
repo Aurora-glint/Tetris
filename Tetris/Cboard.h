@@ -15,8 +15,8 @@
 #include <QSoundEffect>
 #include <QAudioOutput>
 #include <QMediaPlayer>
-
-
+#include <QDialog>
+#include <QMessageBox>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -52,6 +52,8 @@ private slots:
     void on_exit_button_clicked();//主窗口退出按钮
 
     void on_pairbutton_clicked();//跳转双人游戏按钮
+
+    void on_actionhelp_triggered();//帮助按钮槽函数
 
 private:
     Ui::MainWindow *ui;

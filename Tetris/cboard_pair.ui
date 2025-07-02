@@ -18,6 +18,10 @@
   <property name="windowTitle">
    <string>pair_game</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="myresources.qrc">
+    <normaloff>:/image/MISC1139.ICO</normaloff>:/image/MISC1139.ICO</iconset>
+  </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
@@ -339,6 +343,8 @@ QPushButton{
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="myresources.qrc"/>
+ </resources>
  <connections/>
 </ui>
