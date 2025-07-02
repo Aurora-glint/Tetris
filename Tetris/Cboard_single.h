@@ -10,7 +10,6 @@
 #include <QPaintEvent>
 #include "MainWindow.h"
 
-
 namespace Ui {
 class Cboard_single;
 }
@@ -82,7 +81,6 @@ private:
     int id_crazy = startTimer(200);
     int id_hard = startTimer(500);
 
-// 以下为郝润熙所写
 public slots:
     void startGame();
 
@@ -118,7 +116,6 @@ private:
     QPoint o_ = QPoint(100,60);//游戏框起始点
     QPoint s_ = o_ + QPoint(450,750);//游戏框右下点
 
-
     QMediaPlayer *player_0 = new QMediaPlayer;
     QMediaPlayer *player_1 = new QMediaPlayer;
     QMediaPlayer *player_2 = new QMediaPlayer;
@@ -127,6 +124,7 @@ private:
     QAudioOutput *audiooutput = new QAudioOutput;
     QMediaPlayer *player_end = new QMediaPlayer;
 
+    void playMedia(int delete_num);
 public:
     void setDifficulty(Difficulty diff); // single游戏难度设置
     Difficulty s_getDifficulty(); // 主页面获取single游戏难度

@@ -314,7 +314,8 @@ void Cboard_single::saveBegin()
             delete_num++;
         }
     }
-     score += 100 * delete_num;
+    playMedia(delete_num); // 播放音效
+
 
     //audiooutput->setVolume(0.1);//音量校准
 
@@ -344,6 +345,7 @@ void Cboard_single::saveBegin()
         score += 200;
         break;
     }
+
     // 判断游戏是否结束
     if (down < 4)
     {
@@ -480,6 +482,34 @@ void Cboard_single::on_pause_button_clicked(bool checked)
             Ispaused = false;
             ui->pause_button->setText("暂停 ");
         }
+    }
+}
+
+void Cboard_single::playMedia(int delete_num)
+{
+    audiooutput->setVolume(0.9);
+    player_0->setAudioOutput(audiooutput);
+    qDebug()<<"sonud_0 !"<<Qt::endl;
+    player_0->play();
+
+    switch(delete_num)
+    {
+    case 1:
+        player_1->setAudioOutput(audiooutput);
+        player_1->play();
+        break;
+    case 2:
+        player_2->setAudioOutput(audiooutput);
+        player_2->play();
+        break;
+    case 3:
+        player_3->setAudioOutput(audiooutput);
+        player_3->play();
+        break;
+    case 4:
+        player_4->setAudioOutput(audiooutput);
+        player_4->play();
+        break;
     }
 }
 

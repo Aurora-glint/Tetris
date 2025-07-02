@@ -138,6 +138,33 @@ void Cboard_pair::paint_one_block(QPainter &painter, const QRect &one_block, con
     if (shape != None_shape) painter.drawRect(one_block); // 绘制该方块
 }
 
+void Cboard_pair::playMedia(int delete_num)
+{
+    audiooutput->setVolume(0.9);
+    player_0->setAudioOutput(audiooutput);
+    player_0->play();
+
+    switch(delete_num)
+    {
+    case 1:
+        player_1->setAudioOutput(audiooutput);
+        player_1->play();
+        break;
+    case 2:
+        player_2->setAudioOutput(audiooutput);
+        player_2->play();
+        break;
+    case 3:
+        player_3->setAudioOutput(audiooutput);
+        player_3->play();
+        break;
+    case 4:
+        player_4->setAudioOutput(audiooutput);
+        player_4->play();
+        break;
+    }
+}
+
 void Cboard_pair::startGame()
 {
     score[0] = score[1] = 0;
@@ -275,10 +302,6 @@ void Cboard_pair::saveBegin(int p)
     }
     score[p] += 10; // 每成功下落一个方块，得分加10
 
-    audiooutput->setVolume(0.9);
-    player_0->setAudioOutput(audiooutput);
-
-    player_0->play();
 
     // 判断是否需要消行
     int delete_num = 0;
@@ -298,8 +321,11 @@ void Cboard_pair::saveBegin(int p)
         }
     }
 
+    playMedia(delete_num);
+
     // 获得分数
     score[p] += 100 * delete_num;
+
 
     switch(delete_num)
     {
@@ -327,6 +353,7 @@ void Cboard_pair::saveBegin(int p)
         score[p] += 200;
         break;
     }
+
 
 
     // 判断游戏是否结束
