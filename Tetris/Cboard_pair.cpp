@@ -53,7 +53,9 @@ void Cboard_pair::paintEvent(QPaintEvent *event)
 
     // 绘制背景图片
     QPainter painter_b(this);
-    QPixmap background(":/image/blurdessert.png");
+    QPixmap background(":/image/dessert.png");
+    // 设置透明度（0.0完全透明，1.0完全不透明）
+    painter_b.setOpacity(0.5); // 50%透明度
     painter_b.drawPixmap(rect(), background);
 
 

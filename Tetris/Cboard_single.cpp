@@ -377,6 +377,8 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     // 绘制背景图片
     QPainter painter_b(this);
     QPixmap background(":/image/daytime.png");
+    // 设置透明度（0.0完全透明，1.0完全不透明）
+    painter_b.setOpacity(0.5); // 50%透明度
     painter_b.drawPixmap(frame, background);
 
     QPainter painter(this); // 作绘图区域
