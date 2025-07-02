@@ -39,6 +39,18 @@ public:
 protected:
     void setDifficulty(Difficulty);//设置主窗口显示难度（与传入一致）
 
+protected:
+    //绘制背景图片
+    void paintEvent(QPaintEvent *event) override
+    {
+        Q_UNUSED(event);
+
+        // 绘制背景图片
+        QPainter painter(this);
+        QPixmap background(":/image/deepocean.png");
+        painter.drawPixmap(rect(), background);
+    }
+
 signals:
     void quit();
 

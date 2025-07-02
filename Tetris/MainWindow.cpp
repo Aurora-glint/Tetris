@@ -45,6 +45,8 @@ MainWindow::MainWindow(QWidget *parent)
                 }
             });
     ui->EasyradioButton->setChecked(true);
+
+   // ui->single_button->setBackgroundRole(QPalette::Button);
 }
 
 MainWindow::~MainWindow()

@@ -50,6 +50,13 @@ void Cboard_pair::on_quit_game_p_clicked()
 
 void Cboard_pair::paintEvent(QPaintEvent *event)
 {
+
+    // 绘制背景图片
+    QPainter painter_b(this);
+    QPixmap background(":/image/blurdessert.png");
+    painter_b.drawPixmap(rect(), background);
+
+
     QPainter painter(this); // 作绘图区域
 
 

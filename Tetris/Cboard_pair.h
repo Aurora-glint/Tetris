@@ -76,7 +76,7 @@ private:
 
 
 
-// 游戏部分
+// 游戏运行逻辑部分
 public slots:
     void startGame(); // 开始游戏按键
 

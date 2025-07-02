@@ -12,6 +12,11 @@
         <file>neko.ico</file>
         <file>neko22.ico</file>
         <file>MISC1139.ICO</file>
+        <file>daytime.png</file>
+        <file>deepocean.png</file>
+        <file>dessert.png</file>
+        <file>nighttime.png</file>
+        <file>blurdessert.png</file>
     </qresource>
     <qresource prefix="/Sound">
         <file>magic-wand.wav</file>

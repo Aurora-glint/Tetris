@@ -59,15 +59,9 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
             k->ignore(); // 忽视该按键事件
     }
     else
-    {/*
-        if(k->key() == Qt::Key_W) rotate();
-        if(k->key() == Qt::Key_A) goLeft();
-        if(k->key() == Qt::Key_S) goDown();
-        if(k->key() == Qt::Key_D) goRight();
-        */
+    {
         switch(k->key())
         {
-            // 玩家1操作按键
         case Qt::Key_W:
             rotate();
             break;
@@ -373,6 +367,16 @@ void Cboard_single::endGame()
 
 void Cboard_single::paintEvent(QPaintEvent *event)
 {
+
+    Q_UNUSED(event);
+
+    QRect frame(o_ , s_);
+
+    // 绘制背景图片
+    QPainter painter_b(this);
+    QPixmap background(":/image/daytime.png");
+    painter_b.drawPixmap(frame, background);
+
     QPainter painter(this); // 作绘图区域
 
     QPen penl(Qt::red); // penl绘制上界
@@ -382,7 +386,7 @@ void Cboard_single::paintEvent(QPaintEvent *event)
 
     QPen pen(Qt::black); // pen绘制边框
     painter.setPen(pen);
-    QRectF frame(o_ , s_);
+
     painter.drawRect(frame);
 
     QRect one_block;
