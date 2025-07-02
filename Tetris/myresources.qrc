@@ -1,22 +1,11 @@
 <RCC>
     <qresource prefix="/image">
-        <file>I.png</file>
-        <file>J.png</file>
-        <file>L.png</file>
-        <file>O.png</file>
-        <file>S.png</file>
-        <file>T.png</file>
-        <file>Z.png</file>
-        <file>Blank.png</file>
-        <file>tetrisbg.png</file>
         <file>neko.ico</file>
         <file>neko22.ico</file>
         <file>MISC1139.ICO</file>
         <file>daytime.png</file>
         <file>deepocean.png</file>
         <file>dessert.png</file>
-        <file>nighttime.png</file>
-        <file>blurdessert.png</file>
     </qresource>
     <qresource prefix="/Sound">
         <file>magic-wand.wav</file>
