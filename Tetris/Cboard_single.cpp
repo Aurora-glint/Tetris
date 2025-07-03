@@ -491,7 +491,6 @@ void Cboard_single::playMedia(int delete_num)
 {
     audiooutput->setVolume(0.9);
     player_0->setAudioOutput(audiooutput);
-    qDebug()<<"sonud_0 !"<<Qt::endl;
     player_0->play();
 
     switch(delete_num)
