@@ -54,10 +54,7 @@ void Cboard_single::on_back_menu_button_clicked()
 void Cboard_single::keyPressEvent(QKeyEvent *k)
 {
     if (k->key() == Qt::Key_Space) on_pause_button_clicked(Ispaused);
-    if (Ispaused == true)
-    {
-            k->ignore(); // 忽视该按键事件
-    }
+    if (Ispaused == true) k->ignore(); // 忽视该按键事件
     else
     {
         switch(k->key())
@@ -130,11 +127,9 @@ void Cboard_single::do_timechange()
 void Cboard_single::do_tickchange()
 {
     this->update(); // 每tick更新绘图
-
     ui->lcd_score->display(score); // 每tick更新分数
 }; // 响应每tick变化
 
-// 以下为郝润熙所写
 void Cboard_single::startGame()
 {
     initBoard(); // 清空游戏面板
@@ -291,12 +286,6 @@ void Cboard_single::saveBegin()
     }
     score += 10; // 每成功下落一个方块，得分加10
 
-    audiooutput->setVolume(0.9);
-    player_0->setAudioOutput(audiooutput);
-
-    player_0->play();
-    //audiooutput->setVolume(0.1);
-
     // 判断是否需要消行
     int delete_num = 0;
     for (int line = up; line >= down; --line)
@@ -314,35 +303,21 @@ void Cboard_single::saveBegin()
             delete_num++;
         }
     }
+
     playMedia(delete_num); // 播放音效
 
-
-    //audiooutput->setVolume(0.1);//音量校准
-
+    // 获得消行分数
+    score += 100 * delete_num;
     switch(delete_num)
     {
-    case 1:
-
-        player_1->setAudioOutput(audiooutput);
-        player_1->play();
-        break;
     case 2:
-
-        player_2->setAudioOutput(audiooutput);
-        player_2->play();
         score += 50;
         break;
     case 3:
-
-        player_3->setAudioOutput(audiooutput);
-        player_3->play();
         score += 125;
         break;
     case 4:
-
-        player_4->setAudioOutput(audiooutput);
-        player_4->play();
-        score += 200;
+        score += 250;
         break;
     }
 
@@ -369,7 +344,6 @@ void Cboard_single::endGame()
 
 void Cboard_single::paintEvent(QPaintEvent *event)
 {
-
     Q_UNUSED(event);
 
     QRect frame(o_ , s_);
@@ -377,8 +351,7 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     // 绘制背景图片
     QPainter painter_b(this);
     QPixmap background(":/image/daytime.png");
-    // 设置透明度（0.0完全透明，1.0完全不透明）
-    painter_b.setOpacity(0.5); // 50%透明度
+    painter_b.setOpacity(0.5); // 设置透明度为50%（0.0完全透明，1.0完全不透明）
     painter_b.drawPixmap(frame, background);
 
     QPainter painter(this); // 作绘图区域
@@ -386,7 +359,7 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     QPen penl(Qt::red); // penl绘制上界
     penl.setStyle(Qt::DashLine);
     painter.setPen(penl);
-    painter.drawLine(o_ + QPoint(0,2*BLOCKSIZE), o_ + QPoint(COL*BLOCKSIZE,2*BLOCKSIZE));
+    painter.drawLine(o_ + QPoint(0, 2 * BLOCKSIZE), o_ + QPoint(COL * BLOCKSIZE, 2 * BLOCKSIZE));
 
     QPen pen(Qt::black); // pen绘制边框
     painter.setPen(pen);
@@ -491,7 +464,6 @@ void Cboard_single::playMedia(int delete_num)
 {
     audiooutput->setVolume(0.9);
     player_0->setAudioOutput(audiooutput);
-    qDebug()<<"sonud_0 !"<<Qt::endl;
     player_0->play();
 
     switch(delete_num)

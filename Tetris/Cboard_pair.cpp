@@ -11,10 +11,8 @@ Cboard_pair::Cboard_pair(QWidget *parent)
 
     initBoard(); // 初始化游戏面板
     score[0] = score[1] = 0;
-
-    Ispaused = true;
-
     time = 0;
+    Ispaused = true;
 
     audiooutput->setVolume(0.8f);
 
@@ -29,7 +27,6 @@ Cboard_pair::Cboard_pair(QWidget *parent)
     player_4->setSource(QUrl("qrc:/Sound/magic-wand.wav"));//四行
 
     player_end->setSource(QUrl("qrc:/Sound/explode1.wav"));//结束音效
-
 }
 
 Cboard_pair::~Cboard_pair()
@@ -50,24 +47,19 @@ void Cboard_pair::on_quit_game_p_clicked()
 
 void Cboard_pair::paintEvent(QPaintEvent *event)
 {
-
     // 绘制背景图片
     QPainter painter_b(this);
     QPixmap background(":/image/dessert.png");
-    // 设置透明度（0.0完全透明，1.0完全不透明）
-    painter_b.setOpacity(0.5); // 50%透明度
+    painter_b.setOpacity(0.5); // 设置透明度为50%（0.0完全透明，1.0完全不透明）
     painter_b.drawPixmap(rect(), background);
 
-
     QPainter painter(this); // 作绘图区域
-
 
     QPen penl(Qt::red); // penl绘制上界
     penl.setStyle(Qt::DashLine);
     painter.setPen(penl);
-    painter.drawLine(p1_o_ + QPoint(0,2*BLOCKSIZE), p1_o_ + QPoint(COL*BLOCKSIZE,2*BLOCKSIZE));
-    painter.drawLine(p2_o_ + QPoint(0,2*BLOCKSIZE), p2_o_ + QPoint(COL*BLOCKSIZE,2*BLOCKSIZE));
-
+    painter.drawLine(p1_o_ + QPoint(0, 2 * BLOCKSIZE), p1_o_ + QPoint(COL * BLOCKSIZE, 2 * BLOCKSIZE));
+    painter.drawLine(p2_o_ + QPoint(0, 2 * BLOCKSIZE), p2_o_ + QPoint(COL * BLOCKSIZE, 2 * BLOCKSIZE));
 
     QPen pen(Qt::black); // pen绘制边框
     painter.setPen(pen);
@@ -327,36 +319,18 @@ void Cboard_pair::saveBegin(int p)
 
     // 获得分数
     score[p] += 100 * delete_num;
-
-
     switch(delete_num)
     {
-    case 1:
-
-        player_1->setAudioOutput(audiooutput);
-        player_1->play();
-        break;
     case 2:
-
-        player_2->setAudioOutput(audiooutput);
-        player_2->play();
         score[p] += 50;
         break;
     case 3:
-
-        player_3->setAudioOutput(audiooutput);
-        player_3->play();
         score[p] += 125;
         break;
     case 4:
-
-        player_4->setAudioOutput(audiooutput);
-        player_4->play();
-        score[p] += 200;
+        score[p] += 250;
         break;
     }
-
-
 
     // 判断游戏是否结束
     if (down < 4)
@@ -404,7 +378,7 @@ void Cboard_pair::do_timechange(int time)
             goDown(1);
         }
     }
-    ui->lcd_time->display(this->time);//更新时间显示
+    ui->lcd_time->display(this->time); // 更新时间显示
 }
 
 void Cboard_pair::do_time_hard()
@@ -489,10 +463,7 @@ void Cboard_pair::on_difchange_button_p_clicked(bool checked)
 void Cboard_pair::keyPressEvent(QKeyEvent *k)
 {
     if (k->key() == Qt::Key_Space) on_pause_button_p_clicked(Ispaused);
-    if (Ispaused == true)
-    {
-            k->ignore(); // 忽视该按键事件
-    }
+    if (Ispaused == true) k->ignore(); // 忽视该按键事件
     else
     {
         switch(k->key())
