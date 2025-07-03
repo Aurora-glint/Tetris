@@ -13,5 +13,12 @@
         <file>gameover.wav</file>
         <file>remove.wav</file>
         <file>magic-wand.wav</file>
+        <file>bell.wav</file>
+        <file>levelup.wav</file>
+        <file>toast.wav</file>
+        <file>explode1.wav</file>
+        <file>orb.wav</file>
+        <file>return3.wav</file>
+        <file>click.wav</file>
     </qresource>
 </RCC>

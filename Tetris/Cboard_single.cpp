@@ -20,17 +20,17 @@ Cboard_single::Cboard_single(QWidget *parent)
 
     audiooutput->setVolume(0.8f);
 
-    player_0->setSource(QUrl("qrc:/Sound/down.wav"));
+    player_0->setSource(QUrl("qrc:/Sound/bell.wav"));//下落音效
 
-    player_1->setSource(QUrl("qrc:/Sound/remove.wav"));
+    player_1->setSource(QUrl("qrc:/Sound/orb.wav"));//消一行音效
 
-    player_2->setSource(QUrl("qrc:/Sound/remove.wav"));
+    player_2->setSource(QUrl("qrc:/Sound/levelup.wav"));//消两行
 
-    player_3->setSource(QUrl("qrc:/Sound/remove.wav"));
+    player_3->setSource(QUrl("qrc:/Sound/return3.wav"));//三行
 
-    player_4->setSource(QUrl("qrc:/Sound/magic-wand.wav"));
+    player_4->setSource(QUrl("qrc:/Sound/magic-wand.wav"));//四行
 
-    player_end->setSource(QUrl("qrc:/Sound/gameover.wav"));
+    player_end->setSource(QUrl("qrc:/Sound/explode1.wav"));//结束音效
 }
 
 Cboard_single::~Cboard_single()
