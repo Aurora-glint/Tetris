@@ -1,5 +1,5 @@
-#include "cboard_single.h"
-#include "ui_cboard_single.h"
+#include "Cboard_single.h"
+#include "ui_Cboard_single.h"
 #include <QKeyEvent>
 #include <QFrame>
 
@@ -20,17 +20,17 @@ Cboard_single::Cboard_single(QWidget *parent)
 
     audiooutput->setVolume(0.8f);
 
-    player_0->setSource(QUrl("qrc:/Sound/down.wav"));
+    player_0->setSource(QUrl("qrc:/Sound/bell.wav"));//下落音效
 
-    player_1->setSource(QUrl("qrc:/Sound/remove.wav"));
+    player_1->setSource(QUrl("qrc:/Sound/orb.wav"));//消一行音效
 
-    player_2->setSource(QUrl("qrc:/Sound/remove.wav"));
+    player_2->setSource(QUrl("qrc:/Sound/levelup.wav"));//消两行
 
-    player_3->setSource(QUrl("qrc:/Sound/remove.wav"));
+    player_3->setSource(QUrl("qrc:/Sound/return3.wav"));//三行
 
-    player_4->setSource(QUrl("qrc:/Sound/magic-wand.wav"));
+    player_4->setSource(QUrl("qrc:/Sound/magic-wand.wav"));//四行
 
-    player_end->setSource(QUrl("qrc:/Sound/gameover.wav"));
+    player_end->setSource(QUrl("qrc:/Sound/explode1.wav"));//结束音效
 }
 
 Cboard_single::~Cboard_single()
@@ -59,15 +59,9 @@ void Cboard_single::keyPressEvent(QKeyEvent *k)
             k->ignore(); // 忽视该按键事件
     }
     else
-    {/*
-        if(k->key() == Qt::Key_W) rotate();
-        if(k->key() == Qt::Key_A) goLeft();
-        if(k->key() == Qt::Key_S) goDown();
-        if(k->key() == Qt::Key_D) goRight();
-        */
+    {
         switch(k->key())
         {
-            // 玩家1操作按键
         case Qt::Key_W:
             rotate();
             break;
@@ -297,6 +291,12 @@ void Cboard_single::saveBegin()
     }
     score += 10; // 每成功下落一个方块，得分加10
 
+    audiooutput->setVolume(0.9);
+    player_0->setAudioOutput(audiooutput);
+
+    player_0->play();
+    //audiooutput->setVolume(0.1);
+
     // 判断是否需要消行
     int delete_num = 0;
     for (int line = up; line >= down; --line)
@@ -316,11 +316,35 @@ void Cboard_single::saveBegin()
     }
     playMedia(delete_num); // 播放音效
 
-    // 获得分数
-    score += 100 * delete_num;
-    if (delete_num == 2) score += 50;
-    else if (delete_num == 3) score += 125;
-    else if (delete_num == 4) score += 200;
+
+    //audiooutput->setVolume(0.1);//音量校准
+
+    switch(delete_num)
+    {
+    case 1:
+
+        player_1->setAudioOutput(audiooutput);
+        player_1->play();
+        break;
+    case 2:
+
+        player_2->setAudioOutput(audiooutput);
+        player_2->play();
+        score += 50;
+        break;
+    case 3:
+
+        player_3->setAudioOutput(audiooutput);
+        player_3->play();
+        score += 125;
+        break;
+    case 4:
+
+        player_4->setAudioOutput(audiooutput);
+        player_4->play();
+        score += 200;
+        break;
+    }
 
     // 判断游戏是否结束
     if (down < 4)
@@ -345,6 +369,18 @@ void Cboard_single::endGame()
 
 void Cboard_single::paintEvent(QPaintEvent *event)
 {
+
+    Q_UNUSED(event);
+
+    QRect frame(o_ , s_);
+
+    // 绘制背景图片
+    QPainter painter_b(this);
+    QPixmap background(":/image/daytime.png");
+    // 设置透明度（0.0完全透明，1.0完全不透明）
+    painter_b.setOpacity(0.5); // 50%透明度
+    painter_b.drawPixmap(frame, background);
+
     QPainter painter(this); // 作绘图区域
 
     QPen penl(Qt::red); // penl绘制上界
@@ -354,7 +390,7 @@ void Cboard_single::paintEvent(QPaintEvent *event)
 
     QPen pen(Qt::black); // pen绘制边框
     painter.setPen(pen);
-    QRectF frame(o_ , s_);
+
     painter.drawRect(frame);
 
     QRect one_block;

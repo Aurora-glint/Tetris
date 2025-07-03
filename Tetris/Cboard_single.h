@@ -8,7 +8,7 @@
 #include <QBasicTimer>
 #include <QPainter>
 #include <QPaintEvent>
-#include "Cboard.h"
+#include "MainWindow.h"
 
 namespace Ui {
 class Cboard_single;

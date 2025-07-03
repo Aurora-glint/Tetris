@@ -1,8 +1,8 @@
-#include "Cboard.h"
-#include "ui_Cboard.h"
-#include <QDebug>
-#include <cboard_single.h>
-#include <cboard_pair.h>
+#include "MainWindow.h"
+#include "ui_MainWindow.h"
+
+#include <Cboard_single.h>
+#include <Cboard_pair.h>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -36,22 +36,17 @@ MainWindow::MainWindow(QWidget *parent)
     connect(group, &QButtonGroup::buttonToggled,
             [=](QAbstractButton *btn, bool checked) {
                 if (checked) {
-                    // 1. 获取按钮信息
-                    QString btnText = btn->text();
+                    //  获取按钮信息
                     int id = group->id(btn);
 
-                    // 2. 打印选择信息
-                    qDebug() << "选择的难度:" << btnText << "(ID:" << id << ")";
-
-                    // 3. 更新游戏设置
+                    //  更新游戏设置
                     widgets->setDifficulty(Difficulty(id));//设置单人游戏的难度
                     widgetp->p_setDifficulty(Difficulty(id));
-
-                    // 4. 界面反馈
-                    //showSelectionFeedback(btn);
                 }
             });
     ui->EasyradioButton->setChecked(true);
+
+   // ui->single_button->setBackgroundRole(QPalette::Button);
 }
 
 MainWindow::~MainWindow()
@@ -109,10 +104,10 @@ void MainWindow::on_pairbutton_clicked()
 
 void MainWindow::on_actionhelp_triggered()
 {
-    qDebug()<<"help "<<Qt::endl;
     QString helptitle = "游戏指南";
     QString helpinfo = "单人游戏：使用A S D控制方块向左、下、右移动，W使方块旋转\n\n"
-                       "多人游戏：player1使用WASD，player2使用方向键⬆⬇⬅➡ ";
+                       "多人游戏：player1使用WASD，player2使用方向键⬆⬇⬅➡ \n\n"
+        "一次性消多行会有额外加分嗷，快去挑战吧！";
     QMessageBox::information(this,helptitle,helpinfo);
 }
 

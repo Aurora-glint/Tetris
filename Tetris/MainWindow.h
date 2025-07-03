@@ -1,5 +1,5 @@
-#ifndef CBOARD_H
-#define CBOARD_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #ifndef ROW
 #define ROW 25
@@ -39,6 +39,18 @@ public:
 protected:
     void setDifficulty(Difficulty);//设置主窗口显示难度（与传入一致）
 
+protected:
+    //绘制背景图片
+    void paintEvent(QPaintEvent *event) override
+    {
+        Q_UNUSED(event);
+
+        // 绘制背景图片
+        QPainter painter(this);
+        QPixmap background(":/image/deepocean.png");
+        painter.drawPixmap(rect(), background);
+    }
+
 signals:
     void quit();
 
@@ -64,4 +76,4 @@ private:
 public:
 
 };
-#endif // CBOARD_H
+#endif // MAINWINDOW_H

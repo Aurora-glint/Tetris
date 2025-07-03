@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "CTetrimino.h"
 #include <queue>
-#include "Cboard.h"
+#include "MainWindow.h"
 #include <QPainter>
 #include <QPaintEvent>
 #include <QPoint>
@@ -76,7 +76,7 @@ private:
 
     void playMedia(int delete_num);
 
-// 游戏部分
+// 游戏运行逻辑部分
 public slots:
     void startGame(); // 开始游戏按键
 

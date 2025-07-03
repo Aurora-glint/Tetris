@@ -12,21 +12,21 @@ CONFIG += c++17
 
 SOURCES += \
     CTetrimino.cpp \
-    Cboard.cpp \
-    cboard_pair.cpp \
-    cboard_single.cpp \
+    Cboard_pair.cpp \
+    Cboard_single.cpp \
+    MainWindow.cpp \
     main.cpp
 
 HEADERS += \
     CTetrimino.h \
-    Cboard.h \
-    cboard_pair.h \
-    cboard_single.h
+    Cboard_pair.h \
+    Cboard_single.h \
+    MainWindow.h
 
 FORMS += \
-    Cboard.ui \
-    cboard_pair.ui \
-    cboard_single.ui
+    Cboard_pair.ui \
+    Cboard_single.ui \
+    MainWindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

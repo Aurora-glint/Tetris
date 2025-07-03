@@ -10,12 +10,27 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Teris_game</string>
   </property>
   <property name="windowIcon">
    <iconset resource="myresources.qrc">
     <normaloff>:/image/neko22.ico</normaloff>:/image/neko22.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="layoutWidget">
@@ -39,8 +54,23 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>单人游戏</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -51,6 +81,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url();</string>
        </property>
        <property name="text">
         <string>多人游戏</string>
@@ -64,6 +97,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:);</string>
        </property>
        <property name="text">
         <string>退出</string>
@@ -105,6 +141,10 @@
        <property name="focusPolicy">
         <enum>Qt::FocusPolicy::TabFocus</enum>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url();
+border-color: rgb(85, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Normal</string>
        </property>
@@ -126,6 +166,9 @@
        </property>
        <property name="focusPolicy">
         <enum>Qt::FocusPolicy::TabFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url();</string>
        </property>
        <property name="text">
         <string>Hard</string>
@@ -151,6 +194,9 @@
        <property name="focusPolicy">
         <enum>Qt::FocusPolicy::TabFocus</enum>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url();</string>
+       </property>
        <property name="text">
         <string>Crazy</string>
        </property>
@@ -159,7 +205,6 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
