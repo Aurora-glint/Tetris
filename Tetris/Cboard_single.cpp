@@ -386,7 +386,7 @@ void Cboard_single::paintEvent(QPaintEvent *event)
     QPen penl(Qt::red); // penl绘制上界
     penl.setStyle(Qt::DashLine);
     painter.setPen(penl);
-    painter.drawLine(o_ + QPoint(0,2*BLOCKSIZE), o_ + QPoint(COL*BLOCKSIZE,2*BLOCKSIZE));
+    painter.drawLine(o_ + QPoint(0,4*BLOCKSIZE), o_ + QPoint(COL*BLOCKSIZE,4*BLOCKSIZE));
 
     QPen pen(Qt::black); // pen绘制边框
     painter.setPen(pen);

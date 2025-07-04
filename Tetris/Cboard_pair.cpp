@@ -65,8 +65,8 @@ void Cboard_pair::paintEvent(QPaintEvent *event)
     QPen penl(Qt::red); // penl绘制上界
     penl.setStyle(Qt::DashLine);
     painter.setPen(penl);
-    painter.drawLine(p1_o_ + QPoint(0,2*BLOCKSIZE), p1_o_ + QPoint(COL*BLOCKSIZE,2*BLOCKSIZE));
-    painter.drawLine(p2_o_ + QPoint(0,2*BLOCKSIZE), p2_o_ + QPoint(COL*BLOCKSIZE,2*BLOCKSIZE));
+    painter.drawLine(p1_o_ + QPoint(0,4*BLOCKSIZE), p1_o_ + QPoint(COL*BLOCKSIZE,4*BLOCKSIZE));
+    painter.drawLine(p2_o_ + QPoint(0,4*BLOCKSIZE), p2_o_ + QPoint(COL*BLOCKSIZE,4*BLOCKSIZE));
 
 
     QPen pen(Qt::black); // pen绘制边框
