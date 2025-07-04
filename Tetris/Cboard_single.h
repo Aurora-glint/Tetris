@@ -22,22 +22,7 @@ public:
     explicit Cboard_single(QWidget *parent = nullptr);
     ~Cboard_single();
 
-    bool Isend; // 游戏结束标志
-    bool Ispaused; // 暂停状态标志
 
-    void keyPressEvent(QKeyEvent *k)override; // 监听按键事件
-
-    const QString buttonstyle = "QPushButton {"
-                                "   background-color: #2980b9;"
-                                "   border: none;"
-                                "}"
-                                "QPushButton:hover {"
-                                "   background-color: #3498db;"
-                                "}"
-                                "QPushButton:pressed {"
-                              "background-color: #1d6fa5;"
-                                "}"
-        ;
 signals:
     void back();//返回信号
 
@@ -70,6 +55,11 @@ private slots:
 private:
     Ui::Cboard_single *ui;
 
+    bool Isend; // 游戏结束标志
+    bool Ispaused; // 暂停状态标志
+
+    void keyPressEvent(QKeyEvent *k)override; // 监听按键事件
+
     int time = 0;//计时变量
 
     void timerEvent(QTimerEvent *event) override;//定时器事件
@@ -81,7 +71,7 @@ private:
     int id_crazy = startTimer(200);
     int id_hard = startTimer(500);
 
-public slots:
+private slots:
     void startGame();
 
     void goDown(); // 方块下落

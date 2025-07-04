@@ -73,7 +73,5 @@ private:
     Cboard_pair *widgetp  ;//双人游戏窗口对象
     QButtonGroup *group = new QButtonGroup(this);
 
-public:
-
 };
 #endif // MAINWINDOW_H
