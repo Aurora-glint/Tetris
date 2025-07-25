@@ -1,2 +1,0 @@
-# Teris
-two of us !
